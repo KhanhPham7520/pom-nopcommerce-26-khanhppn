@@ -166,7 +166,7 @@
                     </properties>
                     <!-- Run TestNG xml file -->
                     <suiteXmlFiles>
-                        <!--                        <file>src/test/resources/runNopCommerceTestcases.xml</file>-->
+                        <!-- <file>src/test/resources/runNopCommerceTestcases.xml</file>-->
                     </suiteXmlFiles>
 
                 </configuration>
