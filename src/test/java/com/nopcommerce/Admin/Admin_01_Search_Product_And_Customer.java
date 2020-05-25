@@ -71,9 +71,11 @@ public class Admin_01_Search_Product_And_Customer extends AbstractTest {
     @Test
     public void TC_01_Search_With_Product_Name() {
         adminSidebarPage.clickToCatalogLink();
+
         adminProductPage = adminSidebarPage.clickToProductLink();
 
         adminProductPage.inputToProductNameTextbox(productName);
+
         adminProductPage.clickToSearchButton();
 
         Assert.assertEquals(adminProductPage.verifyProductName(productName), productName);
@@ -88,10 +90,13 @@ public class Admin_01_Search_Product_And_Customer extends AbstractTest {
     @Test
     public void TC_02_Search_With_Product_Name_Parent_Category_Unchecked() {
         adminSidebarPage.clickToCatalogLink();
+
         adminProductPage = adminSidebarPage.clickToProductLink();
 
         adminProductPage.inputToProductNameTextbox(productName);
+
         adminProductPage.selectCategory("Computers");
+
         adminProductPage.clickToSearchButton();
 
         verifyEquals(adminProductPage.verifyNoDataMessage(), noDataMessage);
@@ -142,7 +147,7 @@ public class Admin_01_Search_Product_And_Customer extends AbstractTest {
         adminProductPage.selectManufacturer("Apple");
         adminProductPage.clickToSearchButton();
 
-        Assert.assertEquals(adminProductPage.verifyNoDataMessage(), noDataMessage);
+        verifyEquals(adminProductPage.verifyNoDataMessage(), noDataMessage);
     }
 
     @Test
@@ -153,56 +158,73 @@ public class Admin_01_Search_Product_And_Customer extends AbstractTest {
         adminProductPage.inputSKUTextbox(SKU);
         adminEditProductPage = adminProductPage.clickGoSKUButton();
 
-        Assert.assertEquals(adminEditProductPage.getProductName(), productName);
+        verifyEquals(adminEditProductPage.getProductName(), productName);
 
     }
 
     @Test
     public void TC_07_Create_New_Customer() {
         adminSidebarPage.clickCustomerMenuLink();
+
         adminSidebarPage.clickToCustomersLink();
 
         adminAddNewCustomerPage = adminSearchCustomerPage.clickToAddNewButton();
+
         adminAddNewCustomerPage.inputEmailTextbox(email);
+
         adminAddNewCustomerPage.inputPasswordTextbox(password);
+
         adminAddNewCustomerPage.inputFirstNameTextbox(firstName);
+
         adminAddNewCustomerPage.inputLastNameTextbox(lastName);
+
         adminAddNewCustomerPage.selectMaleGender();
+
         adminAddNewCustomerPage.selectDOB(DOB);
+
         adminAddNewCustomerPage.inputCompanyNameTextbox(companyName);
+
         // adminAddNewCustomerPage.selectCustomerRoles(customerRole);
         adminAddNewCustomerPage.selectActiveStatus(true);
+
         adminAddNewCustomerPage.inputAdminComment(adminComment);
+
         adminAddNewCustomerPage.clickSaveButton();
 
         // Assert.assertEquals(adminAddNewCustomerPage.verifyAddNewCustomerSuccess(), addNewCustomerSuccess);
-        Assert.assertTrue(adminAddNewCustomerPage.isAddedSuccessfulDisplayed());
+        verifyTrue(adminAddNewCustomerPage.isAddedSuccessfulDisplayed());
     }
 
     @Test
     public void TC_08_Search_Customer_With_Email() {
         adminSidebarPage.clickCustomerMenuLink();
+
         adminSearchCustomerPage = adminSidebarPage.clickToCustomersLink();
 
         adminSearchCustomerPage.inputEmailTextbox("automationfc@gmail.com");
+
         // adminSearchCustomerPage.deleteRegisterdRole(driver);
         adminSearchCustomerPage.clickSearchButton();
 
         // Verify Name of table
-        Assert.assertEquals(adminSearchCustomerPage.verifyResultTable("3"), "Automation FC");
+        verifyEquals(adminSearchCustomerPage.verifyResultTable("3"), "Automation FC");
 
         // Verify Company name of table
-        Assert.assertEquals(adminSearchCustomerPage.verifyResultTable("5"), "Automation FC");
+        verifyEquals(adminSearchCustomerPage.verifyResultTable("5"), "Automation FC");
     }
 
     @Test
     public void TC_09_Search_Customer_With_FirstName_And_LastName() {
         adminSidebarPage.clickCustomerMenuLink();
+
         adminSearchCustomerPage = adminSidebarPage.clickToCustomersLink();
 
         adminSearchCustomerPage.inputFistNameTextbox(firstName);
+
         adminSearchCustomerPage.inputLastNameTextbox(lastName);
+
         // adminSearchCustomerPage.selectCustomerRole(customerRole);
+
         adminSearchCustomerPage.clickSearchButton();
 
     }
@@ -212,7 +234,7 @@ public class Admin_01_Search_Product_And_Customer extends AbstractTest {
 
     }
 
-    @AfterTest
+    @AfterTest(alwaysRun = true)
     public void afterTest() {
         closeBrowserAndDriver(driver);
     }

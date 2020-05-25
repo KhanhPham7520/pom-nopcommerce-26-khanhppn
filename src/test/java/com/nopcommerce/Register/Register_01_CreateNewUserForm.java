@@ -2,180 +2,178 @@ package com.nopcommerce.Register;
 
 import Data_Faker.DataHelperForLanguageEn;
 import com.nopcommerce.data.CustomerData;
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
-
-
 import commons.AbstractPage;
 import commons.AbstractTest;
 import commons.PageGeneratorManager;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.*;
 import pageObjects.HomePageObject;
 import pageObjects.RegisterPageObject;
 
 public class Register_01_CreateNewUserForm extends AbstractTest {
 
-	RegisterPageObject registerPage;
-	HomePageObject homePage;
-	private WebDriver driver;
-	private AbstractPage abstractPage;
-	private String password;
-	private String email;
-	private DataHelperForLanguageEn dataHelperForLanguageEn;
+    RegisterPageObject registerPage;
+    HomePageObject homePage;
+    private WebDriver driver;
+    private AbstractPage abstractPage;
+    private String password;
+    private String email;
+    private DataHelperForLanguageEn dataHelperForLanguageEn;
 
-	@Parameters({ "browser" })
-	@BeforeTest
-	public void beforeTest(@Optional("chrome") String browserName) {
-		driver = getBrowserDriver(browserName);
+    @Parameters({"browser"})
+    @BeforeTest
+    public void beforeTest(@Optional("chrome") String browserName) {
+        driver = getBrowserDriver(browserName);
 
-		registerPage = PageGeneratorManager.getRegisterPage(driver);
-		homePage = PageGeneratorManager.getHomePage(driver);
+        registerPage = PageGeneratorManager.getRegisterPage(driver);
+        homePage = PageGeneratorManager.getHomePage(driver);
 
-		abstractPage = new AbstractPage(driver);
-		dataHelperForLanguageEn = DataHelperForLanguageEn.getData();
+        abstractPage = new AbstractPage(driver);
+        dataHelperForLanguageEn = DataHelperForLanguageEn.getData();
 
-		email = dataHelperForLanguageEn.getEmail();
-		password = dataHelperForLanguageEn.getPassword();
-	}
+        email = dataHelperForLanguageEn.getEmail();
+        password = dataHelperForLanguageEn.getPassword();
+    }
 
-	@BeforeMethod
-	public void beforeMethod() {
-		registerPage = homePage.clickToRegisterLink();
-	}
+    @BeforeMethod
+    public void beforeMethod() {
+        registerPage = homePage.clickToRegisterLink();
+    }
 
-	@Test
-	public void TC_01_Register_With_Empty_Data() {
-		registerPage.clickToRegisterButton();
+    @Test
+    public void TC_01_Register_With_Empty_Data() {
 
-		verifyEquals(registerPage.getErrorMessage(driver, "FirstName-error", "First name is required."), "First name is required.");
-		verifyEquals(registerPage.getErrorMessage(driver, "LastName-error", "Last name is required."), "Last name is required.");
-		verifyEquals(registerPage.getErrorMessage(driver, "Password-error", "Password is required."), "Password is required.");
-		verifyEquals(registerPage.getErrorMessage(driver, "ConfirmPassword-error", "Password is required."), "Password is required.");
-	}
+        registerPage.clickToRegisterButton();
 
-	@Test
-	public void TC_02_Register_With_Invalid_Email() {
-		registerPage.inputToTextbox(driver, CustomerData.NewCustomer.INVALID_EMAIL, "Email");
-		registerPage.clickButton(driver, "register-button");
+        verifyEquals(registerPage.getErrorMessage(driver, "FirstName-error", "First name is required."), "First name is required.");
+        verifyEquals(registerPage.getErrorMessage(driver, "LastName-error", "Last name is required."), "Last name is required.");
+        verifyEquals(registerPage.getErrorMessage(driver, "Password-error", "Password is required."), "Password is required.");
+        verifyEquals(registerPage.getErrorMessage(driver, "ConfirmPassword-error", "Password is required."), "Password is required.");
+    }
 
-		verifyEquals(registerPage.getErrorMessage(driver, "Email-error", "Wrong email"), "Wrong email");
+    @Test
+    public void TC_02_Register_With_Invalid_Email() {
+        registerPage.inputToTextbox(driver, CustomerData.NewCustomer.INVALID_EMAIL, "Email");
+        registerPage.clickButton(driver, "register-button");
 
-	}
+        verifyEquals(registerPage.getErrorMessage(driver, "Email-error", "Wrong email"), "Wrong email");
 
-	@Test
-	public void TC_03_Register_With_Existed_Email() {
-		registerPage.clickRadio(driver, "gender-male");
+    }
 
-		registerPage.inputToTextbox(driver, CustomerData.NewCustomer.FIRST_NAME, "FirstName");
+    @Test
+    public void TC_03_Register_With_Existed_Email() {
 
-		registerPage.inputToTextbox(driver, CustomerData.NewCustomer.LAST_NAME, "LastName");
+        registerPage.clickRadio(driver, "gender-male");
 
-		registerPage.selectBirthDate(driver, CustomerData.NewCustomer.BIRTHDAY, "DateOfBirthDay");
+        registerPage.inputToTextbox(driver, CustomerData.NewCustomer.FIRST_NAME, "FirstName");
 
-		registerPage.selectBirthDate(driver, CustomerData.NewCustomer.BIRTHMONTH, "DateOfBirthMonth");
+        registerPage.inputToTextbox(driver, CustomerData.NewCustomer.LAST_NAME, "LastName");
 
-		registerPage.selectBirthDate(driver, CustomerData.NewCustomer.BIRTHYEAR, "DateOfBirthYear");
+        registerPage.selectBirthDate(driver, CustomerData.NewCustomer.BIRTHDAY, "DateOfBirthDay");
 
-		registerPage.inputToTextbox(driver, CustomerData.REGISTERED_EMAIL, "Email");
+        registerPage.selectBirthDate(driver, CustomerData.NewCustomer.BIRTHMONTH, "DateOfBirthMonth");
 
-		registerPage.inputToTextbox(driver, CustomerData.NewCustomer.COMPANY, "Company");
+        registerPage.selectBirthDate(driver, CustomerData.NewCustomer.BIRTHYEAR, "DateOfBirthYear");
 
-		registerPage.inputToTextbox(driver, CustomerData.REGISTERD_PASSWORD, "Password");
+        registerPage.inputToTextbox(driver, CustomerData.REGISTERED_EMAIL, "Email");
 
-		registerPage.inputToTextbox(driver, CustomerData.REGISTERD_PASSWORD, "ConfirmPassword");
+        registerPage.inputToTextbox(driver, CustomerData.NewCustomer.COMPANY, "Company");
 
-		registerPage.clickButton(driver, "register-button");
+        registerPage.inputToTextbox(driver, CustomerData.NewCustomer.INVALID_PASSWORD, "Password");
 
-		verifyEquals(registerPage.getExistedMessage(), "The specified email already exists");
-	}
+        registerPage.inputToTextbox(driver, CustomerData.NewCustomer.INVALID_PASSWORD, "ConfirmPassword");
 
-	@Test
-	public void TC_04_Register_Password_With_Lower_Than_6_Characters() {
-		registerPage.clickRadio(driver, "gender-male");
+        registerPage.clickButton(driver, "register-button");
 
-		registerPage.inputToTextbox(driver, CustomerData.NewCustomer.FIRST_NAME, "FirstName");
+        verifyEquals(registerPage.getExistedMessage(), "The specified email already exists");
+    }
 
-		registerPage.inputToTextbox(driver, CustomerData.NewCustomer.LAST_NAME, "LastName");
+    @Test
+    public void TC_04_Register_Password_With_Lower_Than_6_Characters() {
 
-		registerPage.selectBirthDate(driver, CustomerData.NewCustomer.BIRTHDAY, "DateOfBirthDay");
+        registerPage.clickRadio(driver, "gender-male");
 
-		registerPage.selectBirthDate(driver, CustomerData.NewCustomer.BIRTHMONTH, "DateOfBirthMonth");
+        registerPage.inputToTextbox(driver, CustomerData.NewCustomer.FIRST_NAME, "FirstName");
 
-		registerPage.selectBirthDate(driver, CustomerData.NewCustomer.BIRTHYEAR, "DateOfBirthYear");
+        registerPage.inputToTextbox(driver, CustomerData.NewCustomer.LAST_NAME, "LastName");
 
-		registerPage.inputToTextbox(driver, email, "Email");
+        registerPage.selectBirthDate(driver, CustomerData.NewCustomer.BIRTHDAY, "DateOfBirthDay");
 
-		registerPage.inputToTextbox(driver, CustomerData.NewCustomer.COMPANY, "Company");
+        registerPage.selectBirthDate(driver, CustomerData.NewCustomer.BIRTHMONTH, "DateOfBirthMonth");
 
-		registerPage.inputToTextbox(driver, CustomerData.NewCustomer.INVALID_PASSWORD, "Password");
+        registerPage.selectBirthDate(driver, CustomerData.NewCustomer.BIRTHYEAR, "DateOfBirthYear");
 
-		registerPage.clickButton(driver, "register-button");
+        registerPage.inputToTextbox(driver, email, "Email");
 
-		verifyTrue(abstractPage.isElementDisplayed("//span[@id='Password-error']"));
+        registerPage.inputToTextbox(driver, CustomerData.NewCustomer.COMPANY, "Company");
 
-	}
+        registerPage.inputToTextbox(driver, CustomerData.NewCustomer.INVALID_LOWER_THAN_6_CHARS_PASSWORD, "Password");
 
-	@Test
-	public void TC_05_Register_Password_And_Confirm_Password_Not_Equal() {
-		registerPage.clickRadio(driver, "gender-male");
+        registerPage.clickButton(driver, "register-button");
 
-		registerPage.inputToTextbox(driver, CustomerData.NewCustomer.FIRST_NAME, "FirstName");
+        verifyTrue(abstractPage.isElementDisplayed("//span[@id='Password-error']"));
 
-		registerPage.inputToTextbox(driver, CustomerData.NewCustomer.LAST_NAME, "LastName");
+    }
 
-		registerPage.selectBirthDate(driver, CustomerData.NewCustomer.BIRTHDAY, "DateOfBirthDay");
+    @Test
+    public void TC_05_Register_Password_And_Confirm_Password_Not_Equal() {
 
-		registerPage.selectBirthDate(driver, CustomerData.NewCustomer.BIRTHMONTH, "DateOfBirthMonth");
+        registerPage.clickRadio(driver, "gender-male");
 
-		registerPage.selectBirthDate(driver, CustomerData.NewCustomer.BIRTHYEAR, "DateOfBirthYear");
+        registerPage.inputToTextbox(driver, CustomerData.NewCustomer.FIRST_NAME, "FirstName");
 
-		registerPage.inputToTextbox(driver, email, "Email");
+        registerPage.inputToTextbox(driver, CustomerData.NewCustomer.LAST_NAME, "LastName");
 
-		registerPage.inputToTextbox(driver, CustomerData.NewCustomer.COMPANY, "Company");
+        registerPage.selectBirthDate(driver, CustomerData.NewCustomer.BIRTHDAY, "DateOfBirthDay");
 
-		registerPage.inputToTextbox(driver, CustomerData.REGISTERD_PASSWORD, "Password");
+        registerPage.selectBirthDate(driver, CustomerData.NewCustomer.BIRTHMONTH, "DateOfBirthMonth");
 
-		registerPage.inputToTextbox(driver, CustomerData.NewCustomer.INVALID_PASSWORD, "ConfirmPassword");
+        registerPage.selectBirthDate(driver, CustomerData.NewCustomer.BIRTHYEAR, "DateOfBirthYear");
 
-		registerPage.clickButton(driver, "register-button");
+        registerPage.inputToTextbox(driver, email, "Email");
 
-		verifyTrue(abstractPage.findElementByXpath("//span[text()='The password and confirmation password do not match.']").isDisplayed());
+        registerPage.inputToTextbox(driver, CustomerData.NewCustomer.COMPANY, "Company");
 
-	}
+        registerPage.inputToTextbox(driver, CustomerData.REGISTERD_PASSWORD, "Password");
 
-	@Test
-	public void TC_06_Register_Valid_Info() {
-		registerPage.clickRadio(driver, "gender-male");
+        registerPage.inputToTextbox(driver, CustomerData.NewCustomer.INVALID_PASSWORD, "ConfirmPassword");
 
-		registerPage.inputToTextbox(driver, CustomerData.NewCustomer.FIRST_NAME, "FirstName");
+        registerPage.clickButton(driver, "register-button");
 
-		registerPage.inputToTextbox(driver, CustomerData.NewCustomer.LAST_NAME, "LastName");
+        verifyTrue(abstractPage.findElementByXpath("//span[text()='The password and confirmation password do not match.']").isDisplayed());
 
-		registerPage.selectBirthDate(driver, CustomerData.NewCustomer.BIRTHDAY, "DateOfBirthDay");
+    }
 
-		registerPage.selectBirthDate(driver, CustomerData.NewCustomer.BIRTHMONTH, "DateOfBirthMonth");
+    @Test
+    public void TC_06_Register_Valid_Info() {
 
-		registerPage.selectBirthDate(driver, CustomerData.NewCustomer.BIRTHYEAR, "DateOfBirthYear");
+        registerPage.clickRadio(driver, "gender-male");
 
-		registerPage.inputToTextbox(driver, email, "Email");
+        registerPage.inputToTextbox(driver, CustomerData.NewCustomer.FIRST_NAME, "FirstName");
 
-		registerPage.inputToTextbox(driver, CustomerData.NewCustomer.COMPANY, "Company");
+        registerPage.inputToTextbox(driver, CustomerData.NewCustomer.LAST_NAME, "LastName");
 
-		registerPage.inputToTextbox(driver, password, "Password");
+        registerPage.selectBirthDate(driver, CustomerData.NewCustomer.BIRTHDAY, "DateOfBirthDay");
 
-		registerPage.inputToTextbox(driver, password, "ConfirmPassword");
+        registerPage.selectBirthDate(driver, CustomerData.NewCustomer.BIRTHMONTH, "DateOfBirthMonth");
 
-		registerPage.clickButton(driver, "register-button");
+        registerPage.selectBirthDate(driver, CustomerData.NewCustomer.BIRTHYEAR, "DateOfBirthYear");
 
-		verifyEquals(registerPage.getCompleteRegistrationMessage(), "Your registration completed");
-	}
+        registerPage.inputToTextbox(driver, email, "Email");
 
-	@AfterTest
-	public void afterTest() {
-		closeBrowserAndDriver(driver);
-	}
+        registerPage.inputToTextbox(driver, CustomerData.NewCustomer.COMPANY, "Company");
+
+        registerPage.inputToTextbox(driver, password, "Password");
+
+        registerPage.inputToTextbox(driver, password, "ConfirmPassword");
+
+        registerPage.clickButton(driver, "register-button");
+
+        verifyEquals(registerPage.getCompleteRegistrationMessage(), "Your registration completed");
+    }
+
+    @AfterTest(alwaysRun = true)
+    public void afterTest() {
+        closeBrowserAndDriver(driver);
+    }
 }

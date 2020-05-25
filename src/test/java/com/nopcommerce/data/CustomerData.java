@@ -12,7 +12,8 @@ public class CustomerData {
         public static final String INVALID_EMAIL = "a.gmail.com";
         public static final String COMPANY = "Corona Virus";
         public static final String BIRTHDAY = "1";
-        public static final String INVALID_PASSWORD = "fos12";
+        public static final String INVALID_LOWER_THAN_6_CHARS_PASSWORD = "fos1";
+        public static final String INVALID_PASSWORD = "fos123456";
         public static final String BIRTHMONTH = "March";
         public static final String BIRTHYEAR = "1986";
     }

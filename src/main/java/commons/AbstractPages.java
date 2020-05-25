@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 public abstract class AbstractPages {
 
     protected Select select;
-    protected JavascriptExecutor jsExcutor;
+    JavascriptExecutor jsExcutor;
     long longTimeOut = 20;
     long shortTimeOut = 5;
     Actions action;
@@ -165,20 +165,32 @@ public abstract class AbstractPages {
     }
 
     public void clickToElement(WebDriver driver, String locator) {
+        waitToElementClickable(driver, locator);
+        element = findElementByXpath(driver, locator);
+        highlightElement(driver, element);
         findElementByXpath(driver, locator).click();
     }
 
     public void clickToElement(WebDriver driver, String locator, String... values) {
+        waitToElementClickable(driver, locator, values);
+        element = findElementByXpath(driver, locator, values);
+        // highlightElement(driver, element);
         findElementByXpath(driver, locator, values).click();
     }
 
     public void sendKeyToElement(WebDriver driver, String locator, String value) {
+        waitToElementVisible(driver, locator);
         clearExistedData(driver, locator);
+        element = findElementByXpath(driver, locator);
+        // highlightElement(driver, element);
         driver.findElement(byXpathLocator(locator)).sendKeys(value);
     }
 
     public void sendKeyToElement(WebDriver driver, String locator, String sendKeyValue, String... values) {
+        waitToElementVisible(driver, locator, values);
         findElementByXpath(driver, locator, values).clear();
+        element = findElementByXpath(driver, locator, values);
+        // highlightElement(driver, element);
         findElementByXpath(driver, locator, values).sendKeys(sendKeyValue);
     }
 
@@ -245,6 +257,7 @@ public abstract class AbstractPages {
 
     public void waitToElementVisible(WebDriver driver, String locator) {
         byXpath = byXpathLocator(locator);
+        element = findElementByXpath(driver, locator);
         waitExplicit = new WebDriverWait(driver, longTimeOut);
         waitExplicit.until(ExpectedConditions.visibilityOfElementLocated(byXpath));
     }
@@ -257,6 +270,7 @@ public abstract class AbstractPages {
 
     public void waitToElementVisible(WebDriver driver, String locator, String... values) {
         byXpath = byXpathLocator(locator, values);
+        element = findElementByXpath(driver, locator, values);
         waitExplicit = new WebDriverWait(driver, longTimeOut);
         waitExplicit.until(ExpectedConditions.visibilityOfElementLocated(byXpath));
     }
@@ -500,7 +514,6 @@ public abstract class AbstractPages {
         action.sendKeys(Keys.ENTER).build().perform();
     }
 
-
     public NotebooksPageObject selectProductItemInNavigationBar(WebDriver driver, String navigationLabel, String navigationItem) {
         waitToElementVisible(driver, AbstractNopCommercePageUI.LINK_NAME_OF_HEADER_MENU, navigationLabel);
         hoverToElement(driver, AbstractNopCommercePageUI.LINK_NAME_OF_HEADER_MENU, navigationLabel);
@@ -524,15 +537,14 @@ public abstract class AbstractPages {
         return getTextElement(driver, AbstractNopCommercePageUI.ERROR_MESSAGE_VALIDATION, values);
     }
 
-//    public String getTextFromInputTextbox(WebDriver driver, String... values){
-//        waitToElementVisible(driver, AbstractNopCommercePageUI.INPUT_RADIO,values);
-//       return getTextElement(driver, AbstractNopCommercePageUI.INPUT_RADIO,values);
-//    }
+    // public String getTextFromInputTextbox(WebDriver driver, String... values){
+    // waitToElementVisible(driver, AbstractNopCommercePageUI.INPUT_RADIO,values);
+    // return getTextElement(driver, AbstractNopCommercePageUI.INPUT_RADIO,values);
+    // }
 
-
-//    public String getTextFromRadioButton(WebDriver driver, String... values){
-//        return getTextElement(driver, AbstractNopCommercePageUI.INPUT_RADIO, values);
-//    }
+    // public String getTextFromRadioButton(WebDriver driver, String... values){
+    // return getTextElement(driver, AbstractNopCommercePageUI.INPUT_RADIO, values);
+    // }
 
     public String getTextFromInputTextbox(WebDriver driver, String attributeName, String... values) {
         waitToElementVisible(driver, AbstractNopCommercePageUI.INPUT_TEXTBOX, values);
@@ -543,4 +555,14 @@ public abstract class AbstractPages {
         waitToElementVisible(driver, AbstractNopCommercePageUI.INPUT_RADIO, values);
         return findElementByXpath(driver, AbstractNopCommercePageUI.INPUT_RADIO, values).getAttribute(attributeName);
     }
+
+    public void highlightElement(WebDriver driver, WebElement element) {
+        jsExcutor = (JavascriptExecutor) driver;
+        String originalStyle = element.getAttribute("style");
+        jsExcutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", "border: 3px solid red; border-style: dashed;");
+        // sleepInSecond();
+        jsExcutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", originalStyle);
+
+    }
+
 }

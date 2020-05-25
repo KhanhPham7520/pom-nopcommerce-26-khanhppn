@@ -26,7 +26,7 @@ public class Product_02_Wishlist_Compare_RecentView extends AbstractTest {
 
     @Parameters({"browser"})
     @BeforeTest
-    public void beforeTest(@Optional String browserName) {
+    public void beforeTest(@Optional("chrome") String browserName) {
         driver = getBrowserDriver(browserName);
 
         homePage = PageGeneratorManager.getHomePage(driver);
@@ -142,16 +142,9 @@ public class Product_02_Wishlist_Compare_RecentView extends AbstractTest {
 
     }
 
-    @AfterTest
+    @AfterTest(alwaysRun = true)
     public void afterTest() {
-        shoppingCartPage = headerPage.clickToShoppingCartLink();
-        List<WebElement> itemList = findElementsByXpath(driver, "//input[@name='removefromcart']");
-        for (WebElement item : itemList) {
-            item.click();
-        }
-        shoppingCartPage.clickToButton("Update shopping cart");
-        // close browser
-        driver.quit();
+        closeBrowserAndDriver(driver);
     }
 
 }
