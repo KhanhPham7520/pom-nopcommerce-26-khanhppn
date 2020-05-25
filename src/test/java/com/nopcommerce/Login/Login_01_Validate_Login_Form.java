@@ -38,7 +38,7 @@ public class Login_01_Validate_Login_Form extends AbstractTest {
 
 	@Test
 	public void TC_01_Login_With_Empty_Data(Method method) {
-		ExtentTestManager.startTest(method.getName(), "TC_01_Login_With_Empty_Data");
+		ExtentTestManager.startTest(method.getName(), "TC 01 Login With Empty Data");
 
 		ExtentTestManager.getTest().log(LogStatus.INFO, "Step 01 : Input Email Blank");
 		log.info("Step 01: Input Email Blank");
@@ -51,13 +51,25 @@ public class Login_01_Validate_Login_Form extends AbstractTest {
 		ExtentTestManager.getTest().log(LogStatus.INFO, "Step 03 : Verify error");
 		log.info("Step 03 : Verify error");
 		verifyEquals(loginPage.getErrorMessage(driver, "Email-error", "Please enter your email"), "Please enter your email");
+
 	}
 
 	@Test
-	public void TC_02_Login_With_Invalid_Email() {
+	public void TC_02_Login_With_Invalid_Email(Method method) {
+		ExtentTestManager.startTest(method.getName(), "TC 02 Login With Invalid Email");
+
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Step 01 : Input Invalid Email");
+		log.info("Step 01 : Input Invalid Email");
 		loginPage.inputEmail(CustomerData.LoginData.INVALID_EMAIL);
+
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Step 02 : Click Login Button");
+		log.info("Step 02 : Click Login Button");
 		loginPage.clickToLoginButton();
-		verifyEquals(loginPage.getErrorMessage(driver, "Email-error", "Wrong email"), "Wrong email");
+
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Step 03 : Verify Wrong Email Message");
+		log.info("Step 03 : Verify Wrong Email Message");
+		verifyEquals(loginPage.getErrorMessage(driver, "Email-error", "Wrong email"), "Wrong email aaa");
+
 	}
 
 	@Test
