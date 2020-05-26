@@ -68,38 +68,49 @@ public class Login_01_Validate_Login_Form extends AbstractTest {
 
 		ExtentTestManager.getTest().log(LogStatus.INFO, "Step 03 : Verify Wrong Email Message");
 		log.info("Step 03 : Verify Wrong Email Message");
-		verifyEquals(loginPage.getErrorMessage(driver, "Email-error", "Wrong email"), "Wrong email aaa");
+		verifyEquals(loginPage.getErrorMessage(driver, "Email-error", "Wrong email"), "Wrong email");
 
 	}
 
 	@Test
 	public void TC_03_Login_With_Email_No_Registered() {
 		loginPage.inputEmail(CustomerData.LoginData.EMAIL_NO_REGISTER);
+
 		loginPage.clickToLoginButton();
+
 		verifyEquals(loginPage.isNoRegisteredEmail(), "Login was unsuccessful. Please correct the errors and try again.\n" + "No customer account found");
 	}
 
 	@Test
 	public void TC_04_Login_With_Registered_Email_And_No_Enter_Password() {
 		loginPage.inputEmail(CustomerData.REGISTERED_EMAIL);
+
 		loginPage.inputPassword(CustomerData.LoginData.PASSWORD_BLANK);
+
 		loginPage.clickToLoginButton();
+
 		verifyEquals(loginPage.isNoEnterPassword(), "Login was unsuccessful. Please correct the errors and try again.\n" + "The credentials provided are incorrect");
 	}
 
 	@Test
 	public void TC_05_Login_With_Registered_Email_And_Wrong_Password() {
 		loginPage.inputEmail(CustomerData.REGISTERED_EMAIL);
+
 		loginPage.inputPassword(CustomerData.LoginData.WRONG_PASSWORD);
+
 		loginPage.clickToLoginButton();
+
 		verifyEquals(loginPage.isRegisteredEmailAndWrongPassword(), "Login was unsuccessful. Please correct the errors and try again.\n" + "The credentials provided are incorrect");
 	}
 
 	@Test
 	public void TC_06_Login_With_Valid_Email_And_Valid_Password() {
 		loginPage.inputEmail(CustomerData.REGISTERED_EMAIL);
+
 		loginPage.inputPassword(CustomerData.REGISTERD_PASSWORD);
+
 		homePage = loginPage.clickToLoginButton();
+
 		verifyTrue(loginPage.isMyAccountLinkDisplayed());
 	}
 
