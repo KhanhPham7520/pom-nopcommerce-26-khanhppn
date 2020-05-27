@@ -15,7 +15,6 @@ public class AdminProductPageObject extends AbstractPages {
 
     public void inputToProductNameTextbox(String productName) {
         waitToElementVisible(driver, AdminProductPageUI.PRODUCT_NAME_TEXTBOX, productName);
-        // clearExistedData(driver, AdminProductPageUI.PRODUCT_NAME_TEXTBOX);
         sendKeyToElement(driver, AdminProductPageUI.PRODUCT_NAME_TEXTBOX, productName);
     }
 

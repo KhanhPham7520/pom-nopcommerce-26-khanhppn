@@ -1,28 +1,21 @@
 package commons;
 
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.*;
+import pageUIs.AbstractNopCommercePageUI;
+import pageUIs.Admin.AdminAddNewCustomerPageUI;
+import pageUIs.Admin.AdminEditCustomerPageUI;
+import pageUIs.Admin.AdminSearchCustomerPageUI;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import pageObjects.FooterMyAccountPageObject;
-import pageObjects.FooterNewProductPageObject;
-import pageObjects.FooterSearchPageObject;
-import pageObjects.HomePageObject;
-import pageObjects.NotebooksPageObject;
-import pageObjects.ShoppingCartPageObject;
-import pageUIs.AbstractNopCommercePageUI;
 
 public abstract class AbstractPages {
 
@@ -176,13 +169,10 @@ public abstract class AbstractPages {
 
 	public void clickToElement(WebDriver driver, String locator) {
 		waitToElementClickable(driver, locator);
-		// element = findElementByXpath(driver, locator);
-		// highlightElement(driver, element);
 		findElementByXpath(driver, locator).click();
 	}
 
 	public void clickToElement(WebDriver driver, String locator, String... values) {
-		waitToElementClickable(driver, locator, values);
 		// element = findElementByXpath(driver, locator, values);
 		// highlightElement(driver, element);
 		findElementByXpath(driver, locator, values).click();
@@ -219,6 +209,10 @@ public abstract class AbstractPages {
 
 	public String getAttributeElement(WebDriver driver, String locator, String attributeName) {
 		return findElementByXpath(driver, locator).getAttribute(attributeName);
+	}
+
+	public String getAttributeElement(WebDriver driver, String locator,String attributeName,String...values) {
+		return findElementByXpath(driver, locator,values).getAttribute(attributeName);
 	}
 
 	public boolean isElementDisplayed(WebDriver driver, String locator) {
@@ -274,6 +268,11 @@ public abstract class AbstractPages {
 
 	public void waitToElementPresence(WebDriver driver, String locator) {
 		byXpath = byXpathLocator(locator);
+		waitExplicit = new WebDriverWait(driver, longTimeOut);
+		waitExplicit.until(ExpectedConditions.presenceOfElementLocated(byXpath));
+	}
+	public void waitToElementPresence(WebDriver driver, String locator, String... values) {
+		byXpath = byXpathLocator(locator,values);
 		waitExplicit = new WebDriverWait(driver, longTimeOut);
 		waitExplicit.until(ExpectedConditions.presenceOfElementLocated(byXpath));
 	}
@@ -352,9 +351,12 @@ public abstract class AbstractPages {
 		findElementByXpath(driver, locator).click();
 	}
 
-	public void selectItemInDropdown(WebDriver driver, String locator, String value, String valueItem) {
-		element = findElementByXpath(driver, locator, value);
+	public void selectItemInDropdown(WebDriver driver, String locator,String valueItem, String...values) {
+		waitToElementClickable(driver,locator);
 		select = new Select(element);
+		element = findElementByXpath(driver, locator, values);
+
+		clickToElement(driver,locator,values);
 		select.selectByVisibleText(valueItem);
 
 	}
@@ -376,7 +378,6 @@ public abstract class AbstractPages {
 	public void selectDropdownByVisibleText(WebDriver driver, String locator, String inputText) {
 		waitToElementClickable(driver, locator);
 		Select select = new Select(findElementByXpath(driver, locator));
-		select.selectByVisibleText(inputText);
 	}
 
 	public void selectCustomDropdownByVisibleText(WebDriver driver, String locator, String inputText) throws Exception {
@@ -574,5 +575,43 @@ public abstract class AbstractPages {
 		jsExcutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", originalStyle);
 
 	}
+
+	public void selectCustomerRoles(WebDriver driver,String... values) {
+		waitToElementClickable(driver,AdminSearchCustomerPageUI.SEARCH_CUSTOMER_ROLE_ID_ADMIN,values);
+		clickToElement(driver, AdminSearchCustomerPageUI.SEARCH_CUSTOMER_ROLE_ID_ADMIN,values);
+	}
+
+	public void selectDOB(WebDriver driver,String inputDOB) {
+		waitToElementClickable(driver, AdminAddNewCustomerPageUI.DOB_DATEPICKER);
+		sendKeyToElement(driver, AdminAddNewCustomerPageUI.DOB_DATEPICKER, inputDOB);
+	}
+
+	public void inputToDynamicField(WebDriver driver, String inputValue, String...values){
+		waitToElementVisible(driver,AbstractNopCommercePageUI.DYNAMIC_TEXTBOX,values);
+		sendKeyToElement(driver,AbstractNopCommercePageUI.DYNAMIC_TEXTBOX,inputValue,values);
+	}
+
+	public void inputToDynamicTextArea(WebDriver driver, String inputValue, String...values){
+		waitToElementVisible(driver,AbstractNopCommercePageUI.DYNAMIC_TEXTAREA,values);
+		sendKeyToElement(driver,AbstractNopCommercePageUI.DYNAMIC_TEXTAREA,inputValue,values);
+	}
+
+
+	public String getTextResultTable(WebDriver driver, String indexColumn) {
+		waitToElementVisible(driver, AdminSearchCustomerPageUI.RESULT_NAME_TABLE,indexColumn);
+		return getAttributeElement(driver, AdminSearchCustomerPageUI.RESULT_NAME_TABLE, "value", indexColumn);
+
+	}
+
+	public boolean isUpdatedCustomerInfoSucess(WebDriver driver){
+		waitToElementVisible(driver, AdminEditCustomerPageUI.UPDATE_CUSTOMER_SUCCESS_MSG);
+		return isElementDisplayed(driver, AdminEditCustomerPageUI.UPDATE_CUSTOMER_SUCCESS_MSG);
+	}
+
+	public boolean isDeletedCustomerInfoSucess(WebDriver driver){
+		waitToElementVisible(driver, AdminEditCustomerPageUI.UPDATE_CUSTOMER_SUCCESS_MSG);
+		return isElementDisplayed(driver, AdminEditCustomerPageUI.UPDATE_CUSTOMER_SUCCESS_MSG);
+	}
+
 
 }

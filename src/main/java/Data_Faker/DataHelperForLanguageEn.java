@@ -1,8 +1,8 @@
 package Data_Faker;
 
-import java.util.Locale;
-
 import com.github.javafaker.Faker;
+
+import java.util.Locale;
 
 public class DataHelperForLanguageEn {
 

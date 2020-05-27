@@ -1,10 +1,8 @@
 package pageObjects;
 
+import commons.AbstractPages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
-
-import commons.AbstractPages;
-import pageUIs.AbstractNopCommercePageUI;
 import pageUIs.MyAccountPageUI;
 
 public class MyAccountPageObject extends AbstractPages {
@@ -72,14 +70,14 @@ public class MyAccountPageObject extends AbstractPages {
 		return new AccountAddressPageObject(driver);
 	}
 
-	public String getTextFromInputTextbox(WebDriver driver, String... values) {
-		waitToElementVisible(driver, AbstractNopCommercePageUI.INPUT_TEXTBOX, values);
-		return findElementByXpath(driver, AbstractNopCommercePageUI.INPUT_TEXTBOX, values).getAttribute("value");
-	}
+//	public String getTextFromInputTextbox(WebDriver driver, String... values) {
+//		waitToElementVisible(driver, AbstractNopCommercePageUI.INPUT_TEXTBOX, values);
+//		return findElementByXpath(driver, AbstractNopCommercePageUI.INPUT_TEXTBOX, values).getAttribute("value");
+//	}
 
-	public String getTextAddressFromInputTextbox(WebDriver driver, String... values) {
+	public String getDynamicTextFromInputTextbox(WebDriver driver, String values) {
 		waitToElementVisible(driver, MyAccountPageUI.GET_TEXT_DYNAMIC_ACCOUNT, values);
-		return findElementByXpath(driver, MyAccountPageUI.GET_TEXT_DYNAMIC_ACCOUNT, values).getText();
+		return findElementByXpath(driver, MyAccountPageUI.GET_TEXT_DYNAMIC_ACCOUNT, values).getAttribute("value");
 	}
 
 }

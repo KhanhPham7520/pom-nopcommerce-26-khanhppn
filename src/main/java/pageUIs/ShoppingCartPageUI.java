@@ -2,12 +2,7 @@ package pageUIs;
 
 public class ShoppingCartPageUI extends AbstractNopCommercePageUI {
 
-    public static final String NUMBER_ITEM_IN_SHOPPING_CART = "//span[@class='cart-qty' and text()='(%s)']";
-    public static final String COUNT_NUMBER_IN_CART = "//a[@href='/cart' and text()='%s item(s)']";
-    public static final String PICTURE_PRODUCT_LINK = "//a[@title='Show details for %s']";
-
     public static final String PRODUCT_NAME = "//td[@class='product']//a[contains(text(),'%s')]";
-    public static final String TOTAL_PRICE_IN_CART = "//div[@class='totals']//following-sibling::strong[text()='$%s.00']";
     public static final String EMPTY_PRODUCT_WISHLIST = "//span[text()='Wishlist']//following-sibling::span[text()='(0)']";
 
     public static final String BUTTON = "//div[@class='common-buttons']//input[@value='%s']";

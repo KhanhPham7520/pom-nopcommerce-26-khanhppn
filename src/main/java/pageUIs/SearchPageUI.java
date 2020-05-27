@@ -1,6 +1,6 @@
 package pageUIs;
 
-public class SearchPageUI {
+public class SearchPageUI extends AbstractNopCommercePageUI {
     public static final String INPUT_KEYWORD_TEXTBOX = "//input[@class='search-text']";
     public static final String ADVANCE_SEARCH_CHECKBOX = "//input[@type='checkbox' and @name='adv']";
     public static final String CATEGORY_DROPDOWN = "//select[@id='cid']";
@@ -8,10 +8,7 @@ public class SearchPageUI {
     public static final String MANUFACTURER_DROPDOWN = "//select[@id='mid']";
     public static final String PRICE_FROM_TEXTBOX = "//input[@class='price-from']";
     public static final String PRICE_TO_TEXTBOX = "//input[@class='price-to']";
-    public static final String SEARCH_IN_PRODUCT_DESC_CHECKBOX = "//input[@id='sid']";
     public static final String SEARCH_BUTTON = "//input[@class='button-1 search-button']";
-
-    public static final String RESULT_SEARCH_SUCCESS_PRODUCT_ITEM = "//div[@class='product-item']";
 
     public static final String MESSAGE_WARNING = "//div[@class='warning']";
     public static final String MESSAGE_NO_RESULT = "//div[@class='no-result']";

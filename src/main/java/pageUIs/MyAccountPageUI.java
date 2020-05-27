@@ -15,7 +15,6 @@ public class MyAccountPageUI extends AbstractNopCommercePageUI {
 	public static final String ADD_NEW_ADDRESS_BUTTON = "//input[@value='Add new']";
 
 	public static final String ADDRESSES_LINK = "//li[@class='customer-addresses inactive']//a";
-	public static final String FOOTER_SEARCH_LINK = "//div[@class='footer']//a[text()='New products']";
 
 	public static final String GET_TEXT_DYNAMIC_ACCOUNT = "//li[@class='%s']";
 

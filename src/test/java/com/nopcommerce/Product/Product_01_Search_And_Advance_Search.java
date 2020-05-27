@@ -1,24 +1,13 @@
 package com.nopcommerce.Product;
 
-import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
-
 import com.nopcommerce.data.ProductData;
-
 import commons.AbstractTest;
 import commons.GlobalConstants;
 import commons.PageGeneratorManager;
-import pageObjects.FooterPageObject;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.RegisterPageObject;
-import pageObjects.SearchPageObject;
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+import org.testng.annotations.*;
+import pageObjects.*;
 
 public class Product_01_Search_And_Advance_Search extends AbstractTest {
 	WebDriver driver;
@@ -223,7 +212,7 @@ public class Product_01_Search_And_Advance_Search extends AbstractTest {
 
 		searchPage.clickSearchButton();
 
-		Assert.assertEquals(searchPage.displayMessageNoResult(), GlobalConstants.NO_PRODUCT_WERE_FOUND_CRITERIA_MESSAGE);
+		verifyEquals(searchPage.displayMessageNoResult(), GlobalConstants.NO_PRODUCT_WERE_FOUND_CRITERIA_MESSAGE);
 
 	}
 

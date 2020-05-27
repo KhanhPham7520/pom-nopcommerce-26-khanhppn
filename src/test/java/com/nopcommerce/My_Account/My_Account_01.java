@@ -1,33 +1,21 @@
 package com.nopcommerce.My_Account;
 
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
-
-import com.nopcommerce.data.ProductData;
-
 import Data_Faker.DataHelperForLanguageEn;
+import com.nopcommerce.data.MyAccountData;
+import com.nopcommerce.data.ProductData;
 import commons.AbstractTest;
 import commons.PageGeneratorManager;
-import pageObjects.AccountAddressPageObject;
-import pageObjects.ComputerPageObject;
-import pageObjects.DesktopsPageObject;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.MyAccountPageObject;
-import pageObjects.ReviewPageObject;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.*;
+import pageObjects.*;
 import pageUIs.MyAccountPageUI;
 
 public class My_Account_01 extends AbstractTest {
 
 	// Update Info
-	private final String updateGender = "M";
-	private final String updateBirthDay = "1";
-	private final String updateBirthMonth = "January";
-	private final String updateBirthYear = "1999";
+//	private final String MyAccountData.updateData.updateBirthDay = "1";
+//	private final String MyAccountData.updateData.updateBirthMonth = "January";
+//	private final String MyAccountData.updateData.updateBirthYear = "1999";
 	private final String newPostalCode = "09";
 	private WebDriver driver;
 	private HomePageObject homePage;
@@ -40,22 +28,22 @@ public class My_Account_01 extends AbstractTest {
 	private DataHelperForLanguageEn dataHelperForLanguageEn;
 	private String updateFirstname;
 	private String updateLastname;
-	private String updateEmail = "carson.murazik@gmail.com";
+	private String updateEmail;
 	private String updateCompany;
 	// Add New Address Data
 	private String newFirstname;
 	private String newLastname;
 	private String newEmail;
-	private String newCountry = "Guyana";
+	String newCountry = "Afghanistan";
 	private String newCity;
 	private String newAddress;
 	private String newPhoneNumber;
 
 	private String name = newFirstname + newLastname;
-	private String new_city_state = newCity + "," + newPostalCode;
+//	private String new_city_state = newCity + "," + newPostalCode;
+	String new_city_state;
 
 	@Parameters({ "browser" })
-
 	@BeforeTest
 	public void beforeTest(@Optional("chrome") String browserName) {
 		driver = getBrowserDriver(browserName);
@@ -80,7 +68,6 @@ public class My_Account_01 extends AbstractTest {
 		newFirstname = dataHelperForLanguageEn.getFirstName();
 		newLastname = dataHelperForLanguageEn.getLastName();
 		newEmail = dataHelperForLanguageEn.getEmail();
-		newCountry = dataHelperForLanguageEn.getCountry();
 		newCity = dataHelperForLanguageEn.getCity();
 		newAddress = dataHelperForLanguageEn.getAddress();
 		newPhoneNumber = dataHelperForLanguageEn.getPhone();
@@ -97,11 +84,11 @@ public class My_Account_01 extends AbstractTest {
 
 		myAccountPage.inputLastNameTextbox(updateLastname);
 
-		myAccountPage.selectDayInDropdown(updateBirthDay);
+		myAccountPage.selectDayInDropdown(MyAccountData.updateData.updateBirthDay);
 
-		myAccountPage.selectMonthInDropdown(updateBirthMonth);
+		myAccountPage.selectMonthInDropdown(MyAccountData.updateData.updateBirthMonth);
 
-		myAccountPage.selectYearInDropdown(updateBirthYear);
+		myAccountPage.selectYearInDropdown(MyAccountData.updateData.updateBirthYear);
 
 		myAccountPage.inputEmailTextbox(updateEmail);
 
@@ -109,25 +96,24 @@ public class My_Account_01 extends AbstractTest {
 
 		myAccountPage.clickSaveButton();
 
-		verifyEquals(myAccountPage.getTextFromRadioButton(driver, "value", "gender-male"), updateGender);
+		verifyEquals(myAccountPage.getTextFromRadioButton(driver, "value", "gender-male"), MyAccountData.updateData.updateGender);
 
-		verifyEquals(myAccountPage.getTextFromInputTextbox(driver, "FirstName"), updateFirstname);
+		verifyEquals(myAccountPage.getTextFromInputTextbox(driver, "value","FirstName"), updateFirstname);
 
-		verifyEquals(myAccountPage.getTextFromInputTextbox(driver, "LastName"), updateLastname);
+		verifyEquals(myAccountPage.getTextFromInputTextbox(driver, "value","LastName"), updateLastname);
 
-		verifyEquals(findElementByXpath(driver, MyAccountPageUI.SELECT_DAY_DROPDOWN).getAttribute("value"), updateBirthDay);
+		verifyEquals(findElementByXpath(driver, MyAccountPageUI.SELECT_DAY_DROPDOWN).getAttribute("value"), MyAccountData.updateData.updateBirthDay);
 
-		verifyEquals(findElementByXpath(driver, MyAccountPageUI.SELECT_YEAR_DROPDOWN).getAttribute("value"), updateBirthYear);
+		verifyEquals(findElementByXpath(driver, MyAccountPageUI.SELECT_YEAR_DROPDOWN).getAttribute("value"), MyAccountData.updateData.updateBirthYear);
 
-		verifyEquals(myAccountPage.getTextFromInputTextbox(driver, "Email"), updateEmail);
+		verifyEquals(myAccountPage.getTextFromInputTextbox(driver, "value","Email"), updateEmail);
 
-		verifyEquals(myAccountPage.getTextFromInputTextbox(driver, "Company"), updateCompany);
+		verifyEquals(myAccountPage.getTextFromInputTextbox(driver, "value","Company"), updateCompany);
 
 	}
 
 	@Test
 	public void TC_02_Add_Address() {
-
 		myAccountPage = homePage.clickToMyAccountLink();
 
 		accountAddressPage = myAccountPage.clickToAddressLink();
@@ -152,27 +138,29 @@ public class My_Account_01 extends AbstractTest {
 
 		accountAddressPage.clickSaveButton();
 
-		verifyEquals(myAccountPage.getTextAddressFromInputTextbox(driver, "name"), name);
+		verifyEquals(myAccountPage.getDynamicTextFromInputTextbox(driver, "name"), name);
 
-		verifyEquals(myAccountPage.getTextAddressFromInputTextbox(driver, "email"), "Email: " + newEmail);
+		verifyEquals(myAccountPage.getDynamicTextFromInputTextbox(driver, "email"), "Email: " + newEmail);
 
-		verifyEquals(myAccountPage.getTextAddressFromInputTextbox(driver, "phone"), "Phone number: " + newPhoneNumber);
+		verifyEquals(myAccountPage.getDynamicTextFromInputTextbox(driver, "phone"), "Phone number: " + newPhoneNumber);
 
-		verifyEquals(myAccountPage.getTextAddressFromInputTextbox(driver, "address1"), newAddress);
+		verifyEquals(myAccountPage.getDynamicTextFromInputTextbox(driver, "address1"), newAddress);
 
-		verifyEquals(myAccountPage.getTextAddressFromInputTextbox(driver, "city-state-zip"), new_city_state);
+		String newCityStateExpected = newCity.concat(", ").concat(newPostalCode);
 
-		verifyEquals(myAccountPage.getTextAddressFromInputTextbox(driver, "country"), newCountry);
+		verifyEquals(myAccountPage.getDynamicTextFromInputTextbox(driver, "city-state-zip"), newCityStateExpected);
+
+		verifyEquals(myAccountPage.getDynamicTextFromInputTextbox(driver, "country"), newCountry);
 
 	}
 
 	// @Test
 	public void TC_03_Change_Password() {
-
 	}
 
 	@Test
 	public void TC_04_Add_Review_Product() {
+
 
 		computerPage = homePage.clickToComputerLink();
 

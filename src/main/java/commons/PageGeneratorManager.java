@@ -113,6 +113,12 @@ public class PageGeneratorManager {
     public static NotebooksPageObject getNotebooksPage(WebDriver driver) {
         return new NotebooksPageObject(driver);
     }
+    public static AdminEditCustomerPageObject getAdminEditCustomerPage(WebDriver driver) {
+        return new AdminEditCustomerPageObject(driver);
+    }
+
+
+
 
 
 }

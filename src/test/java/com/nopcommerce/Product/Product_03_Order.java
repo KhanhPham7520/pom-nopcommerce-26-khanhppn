@@ -1,19 +1,10 @@
 package com.nopcommerce.Product;
 
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
-
 import commons.AbstractTest;
 import commons.PageGeneratorManager;
-import pageObjects.HeaderPageObject;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.ProductPageObject;
-import pageObjects.ShoppingCartPageObject;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.*;
+import pageObjects.*;
 
 public class Product_03_Order extends AbstractTest {
 
@@ -67,7 +58,9 @@ public class Product_03_Order extends AbstractTest {
 
 	@Test
 	public void TC_01_Add_Product_To_Cart() {
+
 		productPage.selectProcessor(processorName);
+
 		productPage.selectRAM(ramName);
 
 		productPage.selectHDD(hddName);
@@ -75,20 +68,24 @@ public class Product_03_Order extends AbstractTest {
 		productPage.selectOS(osName);
 
 		productPage.selectSoftware(softwareNameFirst);
+
 		productPage.selectSoftware(softwareNameSecond);
+
 		productPage.selectSoftware(softwareNameThird);
 
 		productPage.clickAddToCart();
+
 		verifyEquals(productPage.getAddToCartSuccessMsg(), "The product has been added to your shopping cart");
 
 		shoppingCartPage = productPage.clickShoppingCarNotiBar();
 
-		System.out.println("Processor Name :  " + shoppingCartPage.getProductInfo());
+		System.out.println("Processor Name :  " + getTextElement(driver, "//div[@class='product']//following-sibling::div[@class='attributes']"));
 		// verifyEquals(shoppingCartPage.getTextProcessorName(), "Processor: " + processorName);
 	}
 
 	@Test
 	public void TC_02_Edit_Product_In_Shopping_Cart() {
+
 		shoppingCartPage = headerPage.clickToShoppingCartLink();
 
 		shoppingCartPage.clickToEditItemLink();
@@ -112,6 +109,7 @@ public class Product_03_Order extends AbstractTest {
 		shoppingCartPage = productPage.clickShoppingCarNotiBar();
 
 		verifyEquals(shoppingCartPage.getProductPriceResultTable(), editPriceCart);
+
 		verifyEquals(shoppingCartPage.getProductTotalTable(), editPriceTotal);
 	}
 

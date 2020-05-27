@@ -32,21 +32,25 @@ public class AdminSearchCustomerPageObject extends AbstractPages {
     }
 
     public void selectBirthMonth(String birthMonth) {
+        waitToElementClickable(driver, AdminSearchCustomerPageUI.BIRTH_MONTH_SELECT);
         select = new Select(findElementByXpath(driver, AdminSearchCustomerPageUI.BIRTH_MONTH_SELECT));
         clickToElement(driver, AdminSearchCustomerPageUI.BIRTH_MONTH_SELECT);
         select.selectByVisibleText(birthMonth);
     }
+
+    public void selectBirthDay(String birthDay) {
+        select = new Select(findElementByXpath(driver, AdminSearchCustomerPageUI.BIRTH_DAY_SELECT));
+        clickToElement(driver, AdminSearchCustomerPageUI.BIRTH_DAY_SELECT);
+        select.selectByVisibleText(birthDay);
+    }
+
+
 
     public void inputLastNameTextbox(String lastName) {
         waitToElementVisible(driver, AdminSearchCustomerPageUI.LASTNAME_TEXTBOX);
         sendKeyToElement(driver, AdminSearchCustomerPageUI.LASTNAME_TEXTBOX, lastName);
     }
 
-    public void selectBirthDay(String birthDay) {
-        select = new Select(findElementByXpath(driver, AdminSearchCustomerPageUI.BIRTH_MONTH_SELECT));
-        clickToElement(driver, AdminSearchCustomerPageUI.BIRTH_MONTH_SELECT);
-        select.selectByVisibleText(birthDay);
-    }
 
 
     public void inputCompanyTextbox(String company) {
@@ -59,8 +63,15 @@ public class AdminSearchCustomerPageObject extends AbstractPages {
         clickToElement(driver, AdminSearchCustomerPageUI.SEARCH_BUTTON);
     }
 
-    public String verifyResultTable(String indexColumn) {
-        waitToElementVisible(driver, AdminSearchCustomerPageUI.RESULT_NAME_TABLE, indexColumn);
-        return getTextElement(driver, AdminSearchCustomerPageUI.RESULT_NAME_TABLE, indexColumn);
+
+
+    public AdminEditCustomerPageObject clickToEditInTable(){
+        waitToElementClickable(driver,AdminSearchCustomerPageUI.EDIT_BUTTON);
+        clickToElement(driver,AdminSearchCustomerPageUI.EDIT_BUTTON);
+        return new AdminEditCustomerPageObject(driver);
     }
+
+
+
+
 }

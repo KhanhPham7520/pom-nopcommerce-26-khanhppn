@@ -13,4 +13,5 @@ public class AdminSearchCustomerPageUI extends AbstractNopCommercePageUI {
     public static final String SEARCH_BUTTON = "//button[@id='search-customers']";
 
     public static final String RESULT_NAME_TABLE = "//tr[@role='row']//td[%s]";
+    public static final String EDIT_BUTTON = "//a[text()='Edit']";
 }

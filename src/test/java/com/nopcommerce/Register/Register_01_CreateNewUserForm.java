@@ -53,7 +53,9 @@ public class Register_01_CreateNewUserForm extends AbstractTest {
 
     @Test
     public void TC_02_Register_With_Invalid_Email() {
+
         registerPage.inputToTextbox(driver, CustomerData.NewCustomer.INVALID_EMAIL, "Email");
+
         registerPage.clickButton(driver, "register-button");
 
         verifyEquals(registerPage.getErrorMessage(driver, "Email-error", "Wrong email"), "Wrong email");

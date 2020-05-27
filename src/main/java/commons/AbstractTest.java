@@ -1,11 +1,6 @@
 package commons;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.joda.time.DateTime;
@@ -22,7 +17,11 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class AbstractTest extends CommonFunction {
 

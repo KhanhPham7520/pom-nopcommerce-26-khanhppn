@@ -1,11 +1,10 @@
 package pageUIs;
 
-public class WishListPageUI {
+public class WishListPageUI extends AbstractNopCommercePageUI {
 
     public static final String WISHLIST_URL = "//a[@class='share-link']";
     public static final String WISHLIST_HEADER_PAGE = "//div[@class='page-title']//h1";
     public static final String ADD_TO_CART_CHECKBOX = "//input[@name='addtocart']";
-    public static final String WISHLIST_PRODUCT_NAME = "//a[@class='product-name' and contains(text(),'%s')]";
     public static final String ADD_TO_CART_BUTTON = "//input[@name='addtocartbutton']";
 
     // Remove Product
