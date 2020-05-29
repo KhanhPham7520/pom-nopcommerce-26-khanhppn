@@ -18,9 +18,14 @@ public class DesktopsPageObject extends AbstractPages {
         return new ReviewPageObject(driver);
     }
 
-    public void clickIntoProductLink(String productName) {
+    public void clickIntoDynamicProductLink(String productName) {
         waitToElementClickable(driver, "//h2[@class='product-title']//a[contains(text(),'" + productName + "')]");
         clickToElement(driver, "//h2[@class='product-title']//a[contains(text(),'" + productName + "')]");
+    }
+  public ProductPageObject clickIntoProductLink(String productName) {
+        waitToElementClickable(driver, "//h2[@class='product-title']//a[contains(text(),'" + productName + "')]");
+        clickToElement(driver, "//h2[@class='product-title']//a[contains(text(),'" + productName + "')]");
+        return new ProductPageObject(driver);
     }
 
 }

@@ -29,9 +29,10 @@ public class HeaderPageObject extends AbstractPages {
         return new HomePageObject(driver);
     }
 
-    public void clickToTextOfHeaderMenu(String linkName) {
+    public void clickToDynamicTextOfHeaderMenu(String linkName, String...values) {
         waitToElementClickable(driver, HeaderPageUI.LINK_NAME_OF_HEADER_MENU, linkName);
-        clickToElement(driver, HeaderPageUI.LINK_NAME_OF_HEADER_MENU, linkName);
+        hoverToElement(driver, HeaderPageUI.LINK_NAME_OF_HEADER_MENU, linkName);
+        clickToElement(driver, HeaderPageUI.ITEM_LINK_OF_HEADER_MENU, values);
     }
 
     public void hoverShoppingCart() {
@@ -92,5 +93,13 @@ public class HeaderPageObject extends AbstractPages {
     public String getProductSubtotalInShoppingCart(String subtotal) {
         waitToElementVisible(driver, HeaderPageUI.PRODUCT_SUBTOTAL_SHOPPING_CART, subtotal);
         return getTextElement(driver, HeaderPageUI.PRODUCT_SUBTOTAL_SHOPPING_CART, subtotal);
+    }
+
+
+    public DesktopsPageObject clickToTextOfHeaderMenu(String linkName, String values) {
+        waitToElementClickable(driver, HeaderPageUI.LINK_NAME_OF_HEADER_MENU, linkName);
+        hoverToElement(driver, HeaderPageUI.LINK_NAME_OF_HEADER_MENU, linkName);
+        clickToElement(driver, HeaderPageUI.ITEM_LINK_OF_HEADER_MENU, linkName,values);
+        return new DesktopsPageObject(driver);
     }
 }

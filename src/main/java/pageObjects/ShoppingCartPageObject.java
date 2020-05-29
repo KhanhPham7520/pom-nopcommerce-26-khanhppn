@@ -55,4 +55,17 @@ public class ShoppingCartPageObject extends AbstractPages {
         waitToElementVisible(driver, ShoppingCartPageUI.SHOPPING_CART_EMPTY);
         return getTextElement(driver, ShoppingCartPageUI.SHOPPING_CART_EMPTY);
     }
+
+    public void inputToQuantityTextbox(String inputValue){
+        waitToElementVisible(driver, ShoppingCartPageUI.QUANTITY_TEXTBOX);
+        clearExistedData(driver,ShoppingCartPageUI.QUANTITY_TEXTBOX);
+        sendKeyToElement(driver, ShoppingCartPageUI.QUANTITY_TEXTBOX, inputValue);
+    }
+
+
+    public CheckOutPageObject clickIntoCheckoutButton(WebDriver driver, String locator) {
+        waitToElementClickable(driver, locator);
+        findElementByXpath(driver, locator).click();
+        return new CheckOutPageObject(driver);
+    }
 }

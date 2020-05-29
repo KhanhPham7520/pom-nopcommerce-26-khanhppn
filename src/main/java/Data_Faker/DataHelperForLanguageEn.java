@@ -6,55 +6,55 @@ import java.util.Locale;
 
 public class DataHelperForLanguageEn {
 
-	Locale localeEn = new Locale("en");
-	Faker faker = new Faker(localeEn);
+    Locale localeEn = new Locale("en");
+    Faker faker = new Faker(localeEn);
 
-	public static DataHelperForLanguageEn getData() {
-		return new DataHelperForLanguageEn();
-	}
+    public static DataHelperForLanguageEn getData() {
+        return new DataHelperForLanguageEn();
+    }
 
-	public String getFirstName() {
-		// Generating the first name
-		String firstName = faker.name().firstName();
-		return firstName;
-	}
+    public String getFirstName() {
+        // Generating the first name
+        String firstName = faker.name().firstName();
+        return firstName;
+    }
 
-	public String getLastName() {
-		// Generating last name
-		String lastName = faker.name().lastName();
-		return lastName;
-	}
+    public String getLastName() {
+        // Generating last name
+        String lastName = faker.name().lastName();
+        return lastName;
+    }
 
-	public String getAddress() {
-		return faker.address().streetAddress();
-	}
+    public String getAddress() {
+        return faker.address().streetAddress();
+    }
 
-	public String getPhone() {
-		return faker.phoneNumber().phoneNumber();
-	}
+    public String getPhone() {
+        return faker.phoneNumber().phoneNumber();
+    }
 
-	public String getCompany() {
-		return faker.company().name();
-	}
+    public String getCompany() {
+        return faker.company().name();
+    }
 
-	public String getEmail() {
-		// Generating email Id
-		String emailId = faker.internet().emailAddress();
-		return emailId;
-	}
+    public String getEmail() {
+        // Generating email Id
+        String emailId = faker.internet().emailAddress();
+        return emailId;
+    }
 
-	public String getPassword() {
-		// Generating password
-		String pwd = faker.internet().password();
-		return pwd;
-	}
+    public String getPassword() {
+        // Generating password
+        String pwd = faker.internet().password();
+        return pwd;
+    }
 
-	public String getCountry() {
-		// Generating password
-		return faker.country().name();
-	}
+    public String getCountry() {
+        // Generating password
+        return faker.country().name();
+    }
 
-	public String getCity() {
-		return faker.address().city();
-	}
+    public String getCity() {
+        return faker.address().city();
+    }
 }

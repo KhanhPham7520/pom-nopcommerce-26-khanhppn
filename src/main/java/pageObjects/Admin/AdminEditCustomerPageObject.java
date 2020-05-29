@@ -11,15 +11,14 @@ public class AdminEditCustomerPageObject extends AbstractPages {
         this.driver = driver;
     }
 
-    public void clickDeletedInConfirmBox(WebDriver driver){
+    public void clickDeletedInConfirmBox(WebDriver driver) {
         waitToElementVisible(driver, EditCustomerPageUI.MODAL_POPUP_DELETE_CONFIRM);
-        System.out.println("Driver before switch: "+driver.toString());
+        System.out.println("Driver before switch: " + driver.toString());
         driver.switchTo().activeElement();
         clickIntoButton(driver, EditCustomerPageUI.DELETE_BUTTON_IN_DELETE_MODAL_CONFIRM);
         driver.switchTo().defaultContent();
 
     }
-
 
 
 }

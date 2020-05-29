@@ -10,278 +10,264 @@ import pageUIs.AbstractNopCommercePageUI;
 import pageUIs.Admin.AdminSearchCustomerPageUI;
 import pageUIs.bankGuru.EditCustomerPageUI;
 
-import java.util.Random;
-
 public class Admin_01_Search_Product_And_Customer extends AbstractTest {
 
-	WebDriver driver;
-	AdminHomePageObject adminHomePage;
-	AdminSidebarPageObject adminSidebarPage;
-	AdminProductPageObject adminProductPage;
-	AdminEditProductDetailPageObject adminEditProductPage;
-	AdminSearchCustomerPageObject adminSearchCustomerPage;
-	AdminAddNewCustomerPageObject adminAddNewCustomerPage;
-	AdminEditCustomerPageObject adminEditCustomerPage;
-	// Test Data
-	String productName = "Lenovo IdeaCentre 600 All-in-One PC";
-	String SKU = "LE_IC_600";
-	String price = "500";
-	String stockQuantity = "10000";
-	String productType = "Simple";
-	boolean isPublished;
-	// Expected Message
-	String noDataMessage = "No data available in table";
-	String addNewCustomerSuccess = "The new customer has been added successfully";
-	// Create New Customer
-	// String email = "automationfc" + randomNumber() + "@gmail.com";
-	String email = "automationfc@gmail.com";
-	String password = "1234567";
-	String firstName = "Automation";
-	String lastName = "FC";
-	String gender = "Male";
-	String DOB = "1/1/2000";
-	String companyName = "Automation FC";
-	String customerRole = "Guests";
-	boolean isActived = true;
-	String adminComment = "Add new Customer(Guest)";
-	String addNewCustomerSuccessMsg = "The new customer has been added successfully";
-	String randomEmail = "jsstaham" + randomNumber() + "hotmail.com";
-	private LoginPageObject loginPage;
-
-	// Random Method
-	public static int randomNumber() {
-		Random rand = new Random();
-		return rand.nextInt();
-	}
-
-	@Parameters({ "browser" })
-	@BeforeTest
-	public void beforeTest(@Optional("chrome") String browserName) {
-		driver = getBrowserDriverOfAdmin(browserName);
-		loginPage = PageGeneratorManager.getLoginPage(driver);
-		adminHomePage = PageGeneratorManager.getAdminHomePage(driver);
-		adminSidebarPage = PageGeneratorManager.getAdminSidebar(driver);
-		adminProductPage = PageGeneratorManager.getAdminProductPage(driver);
-		adminEditProductPage = PageGeneratorManager.getAdminEditProductPage(driver);
-		adminEditCustomerPage = PageGeneratorManager.getAdminEditCustomerPage(driver);
-		adminSearchCustomerPage = PageGeneratorManager.getAdminSearchCustomerPage(driver);
-		adminAddNewCustomerPage = PageGeneratorManager.getAdminAddNewCustomerPage(driver);
+    WebDriver driver;
+    AdminHomePageObject adminHomePage;
+    AdminSidebarPageObject adminSidebarPage;
+    AdminProductPageObject adminProductPage;
+    AdminEditProductDetailPageObject adminEditProductPage;
+    AdminSearchCustomerPageObject adminSearchCustomerPage;
+    AdminAddNewCustomerPageObject adminAddNewCustomerPage;
+    AdminEditCustomerPageObject adminEditCustomerPage;
+    // Test Data
+    String productName = "Lenovo IdeaCentre 600 All-in-One PC";
+    String SKU = "LE_IC_600";
+    String price = "500";
+    String stockQuantity = "10000";
+    String productType = "Simple";
+    // Expected Message
+    String noDataMessage = "No data available in table";
+    // Create New Customer
+    // String email = "automationfc" + randomNumber() + "@gmail.com";
+    String email = "automationfc@gmail.com";
+    String password = "1234567";
+    String firstName = "Automation";
+    String lastName = "FC";
+    String DOB = "1/1/2000";
+    String companyName = "Automation FC";
+    String customerRole = "Guests";
+    String adminComment = "Add new Customer(Guest)";
+    private LoginPageObject loginPage;
 
-		loginPage.inputCorrectAdminEmail();
-		loginPage.inputCorrectAdminPassword();
-		adminHomePage = loginPage.clickToAdminLoginButton();
-	}
+    @Parameters({"browser"})
+    @BeforeTest
+    public void beforeTest(@Optional("chrome") String browserName) {
+        driver = getBrowserDriverOfAdmin(browserName);
+        loginPage = PageGeneratorManager.getLoginPage(driver);
+        adminHomePage = PageGeneratorManager.getAdminHomePage(driver);
+        adminSidebarPage = PageGeneratorManager.getAdminSidebar(driver);
+        adminProductPage = PageGeneratorManager.getAdminProductPage(driver);
+        adminEditProductPage = PageGeneratorManager.getAdminEditProductPage(driver);
+        adminEditCustomerPage = PageGeneratorManager.getAdminEditCustomerPage(driver);
+        adminSearchCustomerPage = PageGeneratorManager.getAdminSearchCustomerPage(driver);
+        adminAddNewCustomerPage = PageGeneratorManager.getAdminAddNewCustomerPage(driver);
 
-	@Test
-	public void TC_01_Search_With_Product_Name() {
+        loginPage.inputCorrectAdminEmail();
+        loginPage.inputCorrectAdminPassword();
+        adminHomePage = loginPage.clickToAdminLoginButton();
+    }
 
-		adminSidebarPage.clickToCatalogLink();
+    @Test
+    public void TC_01_Search_With_Product_Name() {
 
-		adminProductPage = adminSidebarPage.clickToProductLink();
+        adminSidebarPage.clickToCatalogLink();
 
-		adminProductPage.inputToProductNameTextbox(productName);
+        adminProductPage = adminSidebarPage.clickToProductLink();
 
-		adminProductPage.clickToSearchButton();
+        adminProductPage.inputToProductNameTextbox(productName);
 
-		verifyEquals(adminProductPage.verifyProductName(productName), productName);
-		verifyEquals(adminProductPage.verifyProductSKU(), SKU);
-		verifyEquals(adminProductPage.verifyProductPrice(), price);
-		verifyEquals(adminProductPage.verifyProductStockQuantity(), stockQuantity);
-		verifyEquals(adminProductPage.verifyProductType(), productType);
-		verifyTrue(adminProductPage.isPublished());
+        adminProductPage.clickToSearchButton();
 
-	}
+        verifyEquals(adminProductPage.verifyProductName(productName), productName);
+        verifyEquals(adminProductPage.verifyProductSKU(), SKU);
+        verifyEquals(adminProductPage.verifyProductPrice(), price);
+        verifyEquals(adminProductPage.verifyProductStockQuantity(), stockQuantity);
+        verifyEquals(adminProductPage.verifyProductType(), productType);
+        verifyTrue(adminProductPage.isPublished());
 
-	@Test
-	public void TC_02_Search_With_Product_Name_Parent_Category_Unchecked() {
+    }
 
-		adminSidebarPage.clickToCatalogLink();
+    @Test
+    public void TC_02_Search_With_Product_Name_Parent_Category_Unchecked() {
 
-		adminProductPage = adminSidebarPage.clickToProductLink();
+        adminSidebarPage.clickToCatalogLink();
 
-		adminProductPage.inputToProductNameTextbox(productName);
+        adminProductPage = adminSidebarPage.clickToProductLink();
 
-		adminProductPage.selectCategory("Computers");
+        adminProductPage.inputToProductNameTextbox(productName);
 
-		adminProductPage.clickToSearchButton();
+        adminProductPage.selectCategory("Computers");
 
-		verifyEquals(adminProductPage.verifyNoDataMessage(), noDataMessage);
-	}
+        adminProductPage.clickToSearchButton();
 
-	@Test
-	public void TC_03_Search_With_Product_Name_Parent_Category_Checked() {
+        verifyEquals(adminProductPage.verifyNoDataMessage(), noDataMessage);
+    }
 
-		adminSidebarPage.clickToCatalogLink();
+    @Test
+    public void TC_03_Search_With_Product_Name_Parent_Category_Checked() {
 
-		adminProductPage = adminSidebarPage.clickToProductLink();
+        adminSidebarPage.clickToCatalogLink();
 
-		adminProductPage.inputToProductNameTextbox(productName);
+        adminProductPage = adminSidebarPage.clickToProductLink();
 
-		adminProductPage.selectCategory("Computers");
+        adminProductPage.inputToProductNameTextbox(productName);
 
-		adminProductPage.checkSearchSubCategory();
+        adminProductPage.selectCategory("Computers");
 
-		adminProductPage.clickToSearchButton();
+        adminProductPage.checkSearchSubCategory();
 
-		verifyEquals(adminProductPage.verifyProductName(productName), productName);
-		verifyEquals(adminProductPage.verifyProductSKU(), SKU);
-		verifyEquals(adminProductPage.verifyProductPrice(), price);
-		verifyEquals(adminProductPage.verifyProductStockQuantity(), stockQuantity);
-		verifyEquals(adminProductPage.verifyProductType(), productType);
-		verifyTrue(adminProductPage.isPublished());
-	}
+        adminProductPage.clickToSearchButton();
 
-	@Test
-	public void TC_04_Search_With_Product_Name_Child_Category() {
+        verifyEquals(adminProductPage.verifyProductName(productName), productName);
+        verifyEquals(adminProductPage.verifyProductSKU(), SKU);
+        verifyEquals(adminProductPage.verifyProductPrice(), price);
+        verifyEquals(adminProductPage.verifyProductStockQuantity(), stockQuantity);
+        verifyEquals(adminProductPage.verifyProductType(), productType);
+        verifyTrue(adminProductPage.isPublished());
+    }
 
-		adminSidebarPage.clickToCatalogLink();
+    @Test
+    public void TC_04_Search_With_Product_Name_Child_Category() {
 
-		adminProductPage = adminSidebarPage.clickToProductLink();
+        adminSidebarPage.clickToCatalogLink();
 
-		adminProductPage.inputToProductNameTextbox(productName);
+        adminProductPage = adminSidebarPage.clickToProductLink();
 
-		adminProductPage.selectCategory("Computers >> Desktops");
+        adminProductPage.inputToProductNameTextbox(productName);
 
-		adminProductPage.clickToSearchButton();
+        adminProductPage.selectCategory("Computers >> Desktops");
 
-		verifyEquals(adminProductPage.verifyProductName(productName), productName);
-		verifyEquals(adminProductPage.verifyProductSKU(), SKU);
-		verifyEquals(adminProductPage.verifyProductPrice(), price);
-		verifyEquals(adminProductPage.verifyProductStockQuantity(), stockQuantity);
-		verifyEquals(adminProductPage.verifyProductType(), productType);
-		verifyTrue(adminProductPage.isPublished());
-	}
+        adminProductPage.clickToSearchButton();
 
-	@Test
-	public void TC_05_Search_With_Product_Name_Manufacturer() {
+        verifyEquals(adminProductPage.verifyProductName(productName), productName);
+        verifyEquals(adminProductPage.verifyProductSKU(), SKU);
+        verifyEquals(adminProductPage.verifyProductPrice(), price);
+        verifyEquals(adminProductPage.verifyProductStockQuantity(), stockQuantity);
+        verifyEquals(adminProductPage.verifyProductType(), productType);
+        verifyTrue(adminProductPage.isPublished());
+    }
 
-		adminSidebarPage.clickToCatalogLink();
+    @Test
+    public void TC_05_Search_With_Product_Name_Manufacturer() {
 
-		adminProductPage = adminSidebarPage.clickToProductLink();
+        adminSidebarPage.clickToCatalogLink();
 
-		adminProductPage.inputToProductNameTextbox(productName);
+        adminProductPage = adminSidebarPage.clickToProductLink();
 
-		adminProductPage.selectCategory("All");
+        adminProductPage.inputToProductNameTextbox(productName);
 
-		adminProductPage.selectManufacturer("Apple");
+        adminProductPage.selectCategory("All");
 
-		adminProductPage.clickToSearchButton();
+        adminProductPage.selectManufacturer("Apple");
 
-		verifyEquals(adminProductPage.verifyNoDataMessage(), noDataMessage);
-	}
+        adminProductPage.clickToSearchButton();
 
-	@Test
-	public void TC_06_Go_Directly_To_Product_SKU() {
+        verifyEquals(adminProductPage.verifyNoDataMessage(), noDataMessage);
+    }
 
-		adminSidebarPage.clickToCatalogLink();
+    @Test
+    public void TC_06_Go_Directly_To_Product_SKU() {
 
-		adminProductPage = adminSidebarPage.clickToProductLink();
+        adminSidebarPage.clickToCatalogLink();
 
-		adminProductPage.inputSKUTextbox(SKU);
+        adminProductPage = adminSidebarPage.clickToProductLink();
 
-		adminEditProductPage = adminProductPage.clickGoSKUButton();
+        adminProductPage.inputSKUTextbox(SKU);
 
-		verifyEquals(adminEditProductPage.getProductName(), productName);
+        adminEditProductPage = adminProductPage.clickGoSKUButton();
 
-	}
+        verifyEquals(adminEditProductPage.getProductName(), productName);
 
-	@Test
-	public void TC_07_Create_New_Customer() {
+    }
 
-		adminSidebarPage.clickCustomerMenuLink();
+    @Test
+    public void TC_07_Create_New_Customer() {
 
-		adminSearchCustomerPage = adminSidebarPage.clickToCustomersLink();
+        adminSidebarPage.clickCustomerMenuLink();
 
-		adminAddNewCustomerPage = adminSearchCustomerPage.clickToAddNewButton();
+        adminSearchCustomerPage = adminSidebarPage.clickToCustomersLink();
 
-		adminAddNewCustomerPage.inputEmailTextbox(email);
+        adminAddNewCustomerPage = adminSearchCustomerPage.clickToAddNewButton();
 
-		adminAddNewCustomerPage.inputPasswordTextbox(password);
+        adminAddNewCustomerPage.inputEmailTextbox(email);
 
-		adminAddNewCustomerPage.inputFirstNameTextbox(firstName);
+        adminAddNewCustomerPage.inputPasswordTextbox(password);
 
-		adminAddNewCustomerPage.inputLastNameTextbox(lastName);
+        adminAddNewCustomerPage.inputFirstNameTextbox(firstName);
 
-		adminAddNewCustomerPage.selectMaleGender();
+        adminAddNewCustomerPage.inputLastNameTextbox(lastName);
 
-		adminAddNewCustomerPage.selectDOB(driver,DOB);
+        adminAddNewCustomerPage.selectMaleGender();
 
-		adminAddNewCustomerPage.inputCompanyNameTextbox(companyName);
+        adminAddNewCustomerPage.selectDOB(driver, DOB);
 
-		adminAddNewCustomerPage.clickToElement(driver, AdminSearchCustomerPageUI.REGISTERED_ROLE_DELETE);
+        adminAddNewCustomerPage.inputCompanyNameTextbox(companyName);
 
-		adminAddNewCustomerPage.clickToElement(driver, AdminSearchCustomerPageUI.CUSTOMER_ROLE_LISTBOX);
+        adminAddNewCustomerPage.clickToElement(driver, AdminSearchCustomerPageUI.REGISTERED_ROLE_DELETE);
 
-		adminSearchCustomerPage.selectCustomerRoles(driver,customerRole);
+        adminAddNewCustomerPage.clickToElement(driver, AdminSearchCustomerPageUI.CUSTOMER_ROLE_LISTBOX);
 
-		adminAddNewCustomerPage.selectActiveStatus(true);
+        adminSearchCustomerPage.selectCustomerRoles(driver, customerRole);
 
-		adminAddNewCustomerPage.inputAdminComment(adminComment);
+        adminAddNewCustomerPage.selectActiveStatus(true);
 
-		adminAddNewCustomerPage.clickSaveButton();
+        adminAddNewCustomerPage.inputAdminComment(adminComment);
 
-		verifyTrue(adminAddNewCustomerPage.isAddedSuccessfulDisplayed());
-	}
+        adminAddNewCustomerPage.clickSaveButton();
 
-	@Test
-	public void TC_08_Search_Customer_With_Email() {
+        verifyTrue(adminAddNewCustomerPage.isAddedSuccessfulDisplayed());
+    }
 
-		adminSidebarPage.clickCustomerMenuLink();
+    @Test
+    public void TC_08_Search_Customer_With_Email() {
 
-		adminSearchCustomerPage = adminSidebarPage.clickToCustomersLink();
+        adminSidebarPage.clickCustomerMenuLink();
 
-		adminSearchCustomerPage.inputEmailTextbox(email);
+        adminSearchCustomerPage = adminSidebarPage.clickToCustomersLink();
 
-		adminSearchCustomerPage.clickToElement(driver, AdminSearchCustomerPageUI.REGISTERED_ROLE_DELETE);
+        adminSearchCustomerPage.inputEmailTextbox(email);
 
-		adminSearchCustomerPage.clickToElement(driver, AdminSearchCustomerPageUI.CUSTOMER_ROLE_LISTBOX);
+        adminSearchCustomerPage.clickToElement(driver, AdminSearchCustomerPageUI.REGISTERED_ROLE_DELETE);
 
-		adminSearchCustomerPage.selectCustomerRoles(driver,customerRole);
+        adminSearchCustomerPage.clickToElement(driver, AdminSearchCustomerPageUI.CUSTOMER_ROLE_LISTBOX);
 
-		adminSearchCustomerPage.clickSearchButton();
+        adminSearchCustomerPage.selectCustomerRoles(driver, customerRole);
+
+        adminSearchCustomerPage.clickSearchButton();
 
 //		verifyEquals(adminSearchCustomerPage.getTextResultTable(driver,"3"), "Automation FC");
 
 //		verifyEquals(adminSearchCustomerPage.getTextResultTable(driver,"5"), "Automation FC");
-	}
+    }
 
-	@Test
-	public void TC_09_Search_Customer_With_FirstName_And_LastName() {
+    @Test
+    public void TC_09_Search_Customer_With_FirstName_And_LastName() {
 
-		adminSidebarPage.clickCustomerMenuLink();
+        adminSidebarPage.clickCustomerMenuLink();
 
-		adminSearchCustomerPage = adminSidebarPage.clickToCustomersLink();
+        adminSearchCustomerPage = adminSidebarPage.clickToCustomersLink();
 
-		adminSearchCustomerPage.inputFistNameTextbox(firstName);
+        adminSearchCustomerPage.inputFistNameTextbox(firstName);
 
-		adminSearchCustomerPage.inputLastNameTextbox(lastName);
+        adminSearchCustomerPage.inputLastNameTextbox(lastName);
 
-		adminSearchCustomerPage.clickToElement(driver, AdminSearchCustomerPageUI.REGISTERED_ROLE_DELETE);
+        adminSearchCustomerPage.clickToElement(driver, AdminSearchCustomerPageUI.REGISTERED_ROLE_DELETE);
 
-		adminSearchCustomerPage.clickToElement(driver, AdminSearchCustomerPageUI.CUSTOMER_ROLE_LISTBOX);
+        adminSearchCustomerPage.clickToElement(driver, AdminSearchCustomerPageUI.CUSTOMER_ROLE_LISTBOX);
 
-		adminSearchCustomerPage.selectCustomerRoles(driver,customerRole);
+        adminSearchCustomerPage.selectCustomerRoles(driver, customerRole);
 
-		adminSearchCustomerPage.clickSearchButton();
+        adminSearchCustomerPage.clickSearchButton();
 
-	}
+    }
 
-	@Test
-	public void TC_10_Search_Customer_With_Company() {
+    @Test
+    public void TC_10_Search_Customer_With_Company() {
 
-		adminSidebarPage.clickCustomerMenuLink();
+        adminSidebarPage.clickCustomerMenuLink();
 
-		adminSearchCustomerPage = adminSidebarPage.clickToCustomersLink();
+        adminSearchCustomerPage = adminSidebarPage.clickToCustomersLink();
 
-		adminSearchCustomerPage.inputCompanyTextbox(companyName);
+        adminSearchCustomerPage.inputCompanyTextbox(companyName);
 
-		adminSearchCustomerPage.clickToElement(driver, AdminSearchCustomerPageUI.REGISTERED_ROLE_DELETE);
+        adminSearchCustomerPage.clickToElement(driver, AdminSearchCustomerPageUI.REGISTERED_ROLE_DELETE);
 
-		adminSearchCustomerPage.clickToElement(driver, AdminSearchCustomerPageUI.CUSTOMER_ROLE_LISTBOX);
+        adminSearchCustomerPage.clickToElement(driver, AdminSearchCustomerPageUI.CUSTOMER_ROLE_LISTBOX);
 
-		adminSearchCustomerPage.selectCustomerRoles(driver,customerRole);
+        adminSearchCustomerPage.selectCustomerRoles(driver, customerRole);
 
-		adminSearchCustomerPage.clickSearchButton();
+        adminSearchCustomerPage.clickSearchButton();
 
 //		verifyEquals(adminSearchCustomerPage.getTextResultTable(driver,"3"),companyName);
 //
@@ -289,122 +275,123 @@ public class Admin_01_Search_Product_And_Customer extends AbstractTest {
 //
 //		verifyEquals(adminSearchCustomerPage.getTextResultTable(driver,"5"),companyName);
 
-	}
+    }
 
-	@Test
-	public void TC_11_Search_Customer_Full_Data() {
+    @Test
+    public void TC_11_Search_Customer_Full_Data() {
 
-		adminSidebarPage.clickCustomerMenuLink();
+        adminSidebarPage.clickCustomerMenuLink();
 
-		adminSearchCustomerPage = adminSidebarPage.clickToCustomersLink();
+        adminSearchCustomerPage = adminSidebarPage.clickToCustomersLink();
 
-		adminSearchCustomerPage.inputEmailTextbox(email);
+        adminSearchCustomerPage.inputEmailTextbox(email);
 
-		adminSearchCustomerPage.inputFistNameTextbox(firstName);
+        adminSearchCustomerPage.inputFistNameTextbox(firstName);
 
-		adminSearchCustomerPage.inputLastNameTextbox(lastName);
+        adminSearchCustomerPage.inputLastNameTextbox(lastName);
 
-		adminSearchCustomerPage.selectBirthMonth("1");
+        adminSearchCustomerPage.selectBirthMonth("1");
 
-		adminSearchCustomerPage.selectBirthDay("1");
+        adminSearchCustomerPage.selectBirthDay("1");
 
-		adminSearchCustomerPage.inputCompanyTextbox(companyName);
+        adminSearchCustomerPage.inputCompanyTextbox(companyName);
 
-		adminSearchCustomerPage.clickToElement(driver, AdminSearchCustomerPageUI.REGISTERED_ROLE_DELETE);
+        adminSearchCustomerPage.clickToElement(driver, AdminSearchCustomerPageUI.REGISTERED_ROLE_DELETE);
 
-		adminSearchCustomerPage.clickToElement(driver, AdminSearchCustomerPageUI.CUSTOMER_ROLE_LISTBOX);
+        adminSearchCustomerPage.clickToElement(driver, AdminSearchCustomerPageUI.CUSTOMER_ROLE_LISTBOX);
 
-		adminSearchCustomerPage.selectCustomerRoles(driver,customerRole);
+        adminSearchCustomerPage.selectCustomerRoles(driver, customerRole);
 
-		adminSearchCustomerPage.clickSearchButton();
+        adminSearchCustomerPage.clickSearchButton();
 
 //		verifyEquals(adminSearchCustomerPage.getTextResultTable(driver,"3"),companyName);
 
 //		verifyEquals(adminSearchCustomerPage.getTextResultTable(driver,"4"),customerRole);
 
-	//	verifyEquals(adminSearchCustomerPage.getTextResultTable("5"),companyName);
+        //	verifyEquals(adminSearchCustomerPage.getTextResultTable("5"),companyName);
 
-	}
-	@Test
-	public void TC_12_Edit_Customer() {
+    }
 
-		adminSidebarPage.clickCustomerMenuLink();
+    @Test
+    public void TC_12_Edit_Customer() {
 
-		adminSearchCustomerPage = adminSidebarPage.clickToCustomersLink();
+        adminSidebarPage.clickCustomerMenuLink();
 
-		adminSearchCustomerPage.inputEmailTextbox(email);
+        adminSearchCustomerPage = adminSidebarPage.clickToCustomersLink();
 
-		adminSearchCustomerPage.inputFistNameTextbox(firstName);
+        adminSearchCustomerPage.inputEmailTextbox(email);
 
-		adminSearchCustomerPage.inputLastNameTextbox(lastName);
+        adminSearchCustomerPage.inputFistNameTextbox(firstName);
 
-		adminSearchCustomerPage.selectBirthMonth("1");
+        adminSearchCustomerPage.inputLastNameTextbox(lastName);
 
-		adminSearchCustomerPage.selectBirthDay("1");
+        adminSearchCustomerPage.selectBirthMonth("1");
 
-		adminSearchCustomerPage.inputCompanyTextbox(companyName);
+        adminSearchCustomerPage.selectBirthDay("1");
 
-		adminSearchCustomerPage.clickToElement(driver, AdminSearchCustomerPageUI.REGISTERED_ROLE_DELETE);
+        adminSearchCustomerPage.inputCompanyTextbox(companyName);
 
-		adminSearchCustomerPage.clickToElement(driver, AdminSearchCustomerPageUI.CUSTOMER_ROLE_LISTBOX);
+        adminSearchCustomerPage.clickToElement(driver, AdminSearchCustomerPageUI.REGISTERED_ROLE_DELETE);
 
-		adminSearchCustomerPage.selectCustomerRoles(driver,customerRole);
+        adminSearchCustomerPage.clickToElement(driver, AdminSearchCustomerPageUI.CUSTOMER_ROLE_LISTBOX);
 
-		adminSearchCustomerPage.clickSearchButton();
+        adminSearchCustomerPage.selectCustomerRoles(driver, customerRole);
 
-		adminEditCustomerPage = adminSearchCustomerPage.clickToEditInTable();
+        adminSearchCustomerPage.clickSearchButton();
 
-		adminEditCustomerPage.inputToDynamicField(driver,"edit_automationfc@gmail.com","Email");
+        adminEditCustomerPage = adminSearchCustomerPage.clickToEditInTable();
 
-		adminEditCustomerPage.inputToDynamicField(driver,"Edit Automation","FirstName");
+        adminEditCustomerPage.inputDynamicTextbox(driver, "edit_automationfc@gmail.com", "Email");
 
-		adminEditCustomerPage.inputToDynamicField(driver,"Edit FC","LastName");
+        adminEditCustomerPage.inputDynamicTextbox(driver, "Edit Automation", "FirstName");
 
-		adminEditCustomerPage.selectDOB(driver,"2/2");
+        adminEditCustomerPage.inputDynamicTextbox(driver, "Edit FC", "LastName");
 
-		adminEditCustomerPage.inputToDynamicField(driver,"Edit Automation FC","Company");
+        adminEditCustomerPage.selectDOB(driver, "2/2");
 
-		adminEditCustomerPage.inputToDynamicTextArea(driver,"Edit Customer (Guests)","AdminComment");
+        adminEditCustomerPage.inputDynamicTextbox(driver, "Edit Automation FC", "Company");
 
-		adminEditCustomerPage.clickIntoButton(driver, AbstractNopCommercePageUI.DYNAMIC_BUTTON_CLICK,"save");
+        adminEditCustomerPage.inputToDynamicTextArea(driver, "Edit Customer (Guests)", "AdminComment");
 
-		verifyTrue(adminEditCustomerPage.isUpdatedCustomerInfoSucess(driver));
-	}
+        adminEditCustomerPage.clickIntoButton(driver, AbstractNopCommercePageUI.DYNAMIC_BUTTON_CLICK, "save");
 
-	@Test
-	public void TC_15_Delete_Customer() {
+        verifyTrue(adminEditCustomerPage.isUpdatedCustomerInfoSucess(driver));
+    }
 
-		adminSidebarPage.clickCustomerMenuLink();
+    @Test
+    public void TC_15_Delete_Customer() {
 
-		adminSearchCustomerPage = adminSidebarPage.clickToCustomersLink();
+        adminSidebarPage.clickCustomerMenuLink();
 
-		adminSearchCustomerPage.inputEmailTextbox("edit_automationfc@gmail.com");
+        adminSearchCustomerPage = adminSidebarPage.clickToCustomersLink();
 
-		adminSearchCustomerPage.inputFistNameTextbox("Edit Automation");
+        adminSearchCustomerPage.inputEmailTextbox("edit_automationfc@gmail.com");
 
-		adminSearchCustomerPage.inputLastNameTextbox("Edit FC");
+        adminSearchCustomerPage.inputFistNameTextbox("Edit Automation");
 
-		adminSearchCustomerPage.selectBirthMonth("2");
+        adminSearchCustomerPage.inputLastNameTextbox("Edit FC");
 
-		adminSearchCustomerPage.selectBirthDay("2");
+        adminSearchCustomerPage.selectBirthMonth("2");
 
-		adminSearchCustomerPage.inputCompanyTextbox("Edit Automation FC");
+        adminSearchCustomerPage.selectBirthDay("2");
 
-		adminSearchCustomerPage.clickSearchButton();
+        adminSearchCustomerPage.inputCompanyTextbox("Edit Automation FC");
 
-		adminEditCustomerPage = adminSearchCustomerPage.clickToEditInTable();
+        adminSearchCustomerPage.clickSearchButton();
 
-		adminEditCustomerPage.clickIntoButton(driver, EditCustomerPageUI.DELETE_SPAN);
+        adminEditCustomerPage = adminSearchCustomerPage.clickToEditInTable();
 
-		adminEditCustomerPage.clickDeletedInConfirmBox(driver);
+        adminEditCustomerPage.clickIntoButton(driver, EditCustomerPageUI.DELETE_SPAN);
 
-		verifyTrue(adminEditCustomerPage.isDeletedCustomerInfoSucess(driver));
+        adminEditCustomerPage.clickDeletedInConfirmBox(driver);
 
-	}
+        verifyTrue(adminEditCustomerPage.isDeletedCustomerInfoSucess(driver));
 
-	@AfterTest(alwaysRun = true)
-	public void afterTest() {
-		closeBrowserAndDriver(driver);
-	}
+    }
+
+    @AfterTest(alwaysRun = true)
+    public void afterTest() {
+        closeBrowserAndDriver(driver);
+    }
 
 }

@@ -29,7 +29,7 @@ public class PageGeneratorManager {
         return new ComputerPageObject(driver);
     }
 
-    public static DesktopsPageObject getMyDesktopPage(WebDriver driver) {
+    public static DesktopsPageObject getDesktopPage(WebDriver driver) {
         return new DesktopsPageObject(driver);
     }
 
@@ -113,12 +113,14 @@ public class PageGeneratorManager {
     public static NotebooksPageObject getNotebooksPage(WebDriver driver) {
         return new NotebooksPageObject(driver);
     }
+
     public static AdminEditCustomerPageObject getAdminEditCustomerPage(WebDriver driver) {
         return new AdminEditCustomerPageObject(driver);
     }
 
-
-
+    public static CheckOutPageObject getCheckOutPage(WebDriver driver) {
+        return new CheckOutPageObject(driver);
+    }
 
 
 }

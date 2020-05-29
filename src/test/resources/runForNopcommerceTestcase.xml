@@ -4,10 +4,10 @@
     <parameter name="url" value="https://demo.nopcommerce.com/"/>
 
     <listeners>
-   	    <listener class-name="commons.MethodListener"/>
-   		 <!-- <listener class-name="com.nopcommerce.retryTest.RetryListener"/> -->
-   		<listener class-name="reportScreenshot.ExtentTestListener"/>
-   		<!--  <listener class-name="reportConfig.ExtentReportListener"/> -->
+        <listener class-name="commons.MethodListener"/>
+        <!-- <listener class-name="com.nopcommerce.retryTest.RetryListener"/> -->
+        <listener class-name="reportScreenshot.ExtentTestListener"/>
+        <!--  <listener class-name="reportConfig.ExtentReportListener"/> -->
         <listener class-name="org.uncommons.reportng.HTMLReporter"/>
         <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
     </listeners>

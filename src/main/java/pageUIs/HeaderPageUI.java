@@ -6,7 +6,7 @@ public class HeaderPageUI extends AbstractNopCommercePageUI {
     public static final String HOME_IMAGE_LINK = "//img[@alt='nopCommerce demo store']/parent::a";
 
     public static final String LINK_NAME_OF_HEADER_MENU = "//div[@class='header-menu']/ul[@class='top-menu notmobile']/li/a[contains(text(),'%s')]";
-    public static final String ITEM_LINK_IN_CATEGORY = "//div[@class='sub-category-item']//h2//a[contains(text(),'%s')]";
+    public static final String ITEM_LINK_OF_HEADER_MENU = "//div[@class='header-menu']/ul[@class='top-menu notmobile']/li/a[contains(text(),'%s')]//parent::li//ul//li//a[contains(text(),'%s')]";
 
     // Info item in shopping cart
 

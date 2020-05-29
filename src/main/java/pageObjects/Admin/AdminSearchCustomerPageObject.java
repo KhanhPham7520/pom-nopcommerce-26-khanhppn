@@ -45,12 +45,10 @@ public class AdminSearchCustomerPageObject extends AbstractPages {
     }
 
 
-
     public void inputLastNameTextbox(String lastName) {
         waitToElementVisible(driver, AdminSearchCustomerPageUI.LASTNAME_TEXTBOX);
         sendKeyToElement(driver, AdminSearchCustomerPageUI.LASTNAME_TEXTBOX, lastName);
     }
-
 
 
     public void inputCompanyTextbox(String company) {
@@ -64,14 +62,11 @@ public class AdminSearchCustomerPageObject extends AbstractPages {
     }
 
 
-
-    public AdminEditCustomerPageObject clickToEditInTable(){
-        waitToElementClickable(driver,AdminSearchCustomerPageUI.EDIT_BUTTON);
-        clickToElement(driver,AdminSearchCustomerPageUI.EDIT_BUTTON);
+    public AdminEditCustomerPageObject clickToEditInTable() {
+        waitToElementClickable(driver, AdminSearchCustomerPageUI.EDIT_BUTTON);
+        clickToElement(driver, AdminSearchCustomerPageUI.EDIT_BUTTON);
         return new AdminEditCustomerPageObject(driver);
     }
-
-
 
 
 }

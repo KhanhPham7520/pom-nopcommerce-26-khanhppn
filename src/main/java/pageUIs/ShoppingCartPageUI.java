@@ -16,4 +16,23 @@ public class ShoppingCartPageUI extends AbstractNopCommercePageUI {
 
     public static final String REMOVE_CHECKBOX = "//input[@name='removefromcart']";
     public static final String SHOPPING_CART_EMPTY = "//div[@class='no-data']";
+
+    public static final String QUANTITY_TEXTBOX = "//label[text()='Qty.:']//following-sibling::input";
+
+    public static final String ESTIMATING_SHIPPING_BUTTON = "//a[contains(text(),'Estimate shipping')]";
+
+    public static final String SELECT_COUNTRY_ESTIMATING_SHIPPING = "//select[@id='CountryId']";
+
+    public static final String ZIP_POSTAL_CODE_ESTIMATING_SHIPPING = "//input[@id='ZipPostalCode']";
+
+    public static final String APPLY_BUTTON_ESTIMATING_SHIPPING = "//input[@value='Apply']";
+
+    public static final String TERM_OF_SERVICE_CHECKBOX = "//input[@id='termsofservice']";
+
+    public static final String CHECK_OUT_BUTTON = "//button[@id='checkout']";
+
+
+
+
+
 }

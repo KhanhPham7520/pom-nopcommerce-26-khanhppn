@@ -8,169 +8,169 @@ import pageObjects.*;
 
 public class Product_02_Wishlist_Compare_RecentView extends AbstractTest {
 
-	WebDriver driver;
-	ShoppingCartPageObject shoppingCartPage;
-	HeaderPageObject headerPage;
-	FooterPageObject footerPage;
-	CompareProductPageObject compareProductPage;
-	RecentViewProductPageObject recentViewProductPage;
-	String productName = "Apple MacBook Pro 13-inch";
-	private HomePageObject homePage;
-	private LoginPageObject loginPage;
-	private ProductPageObject productPage;
-	private WishListPageObject wishlistPage;
+    WebDriver driver;
+    ShoppingCartPageObject shoppingCartPage;
+    HeaderPageObject headerPage;
+    FooterPageObject footerPage;
+    CompareProductPageObject compareProductPage;
+    RecentViewProductPageObject recentViewProductPage;
+    String productName = "Apple MacBook Pro 13-inch";
+    private HomePageObject homePage;
+    private LoginPageObject loginPage;
+    private ProductPageObject productPage;
+    private WishListPageObject wishlistPage;
 
-	@Parameters({ "browser" })
-	@BeforeTest
-	public void beforeTest(@Optional("chrome") String browserName) {
-		driver = getBrowserDriver(browserName);
+    @Parameters({"browser"})
+    @BeforeTest
+    public void beforeTest(@Optional("chrome") String browserName) {
+        driver = getBrowserDriver(browserName);
 
-		homePage = PageGeneratorManager.getHomePage(driver);
-		productPage = PageGeneratorManager.getProductPageObject(driver);
-		wishlistPage = PageGeneratorManager.getWishListPage(driver);
-		shoppingCartPage = PageGeneratorManager.getShoppingCartPage(driver);
-		headerPage = PageGeneratorManager.getHeaderPage(driver);
-		compareProductPage = PageGeneratorManager.getCompareProductPage(driver);
-		footerPage = PageGeneratorManager.getFooterPage(driver);
-		recentViewProductPage = PageGeneratorManager.getRecentViewProductPage(driver);
+        homePage = PageGeneratorManager.getHomePage(driver);
+        productPage = PageGeneratorManager.getProductPageObject(driver);
+        wishlistPage = PageGeneratorManager.getWishListPage(driver);
+        shoppingCartPage = PageGeneratorManager.getShoppingCartPage(driver);
+        headerPage = PageGeneratorManager.getHeaderPage(driver);
+        compareProductPage = PageGeneratorManager.getCompareProductPage(driver);
+        footerPage = PageGeneratorManager.getFooterPage(driver);
+        recentViewProductPage = PageGeneratorManager.getRecentViewProductPage(driver);
 
-		loginPage = homePage.clickToLoginLink();
-		loginPage.inputCorrectEmail();
-		loginPage.inputCorrectPassword();
-		homePage = loginPage.clickToLoginButton();
-		productPage = homePage.clickToProductLink(productName);
-	}
+        loginPage = homePage.clickToLoginLink();
+        loginPage.inputCorrectEmail();
+        loginPage.inputCorrectPassword();
+        homePage = loginPage.clickToLoginButton();
+        productPage = homePage.clickToProductLink(productName);
+    }
 
-	@Test
-	public void TC_01_Add_To_Wishlist() {
+    @Test
+    public void TC_01_Add_To_Wishlist() {
 
-		productPage.clickAddToWishList();
+        productPage.clickAddToWishList();
 
-		verifyTrue(productPage.isProductAddedWishlistSuccessful());
+        verifyTrue(productPage.isProductAddedWishlistSuccessful());
 
-		wishlistPage = productPage.clickToWishlistNotificationLink();
+        wishlistPage = productPage.clickToWishlistNotificationLink();
 
-		wishlistPage.clickToWishListURL();
+        wishlistPage.clickToWishListURL();
 
-		verifyTrue(wishlistPage.isHeaderWishlistDisplayed());
-	}
+        verifyTrue(wishlistPage.isHeaderWishlistDisplayed());
+    }
 
-	@Test
-	public void TC_02_Add_Product_To_Cart_From_Wishlist_Page() {
-		wishlistPage.clickCheckBoxAddToCart();
+    @Test
+    public void TC_02_Add_Product_To_Cart_From_Wishlist_Page() {
+        wishlistPage.clickCheckBoxAddToCart();
 
-		shoppingCartPage = wishlistPage.clickAddToCartButton();
+        shoppingCartPage = wishlistPage.clickAddToCartButton();
 
-		verifyTrue(shoppingCartPage.isProductNameDisplayedInCart(productName));
+        verifyTrue(shoppingCartPage.isProductNameDisplayedInCart(productName));
 
-		wishlistPage = headerPage.clickToWishListLink();
+        wishlistPage = headerPage.clickToWishListLink();
 
-		verifyTrue(wishlistPage.isInfoProductNoDisplayed(productName));
-	}
+        verifyTrue(wishlistPage.isInfoProductNoDisplayed(productName));
+    }
 
-	@Test
-	public void TC_03_Remove_Product_In_Wishlish_Page() {
+    @Test
+    public void TC_03_Remove_Product_In_Wishlish_Page() {
 
-		wishlistPage = headerPage.clickToWishListLink();
+        wishlistPage = headerPage.clickToWishListLink();
 
-		wishlistPage.clickToRemoveProductCheckbox(productName);
+        wishlistPage.clickToRemoveProductCheckbox(productName);
 
-		wishlistPage.clickToUpdateWishListButton();
+        wishlistPage.clickToUpdateWishListButton();
 
-		verifyTrue(wishlistPage.isInfoProductNoDisplayed(productName));
+        verifyTrue(wishlistPage.isInfoProductNoDisplayed(productName));
 
-		verifyTrue(wishlistPage.isEmptyWishListDisplayed());
-	}
+        verifyTrue(wishlistPage.isEmptyWishListDisplayed());
+    }
 
-	@Test
-	public void TC_04_Add_Product_To_Compare() {
-		String productCompareFirst = "Build your own computer";
-		String productCompareSecond = "Apple MacBook Pro 13-inch";
+    @Test
+    public void TC_04_Add_Product_To_Compare() {
+        String productCompareFirst = "Build your own computer";
+        String productCompareSecond = "Apple MacBook Pro 13-inch";
 
-		homePage = headerPage.clickToHomeLinkImage();
+        homePage = headerPage.clickToHomeLinkImage();
 
-		homePage.clickAddToCompareList(driver, productCompareFirst, "Add to compare list");
+        homePage.clickAddToCompareList(driver, productCompareFirst, "Add to compare list");
 
-		verifyTrue(homePage.isAddToComparisonSuccess());
+        verifyTrue(homePage.isAddToComparisonSuccess());
 
-		homePage.clickAddToCompareList(driver, productCompareSecond, "Add to compare list");
+        homePage.clickAddToCompareList(driver, productCompareSecond, "Add to compare list");
 
-		verifyTrue(homePage.isAddToComparisonSuccess());
+        verifyTrue(homePage.isAddToComparisonSuccess());
 
-		compareProductPage = footerPage.clickToCompareProductListLink();
+        compareProductPage = footerPage.clickToCompareProductListLink();
 
-		verifyTrue(compareProductPage.isProductNameDisplayed(productCompareFirst));
+        verifyTrue(compareProductPage.isProductNameDisplayed(productCompareFirst));
 
 
-	}
+    }
 
-	@Test
-	public void TC_05_Recently_View_Product() {
-		String thirdProduct = "Apple MacBook Pro 13-inch";
-		String forthProduct = "Portable Sound Speakers";
-		String fifthProduct = "adidas Consortium Campus 80s Running Shoes";
+    @Test
+    public void TC_05_Recently_View_Product() {
+        String thirdProduct = "Apple MacBook Pro 13-inch";
+        String forthProduct = "Portable Sound Speakers";
+        String fifthProduct = "adidas Consortium Campus 80s Running Shoes";
 
-		homePage = productPage.openHomePage(driver);
+        homePage = productPage.openHomePage(driver);
 
-		homePage.clickToMenuLink("Computers");
+        homePage.clickToMenuLink("Computers");
 
-		homePage.clickToSubCatItem("Software");
+        homePage.clickToSubCatItem("Software");
 
-		productPage = homePage.clickToProductLink("Windows 8 Pro");
+        productPage = homePage.clickToProductLink("Windows 8 Pro");
 
-		homePage = productPage.openHomePage(driver);
+        homePage = productPage.openHomePage(driver);
 
-		homePage.clickToMenuLink("Electronics");
+        homePage.clickToMenuLink("Electronics");
 
-		homePage.clickToSubCatItem("Cell phones");
+        homePage.clickToSubCatItem("Cell phones");
 
-		productPage = homePage.clickToProductLink("Nokia Lumia 1020");
+        productPage = homePage.clickToProductLink("Nokia Lumia 1020");
 
-		homePage = productPage.openHomePage(driver);
+        homePage = productPage.openHomePage(driver);
 
-		homePage.clickToMenuLink("Computers");
+        homePage.clickToMenuLink("Computers");
 
-		homePage.clickToSubCatItem("Notebooks");
+        homePage.clickToSubCatItem("Notebooks");
 
-		productPage = homePage.clickToProductLink(thirdProduct);
+        productPage = homePage.clickToProductLink(thirdProduct);
 
-		String productThree = productPage.getProductName(thirdProduct);
+        String productThree = productPage.getProductName(thirdProduct);
 
-		homePage = headerPage.openHomePage(driver);
+        homePage = headerPage.openHomePage(driver);
 
-		homePage.clickToMenuLink("Electronics");
+        homePage.clickToMenuLink("Electronics");
 
-		homePage.clickToSubCatItem("Others");
+        homePage.clickToSubCatItem("Others");
 
-		productPage = homePage.clickToProductLink(forthProduct);
+        productPage = homePage.clickToProductLink(forthProduct);
 
-		String productFourth = productPage.getProductName(forthProduct);
+        String productFourth = productPage.getProductName(forthProduct);
 
-		homePage = productPage.openHomePage(driver);
+        homePage = productPage.openHomePage(driver);
 
-		homePage.clickToMenuLink("Apparel");
+        homePage.clickToMenuLink("Apparel");
 
-		homePage.clickToSubCatItem("Shoes");
+        homePage.clickToSubCatItem("Shoes");
 
-		productPage = homePage.clickToProductLink(fifthProduct);
+        productPage = homePage.clickToProductLink(fifthProduct);
 
-		String productFifth = productPage.getProductName(fifthProduct);
+        String productFifth = productPage.getProductName(fifthProduct);
 
-		homePage = productPage.openHomePage(driver);
+        homePage = productPage.openHomePage(driver);
 
-		recentViewProductPage = footerPage.clickToRecentViewProductLink();
+        recentViewProductPage = footerPage.clickToRecentViewProductLink();
 
-		verifyEquals(productThree, thirdProduct);
+        verifyEquals(productThree, thirdProduct);
 
-		verifyEquals(productFourth, forthProduct);
+        verifyEquals(productFourth, forthProduct);
 
-		verifyEquals(productFifth, fifthProduct);
+        verifyEquals(productFifth, fifthProduct);
 
-	}
+    }
 
-	@AfterTest(alwaysRun = true)
-	public void afterTest() {
-		closeBrowserAndDriver(driver);
-	}
+    @AfterTest(alwaysRun = true)
+    public void afterTest() {
+        closeBrowserAndDriver(driver);
+    }
 
 }
