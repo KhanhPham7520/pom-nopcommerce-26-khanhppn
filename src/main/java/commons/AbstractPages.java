@@ -332,10 +332,7 @@ public abstract class AbstractPages {
     }
 
     // Click into button element
-    public void clickIntoButton(WebDriver driver, String locator) {
-        waitToElementClickable(driver, locator);
-        findElementByXpath(driver, locator).click();
-    }
+
 
     public void clickIntoButton(WebDriver driver, String locator, String... values) {
         waitToElementClickable(driver, locator, values);
@@ -635,13 +632,14 @@ public abstract class AbstractPages {
         return isElementDisplayed(driver, AdminEditCustomerPageUI.UPDATE_CUSTOMER_SUCCESS_MSG);
     }
 
-    public WebElement switchToPopUpModal(WebDriver driver){
-        WebElement currentElement = driver.switchTo().activeElement();
-        return currentElement;
+    public void switchToPopUpModal(WebDriver driver){
+        driver.switchTo().activeElement();
     }
 
-    public WebElement switchToParentScreen(WebDriver driver){
-        WebElement currentElement = (WebElement) driver.switchTo().defaultContent();
-        return currentElement;
+    public HomePageObject clickIntoLogOutLink(WebDriver driver) {
+        waitToElementVisible(driver, AbstractNopCommercePageUI.HEADER_LOG_OUT_LINK);
+        clickToElement(driver, AbstractNopCommercePageUI.HEADER_LOG_OUT_LINK);
+        return new HomePageObject(driver);
     }
+
 }

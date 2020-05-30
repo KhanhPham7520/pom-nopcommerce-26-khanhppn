@@ -94,4 +94,9 @@ public class ProductPageObject extends AbstractPages {
         return getTextElement(driver, ProductPageUI.PRODUCT_PRICE);
     }
 
+    public ShoppingCartPageObject clickToAddToCarLinkSuccessNotificationBar(WebDriver driver) {
+        waitToElementClickable(driver, ProductPageUI.SHOPPING_CART_LINK_BAR_NOTI);
+        clickToElement(driver, ProductPageUI.SHOPPING_CART_LINK_BAR_NOTI);
+        return new ShoppingCartPageObject(driver);
+    }
 }

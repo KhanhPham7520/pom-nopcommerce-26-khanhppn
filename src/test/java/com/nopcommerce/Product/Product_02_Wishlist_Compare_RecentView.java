@@ -69,7 +69,7 @@ public class Product_02_Wishlist_Compare_RecentView extends AbstractTest {
     }
 
     @Test
-    public void TC_03_Remove_Product_In_Wishlish_Page() {
+    public void TC_03_Remove_Product_In_Wishlisht_Page() {
 
         wishlistPage = headerPage.clickToWishListLink();
 

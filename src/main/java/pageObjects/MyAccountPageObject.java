@@ -80,4 +80,8 @@ public class MyAccountPageObject extends AbstractPages {
         return findElementByXpath(driver, MyAccountPageUI.GET_TEXT_DYNAMIC_ACCOUNT, values).getAttribute("value");
     }
 
+    public String getOrderNumberFromMyAccountPage(){
+        waitToElementVisible(driver, MyAccountPageUI.ORDER_NUMBER_IN_MY_ACCOUNT_ORDER);
+        return getTextElement(driver, MyAccountPageUI.ORDER_NUMBER_IN_MY_ACCOUNT_ORDER ).substring(13);
+    }
 }

@@ -31,6 +31,9 @@ public class ShoppingCartPageUI extends AbstractNopCommercePageUI {
 
     public static final String CHECK_OUT_BUTTON = "//button[@id='checkout']";
 
+    public static final String ESTIMATE_SHPPING_OPTION_POPUP = "//div[@class='estimate-shipping-row shipping-option active']";
+
+
 
 
 

@@ -63,9 +63,14 @@ public class ShoppingCartPageObject extends AbstractPages {
     }
 
 
-    public CheckOutPageObject clickIntoCheckoutButton(WebDriver driver, String locator) {
-        waitToElementClickable(driver, locator);
-        findElementByXpath(driver, locator).click();
+    public CheckOutPageObject clickIntoCheckoutButton(WebDriver driver) {
+        waitToElementClickable(driver, ShoppingCartPageUI.CHECK_OUT_BUTTON);
+        findElementByXpath(driver, ShoppingCartPageUI.CHECK_OUT_BUTTON).click();
         return new CheckOutPageObject(driver);
     }
+
+    public void waitToShippingOptionDisplayed(WebDriver driver){
+        waitToElementPresence(driver, ShoppingCartPageUI.ESTIMATE_SHPPING_OPTION_POPUP);
+    }
+
 }

@@ -18,9 +18,10 @@ public class ProductPageUI extends AbstractNopCommercePageUI {
     public static final String PRODUCT_PRICE = "//span[@id='price-value-1']";
     // Add to Cart
     public static final String ADD_TO_CART_BUTTON = "//div[@class='add-to-cart-panel']//following-sibling::input[@value='Add to cart']";
-    public static final String SHOPPING_CART_LINK_BAR_NOTI = "//a[text()='shopping cart']";
-    public static final String ADD_TO_CART_SUCCESS_MSG = "//p[@class='content']";
+    public static final String ADD_TO_CART_SUCCESS_MSG = "//div[@class='bar-notification success']//p[@class='content']";
 
     public static String PRODUCT_LINK = "//h2[@class='product-title']//a[contains(text(),'%s')]";
+
+     public static final String PRODUCT_NAME_AFTER_ADD_TO_CART_SUCCESS = "//td[@class='product']//a[text()='%s']";
 
 }

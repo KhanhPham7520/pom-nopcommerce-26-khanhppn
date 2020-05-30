@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 public class AbstractTest extends CommonFunction {
 
     protected final Log log;
-    private String rootFolder = System.getProperty("user.dir");
+    private final String rootFolder = System.getProperty("user.dir");
     private WebDriver driver;
 
     public AbstractTest() {

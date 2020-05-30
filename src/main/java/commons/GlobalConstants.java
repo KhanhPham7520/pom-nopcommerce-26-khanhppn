@@ -25,7 +25,7 @@ public class GlobalConstants {
 
     // Login official Info for user
     public static final String USER_EMAIL = "davidheller@yopmail.com";
-    public static final String USER_PASSWORD = "foster1994";
+    public static final String USER_PASSWORD = "foster456";
 
     // Login offical Info for admin
     public static final String ADMIN_EMAIL = "admin@yourstore.com";

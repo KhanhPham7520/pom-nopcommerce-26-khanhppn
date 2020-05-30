@@ -18,4 +18,15 @@ public class MyAccountPageUI extends AbstractNopCommercePageUI {
 
     public static final String GET_TEXT_DYNAMIC_ACCOUNT = "//li[@class='%s']";
 
+    public static final String CHANGE_PASSWORD_BUTTON = "//input[@value='Change password']";
+
+    public static final String ORDER_LINK_NAVIGATION_BAR = "//div[@class='block block-account-navigation']//div[@class='listbox']//ul//li[@class='customer-orders inactive']//a";
+
+    public static final String ORDER_NUMBER_IN_MY_ACCOUNT_ORDER = "//div[@class='section order-item']//div[@class='title']//strong";
+
+    public static final String DETAILS_ORDER_BUTTON = "//input[@type='button' and @value='Details']";
+
+    public static final String ORDER_NUMBER_IN_ORDER_INFORMATION_PAGE = "//div[@class='order-number']//strong[text()='Order #%s']";
+
+    public static final String ORDER_DATE = "//li[@class='order-date']";
 }

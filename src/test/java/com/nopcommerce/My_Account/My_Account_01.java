@@ -4,22 +4,18 @@ import Data_Faker.DataHelperForLanguageEn;
 import com.nopcommerce.data.MyAccountData;
 import com.nopcommerce.data.ProductData;
 import commons.AbstractTest;
+import commons.GlobalConstants;
 import commons.PageGeneratorManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import pageObjects.*;
+import pageUIs.HeaderPageUI;
+import pageUIs.LoginPageUI;
 import pageUIs.MyAccountPageUI;
 
 public class My_Account_01 extends AbstractTest {
-
-    // Update Info
-//	private final String MyAccountData.updateData.updateBirthDay = "1";
-//	private final String MyAccountData.updateData.updateBirthMonth = "January";
-//	private final String MyAccountData.updateData.updateBirthYear = "1999";
     private final String newPostalCode = "09";
     String newCountry = "Afghanistan";
-    //	private String new_city_state = newCity + "," + newPostalCode;
-    String new_city_state;
     private WebDriver driver;
     private HomePageObject homePage;
     private DesktopsPageObject desktopPage;
@@ -40,7 +36,7 @@ public class My_Account_01 extends AbstractTest {
     private String newCity;
     private String newAddress;
     private String newPhoneNumber;
-    private String name = newFirstname + newLastname;
+    private final String name = newFirstname + newLastname;
 
     @Parameters({"browser"})
     @BeforeTest
@@ -52,6 +48,7 @@ public class My_Account_01 extends AbstractTest {
         accountAddressPage = PageGeneratorManager.getAccountAddressPage(driver);
         reviewPage = PageGeneratorManager.getReviewPageObject(driver);
         accountAddressPage = PageGeneratorManager.getAccountAddressPage(driver);
+        loginPage = PageGeneratorManager.getLoginPage(driver);
 
         loginPage = homePage.clickToLoginLink();
         loginPage.inputCorrectEmail();
@@ -75,7 +72,7 @@ public class My_Account_01 extends AbstractTest {
     @Test
     public void TC_01_Update_Customer_Info_Success() {
 
-        myAccountPage = homePage.clickToMyAccountLink();
+        myAccountPage = homePage.clickToHeaderMyAccountLink();
 
         myAccountPage.selectMaleGenderRadio();
 
@@ -113,7 +110,7 @@ public class My_Account_01 extends AbstractTest {
 
     @Test
     public void TC_02_Add_Address() {
-        myAccountPage = homePage.clickToMyAccountLink();
+        myAccountPage = homePage.clickToHeaderMyAccountLink();
 
         accountAddressPage = myAccountPage.clickToAddressLink();
 
@@ -153,13 +150,43 @@ public class My_Account_01 extends AbstractTest {
 
     }
 
-    // @Test
+    @Test
     public void TC_03_Change_Password() {
+        myAccountPage = homePage.clickToHeaderMyAccountLink();
+
+        myAccountPage.clickToElement(driver, MyAccountPageUI.DYNAMIC_HREF_LINK,"Change password");
+
+        myAccountPage.inputDynamicTextbox(driver, GlobalConstants.USER_PASSWORD,"OldPassword");
+
+        myAccountPage.inputDynamicTextbox(driver, MyAccountData.updateData.updatePassword, "NewPassword");
+
+        myAccountPage.inputDynamicTextbox(driver, MyAccountData.updateData.updatePassword, "ConfirmNewPassword");
+
+        myAccountPage.clickIntoDynamicButtonInputType(driver, MyAccountPageUI.CHANGE_PASSWORD_BUTTON);
+
+        homePage = myAccountPage.clickIntoLogOutLink(driver);
+
+        loginPage = homePage.clickToLoginLink();
+
+        loginPage.inputCorrectEmail();
+
+        loginPage.inputPassword(GlobalConstants.USER_PASSWORD);
+
+        loginPage.clickToLoginButton();
+
+        verifyTrue(isElementDisplayed(driver, LoginPageUI.THE_CREDENTIAL_PROVIDED_ARE_INCORRECT));
+
+        loginPage.inputCorrectEmail();
+
+        loginPage.inputPassword(MyAccountData.updateData.updatePassword);
+
+       homePage = loginPage.clickToLoginButton();
+
+       verifyTrue(isElementDisplayed(driver, HeaderPageUI.HEADER_MY_ACCOUNT_LINK));
     }
 
     @Test
     public void TC_04_Add_Review_Product() {
-
 
         computerPage = homePage.clickToComputerLink();
 

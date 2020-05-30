@@ -17,7 +17,7 @@
         <classes>
             <!-- <class name="com.nopcommerce.product.TC_02_Product_Wishlist_Compare_RecentView" /> -->
             <!-- <class name="com.nopcommerce.Admin.TC_01_Admin" /> -->
-            <class name="com.nopcommerce.Login.Login_01_Validate_Login_Form"/>
+<!--            <class name="com.nopcommerce.Login.Login_01_Validate_Login_Form"/>-->
             <!-- <class name="com.nopcommerce.Login.TC_01_Login_Validate_Login_Form" /> -->
             <!-- <class name="com.nopcommerce.product.TC_03_Product_Order" /> -->
         </classes>

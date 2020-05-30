@@ -13,6 +13,7 @@ public class ReviewPageObject extends AbstractPages {
     }
 
     public void inputReviewTitle(String inputTitle) {
+        waitToElementVisible(driver, ReviewPageUI.REVIEW_TITLE_TEXTBOX);
         findElementByXpath(driver, ReviewPageUI.REVIEW_TITLE_TEXTBOX).sendKeys(inputTitle);
     }
 

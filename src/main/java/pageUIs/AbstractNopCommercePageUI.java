@@ -6,6 +6,8 @@ public class AbstractNopCommercePageUI {
     public static final String HEADER_LOG_OUT_LINK = "//a[text()='Log out']";
     public static final String HEADER_LOGIN_LINK = "//div[@class='header-links']//a[text()='Log in']";
 
+    public static final String HEADER_MY_ACCOUNT_LINK = "//div[@class='header']//a[text()='My account']";
+
     public static final String DYNAMIC_TEXTBOX = "//input[@id='%s']";
 
     public static final String DYNAMIC_TEXTAREA = "//textarea[@id='%s']";
@@ -56,5 +58,9 @@ public class AbstractNopCommercePageUI {
     public static final String DYNAMIC_SELECT = "//select[@id='%s']";
 
     public static final String DYNAMIC_INPUT_TYPE = "//input[@id='%s']";
+
+    public static final String SHOPPING_CART_LINK_BAR_NOTI = "//a[text()='shopping cart']";
+
+    public static final String DYNAMIC_HREF_LINK = "//a[contains(text(),'%s')]";
 
 }
