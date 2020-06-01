@@ -21,13 +21,12 @@ public abstract class AbstractPages {
 
     protected Select select;
     JavascriptExecutor jsExcutor;
-    long longTimeOut = 20;
-    long shortTimeOut = 5;
+    long longTimeOut = 30;
+    long shortTimeOut = 10;
     Actions action;
     WebElement element;
     By byXpath;
     WebDriverWait waitExplicit;
-    WebDriverWait waitImplicit;
     Date date;
     private Actions actions;
     private WebDriver driver;

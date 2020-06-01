@@ -46,57 +46,68 @@ public class ProductPageObject extends AbstractPages {
         }
     }
 
-    public ShoppingCartPageObject clickAddToCart() {
-        waitToElementClickable(driver, ProductPageUI.ADD_TO_CART_BUTTON);
-        clickToElement(driver, ProductPageUI.ADD_TO_CART_BUTTON);
-        return new ShoppingCartPageObject(driver);
+    public void uncheckIntoCheckbox(String locator,String... productName) {
+        waitToElementClickable(driver, locator, productName);
+        clickToElement(driver, locator, productName);
     }
 
-    public void clickAddToWishList() {
-        waitToElementClickable(driver, ProductPageUI.ADD_TO_WISHLIST_BUTTON);
-        clickIntoButton(driver, ProductPageUI.ADD_TO_WISHLIST_BUTTON);
+    public void unselectSoftwareForEditProductInfo(String... productName) {
+        waitToElementClickable(driver, ProductPageUI.SOFTWARE_CHECKBOX, productName);
+        uncheckIntoCheckbox(ProductPageUI.DYNAMIC_CHECKBOX_PRODUCT,productName);
     }
 
-    public boolean isProductAddedWishlistSuccessful() {
-        return isElementDisplayed(driver, ProductPageUI.ADD_TO_WISHLIST_SUCCESS_MSG);
-    }
+    public ShoppingCartPageObject clickAddToCart () {
+            waitToElementClickable(driver, ProductPageUI.ADD_TO_CART_BUTTON);
+            clickToElement(driver, ProductPageUI.ADD_TO_CART_BUTTON);
+            return new ShoppingCartPageObject(driver);
+        }
 
-    public WishListPageObject clickToWishlistNotificationLink() {
-        waitToElementClickable(driver, ProductPageUI.WISHLIST_LINK);
-        clickToElement(driver, ProductPageUI.WISHLIST_LINK);
-        return new WishListPageObject(driver);
-    }
+        public void clickAddToWishList () {
+            waitToElementClickable(driver, ProductPageUI.ADD_TO_WISHLIST_BUTTON);
+            clickIntoButton(driver, ProductPageUI.ADD_TO_WISHLIST_BUTTON);
+        }
 
-    public String getProductName(String productName) {
-        waitToElementVisible(driver, ProductPageUI.PRODUCT_NAME, productName);
-        return getTextElement(driver, ProductPageUI.PRODUCT_NAME, productName);
-    }
+        public boolean isProductAddedWishlistSuccessful () {
+            return isElementDisplayed(driver, ProductPageUI.ADD_TO_WISHLIST_SUCCESS_MSG);
+        }
 
-    public String getAddToCartSuccessMsg() {
-        waitToElementVisible(driver, ProductPageUI.ADD_TO_CART_SUCCESS_MSG);
-        return getTextElement(driver, ProductPageUI.ADD_TO_CART_SUCCESS_MSG);
+        public WishListPageObject clickToWishlistNotificationLink () {
+            waitToElementClickable(driver, ProductPageUI.WISHLIST_LINK);
+            clickToElement(driver, ProductPageUI.WISHLIST_LINK);
+            return new WishListPageObject(driver);
+        }
+
+        public String getProductName (String productName){
+            waitToElementVisible(driver, ProductPageUI.PRODUCT_NAME, productName);
+            return getTextElement(driver, ProductPageUI.PRODUCT_NAME, productName);
+        }
+
+        public String getAddToCartSuccessMsg () {
+            waitToElementVisible(driver, ProductPageUI.ADD_TO_CART_SUCCESS_MSG);
+            return getTextElement(driver, ProductPageUI.ADD_TO_CART_SUCCESS_MSG);
+
+        }
+
+        public ShoppingCartPageObject clickShoppingCarNotiBar () {
+            waitToElementVisible(driver, ProductPageUI.SHOPPING_CART_LINK_BAR_NOTI);
+            clickToElement(driver, ProductPageUI.SHOPPING_CART_LINK_BAR_NOTI);
+            return new ShoppingCartPageObject(driver);
+        }
+
+        public void inputQuantityProduct (String inputValue){
+            waitToElementVisible(driver, ProductPageUI.PRODUCT_QUANTITY);
+            sendKeyToElement(driver, ProductPageUI.PRODUCT_QUANTITY, inputValue);
+        }
+
+        public String getProductPrice () {
+            waitToElementVisible(driver, ProductPageUI.PRODUCT_PRICE);
+            return getTextElement(driver, ProductPageUI.PRODUCT_PRICE);
+        }
+
+        public ShoppingCartPageObject clickToAddToCarLinkSuccessNotificationBar (WebDriver driver){
+            waitToElementClickable(driver, ProductPageUI.SHOPPING_CART_LINK_BAR_NOTI);
+            clickToElement(driver, ProductPageUI.SHOPPING_CART_LINK_BAR_NOTI);
+            return new ShoppingCartPageObject(driver);
+        }
 
     }
-
-    public ShoppingCartPageObject clickShoppingCarNotiBar() {
-        waitToElementVisible(driver, ProductPageUI.SHOPPING_CART_LINK_BAR_NOTI);
-        clickToElement(driver, ProductPageUI.SHOPPING_CART_LINK_BAR_NOTI);
-        return new ShoppingCartPageObject(driver);
-    }
-
-    public void inputQuantityProduct(String inputValue) {
-        waitToElementVisible(driver, ProductPageUI.PRODUCT_QUANTITY);
-        sendKeyToElement(driver, ProductPageUI.PRODUCT_QUANTITY, inputValue);
-    }
-
-    public String getProductPrice() {
-        waitToElementVisible(driver, ProductPageUI.PRODUCT_PRICE);
-        return getTextElement(driver, ProductPageUI.PRODUCT_PRICE);
-    }
-
-    public ShoppingCartPageObject clickToAddToCarLinkSuccessNotificationBar(WebDriver driver) {
-        waitToElementClickable(driver, ProductPageUI.SHOPPING_CART_LINK_BAR_NOTI);
-        clickToElement(driver, ProductPageUI.SHOPPING_CART_LINK_BAR_NOTI);
-        return new ShoppingCartPageObject(driver);
-    }
-}

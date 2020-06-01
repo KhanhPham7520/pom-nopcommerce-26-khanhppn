@@ -1,5 +1,4 @@
 package pageUIs;
-
 public class MyAccountPageUI extends AbstractNopCommercePageUI {
 
     public static final String GENDER_MALE_RADIO = "//div[@class='gender']//span[@class='male']";
@@ -26,7 +25,7 @@ public class MyAccountPageUI extends AbstractNopCommercePageUI {
 
     public static final String DETAILS_ORDER_BUTTON = "//input[@type='button' and @value='Details']";
 
-    public static final String ORDER_NUMBER_IN_ORDER_INFORMATION_PAGE = "//div[@class='order-number']//strong[text()='Order #%s']";
+    public static final String ORDER_NUMBER_IN_ORDER_INFORMATION_PAGE = "//div[@class='order-number']//strong";
 
     public static final String ORDER_DATE = "//li[@class='order-date']";
 }

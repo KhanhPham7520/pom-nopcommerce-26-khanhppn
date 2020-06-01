@@ -11,6 +11,6 @@ public class MyAccountData {
         public static final String updateBirthDay = "1";
         public static final String updateBirthMonth = "January";
         public static final String updateBirthYear = "1999";
-        public static final String updatePassword = "foster1994";
+        public static final String updatePassword = "foster456";
     }
 }

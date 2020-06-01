@@ -15,13 +15,15 @@ public class ProductPageUI extends AbstractNopCommercePageUI {
     public static final String VISTA_RADIO = "//label[contains(text(),'%s')]/preceding-sibling::input";
     public static final String SOFTWARE_CHECKBOX = "//label[contains(text(),'%s')]/preceding-sibling::input";
     public static final String PRODUCT_QUANTITY = "//input[@id='product_enteredQuantity_1']";
-    public static final String PRODUCT_PRICE = "//span[@id='price-value-1']";
     // Add to Cart
     public static final String ADD_TO_CART_BUTTON = "//div[@class='add-to-cart-panel']//following-sibling::input[@value='Add to cart']";
     public static final String ADD_TO_CART_SUCCESS_MSG = "//div[@class='bar-notification success']//p[@class='content']";
 
     public static String PRODUCT_LINK = "//h2[@class='product-title']//a[contains(text(),'%s')]";
 
-     public static final String PRODUCT_NAME_AFTER_ADD_TO_CART_SUCCESS = "//td[@class='product']//a[text()='%s']";
+     public static final String PRODUCT_NAME_AFTER_ADD_TO_CART_SUCCESS = "//a[@class='product-name' and text()='%s']";
 
+     public static final String PRODUCT_PRICE = "//div[@class='product-price']//span";
+
+     public static final String DYNAMIC_CHECKBOX_PRODUCT = "//label[contains(text(),'%s')]//preceding-sibling::input[@type='checkbox']";
 }
