@@ -19,8 +19,8 @@ public class GlobalConstants {
 
 	// Common message in Search Product Page
 	public static final String NO_PRODUCT_WERE_FOUND_CRITERIA_MESSAGE = "No products were found that matched your criteria.";
-	public static final long SHORT_TIMEOUT = 1;
-	public static final long LONG_TIMEOUT = 20;
+	public static final long SHORT_TIMEOUT = 10;
+	public static final long LONG_TIMEOUT = 30;
 
 	// Login official Info for user
 	public static final String USER_EMAIL = "davidheller@yopmail.com";

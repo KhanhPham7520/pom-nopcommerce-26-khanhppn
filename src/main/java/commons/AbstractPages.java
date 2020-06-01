@@ -21,8 +21,8 @@ public abstract class AbstractPages {
 
     protected Select select;
     JavascriptExecutor jsExcutor;
-    long longTimeOut = 30;
-    long shortTimeOut = 10;
+    long longTimeOut = GlobalConstants.LONG_TIMEOUT;
+    long shortTimeOut = GlobalConstants.SHORT_TIMEOUT;
     Actions action;
     WebElement element;
     By byXpath;
