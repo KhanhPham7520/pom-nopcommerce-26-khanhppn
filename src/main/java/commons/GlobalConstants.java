@@ -23,7 +23,7 @@ public class GlobalConstants {
 	public static final long LONG_TIMEOUT = 30;
 
 	// Login official Info for user
-	public static final String USER_EMAIL = "davidheller@yopmail.com";
+	public static final String USER_EMAIL = "phamphannhatkhanh7520@gmail.com";
 	public static final String USER_PASSWORD = "foster1994";
 
 	// Login offical Info for admin

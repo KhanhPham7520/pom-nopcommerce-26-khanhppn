@@ -3,7 +3,6 @@ package commons;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.logging.Log;
@@ -16,8 +15,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.logging.LogEntries;
-import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
@@ -30,17 +27,21 @@ public class AbstractTest extends CommonFunction {
 	private final String rootFolder = System.getProperty("user.dir");
 	private WebDriver driver;
 
-	public AbstractTest() {
+	protected AbstractTest() {
 		log = LogFactory.getLog(getClass());
 	}
 
-	public void printBrowserConsoleLogs(WebDriver driver) {
-		LogEntries logs = driver.manage().logs().get("browser");
-		List<LogEntry> logList = logs.getAll();
-		for (LogEntry logging : logList) {
-			log.info("-------------" + logging.getLevel().toString() + "------------ \n" + logging.getMessage());
-		}
+	public WebDriver getDriver() {
+		return driver;
 	}
+
+	// public void printBrowserConsoleLogs(WebDriver driver) {
+	// LogEntries logs = driver.manage().logs().get("browser");
+	// List<LogEntry> logList = logs.getAll();
+	// for (LogEntry logging : logList) {
+	// log.info("-------------" + logging.getLevel().toString() + "------------ \n" + logging.getMessage());
+	// }
+	// }
 
 	public WebDriver getBrowserDriverOfAdmin(String browserName) {
 		if (browserName.equalsIgnoreCase("firefox")) {
@@ -358,10 +359,6 @@ public class AbstractTest extends CommonFunction {
 
 	protected String getBankGuruToday() {
 		return getCurrentYear() + "-" + getCurrentMonth() + "-" + getCurrentDay();
-	}
-
-	public WebDriver getDriver() {
-		return driver;
 	}
 
 }

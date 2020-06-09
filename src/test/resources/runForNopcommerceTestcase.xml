@@ -1,37 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Nop Commerce" parallel="false">
 
-    <parameter name="url" value="https://demo.nopcommerce.com/"/>
+	<parameter name="url" value="https://demo.nopcommerce.com/" />
 
-    <listeners>
-        <listener class-name="commons.MethodListener"/>
-        <!-- <listener class-name="com.nopcommerce.retryTest.RetryListener"/> -->
-<!--         <listener class-name="reportScreenshot.ExtentTestListener"/>
- -->        <!--  <listener class-name="reportConfig.ExtentReportListener"/> -->
-        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
-        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
-    </listeners>
+	<listeners>
+		<!-- <listener class-name="com.nopcommerce.retryTest.RetryListener"/> -->
+		<!-- <listener class-name="reportScreenshot.ExtentTestListener"/> -->
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+		<listener class-name="commons.MethodListener" />
+		<listener class-name="reportConfig.TestNGAppender" />
+		<listener class-name="reportConfig.ReportNGListener" />
+	</listeners>
 
-    <test name="Run On Chrome">
-        <parameter name="browser" value="chrome"/>
-        <classes>
-            <!-- <class name="com.nopcommerce.product.TC_02_Product_Wishlist_Compare_RecentView" /> -->
-            <!-- <class name="com.nopcommerce.Admin.TC_01_Admin" /> -->
-<!--            <class name="com.nopcommerce.Login.Login_01_Validate_Login_Form"/>-->
-            <!-- <class name="com.nopcommerce.Login.TC_01_Login_Validate_Login_Form" /> -->
-            <!-- <class name="com.nopcommerce.product.TC_03_Product_Order" /> -->
-        </classes>
-    </test>
-    <test name="Run On Firefox">
-        <parameter name="browser" value="firefox"/>
-        <classes>
-            <!-- <class name="com.nopcommerce.product.TC_02_Product_Wishlist_Compare_RecentView" /> -->
-            <!-- <class name="com.nopcommerce.Admin.TC_01_Admin" /> -->
-<!--            <class name="com.nopcommerce.Login.Login_01_Validate_Login_Form"/>-->
-            <!-- <class name="com.nopcommerce.Login.TC_01_Login_Validate_Login_Form" /> -->
-            <!-- <class name="com.nopcommerce.product.TC_03_Product_Order" /> -->
-        </classes>
-    </test>
+	<test name="Run On Chrome">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="com.nopcommerce.Login.Login_01_Validate_Login_Form" />
+		</classes>
+	</test>
+
 
 
 </suite> <!-- Suite -->

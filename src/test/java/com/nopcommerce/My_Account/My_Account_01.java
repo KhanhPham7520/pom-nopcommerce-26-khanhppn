@@ -1,216 +1,230 @@
 package com.nopcommerce.My_Account;
 
-import Data_Faker.DataHelperForLanguageEn;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
 import com.nopcommerce.data.MyAccountData;
 import com.nopcommerce.data.ProductData;
+
+import Data_Faker.DataHelperForLanguageEn;
 import commons.AbstractTest;
 import commons.GlobalConstants;
 import commons.PageGeneratorManager;
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.*;
-import pageObjects.*;
+import pageObjects.AccountAddressPageObject;
+import pageObjects.ComputerPageObject;
+import pageObjects.DesktopsPageObject;
+import pageObjects.HomePageObject;
+import pageObjects.LoginPageObject;
+import pageObjects.MyAccountPageObject;
+import pageObjects.ReviewPageObject;
 import pageUIs.HeaderPageUI;
 import pageUIs.LoginPageUI;
 import pageUIs.MyAccountPageUI;
 
 public class My_Account_01 extends AbstractTest {
-    private final String newPostalCode = "09";
-    String newCountry = "Afghanistan";
-    private WebDriver driver;
-    private HomePageObject homePage;
-    private DesktopsPageObject desktopPage;
-    private ComputerPageObject computerPage;
-    private ReviewPageObject reviewPage;
-    private LoginPageObject loginPage;
-    private MyAccountPageObject myAccountPage;
-    private AccountAddressPageObject accountAddressPage;
-    private DataHelperForLanguageEn dataHelperForLanguageEn;
-    private String updateFirstname;
-    private String updateLastname;
-    private String updateEmail;
-    private String updateCompany;
-    // Add New Address Data
-    private String newFirstname;
-    private String newLastname;
-    private String newEmail;
-    private String newCity;
-    private String newAddress;
-    private String newPhoneNumber;
-    private final String name = newFirstname + newLastname;
+	private final String newPostalCode = "09";
+	String newCountry = "Afghanistan";
+	private WebDriver driver;
+	private HomePageObject homePage;
+	private DesktopsPageObject desktopPage;
+	private ComputerPageObject computerPage;
+	private ReviewPageObject reviewPage;
+	private LoginPageObject loginPage;
+	private MyAccountPageObject myAccountPage;
+	private AccountAddressPageObject accountAddressPage;
+	private DataHelperForLanguageEn dataHelperForLanguageEn;
+	private String updateFirstname;
+	private String updateLastname;
+	private String updateEmail;
+	private String updateCompany;
+	// Add New Address Data
+	private String newFirstname;
+	private String newLastname;
+	private String newEmail;
+	private String newCity;
+	private String newAddress;
+	private String newPhoneNumber;
+	private final String name = newFirstname + newLastname;
 
-    @Parameters({"browser"})
-    @BeforeTest
-    public void beforeTest(@Optional("chrome") String browserName) {
-        driver = getBrowserDriver(browserName);
+	@Parameters({ "browser" })
+	@BeforeTest
+	public void beforeTest(@Optional("chrome") String browserName) {
+		driver = getBrowserDriver(browserName);
 
-        homePage = PageGeneratorManager.getHomePage(driver);
-        computerPage = PageGeneratorManager.getComputerPageObject(driver);
-        accountAddressPage = PageGeneratorManager.getAccountAddressPage(driver);
-        reviewPage = PageGeneratorManager.getReviewPageObject(driver);
-        accountAddressPage = PageGeneratorManager.getAccountAddressPage(driver);
-        loginPage = PageGeneratorManager.getLoginPage(driver);
+		homePage = PageGeneratorManager.getHomePage(driver);
+		computerPage = PageGeneratorManager.getComputerPageObject(driver);
+		accountAddressPage = PageGeneratorManager.getAccountAddressPage(driver);
+		reviewPage = PageGeneratorManager.getReviewPageObject(driver);
+		accountAddressPage = PageGeneratorManager.getAccountAddressPage(driver);
+		loginPage = PageGeneratorManager.getLoginPage(driver);
 
-        loginPage = homePage.clickToLoginLink();
-        loginPage.inputCorrectEmail();
-        loginPage.inputCorrectPassword();
-        homePage = loginPage.clickToLoginButton();
+		loginPage = homePage.clickToLoginLink();
+		loginPage.inputCorrectEmail();
+		loginPage.inputCorrectPassword();
+		homePage = loginPage.clickToLoginButton();
 
-        dataHelperForLanguageEn = DataHelperForLanguageEn.getData();
-        updateFirstname = dataHelperForLanguageEn.getFirstName();
-        updateLastname = dataHelperForLanguageEn.getLastName();
-        updateEmail = dataHelperForLanguageEn.getEmail();
-        updateCompany = dataHelperForLanguageEn.getCompany();
+		dataHelperForLanguageEn = DataHelperForLanguageEn.getData();
+		updateFirstname = dataHelperForLanguageEn.getFirstName();
+		updateLastname = dataHelperForLanguageEn.getLastName();
+		updateEmail = dataHelperForLanguageEn.getEmail();
+		updateCompany = dataHelperForLanguageEn.getCompany();
 
-        newFirstname = dataHelperForLanguageEn.getFirstName();
-        newLastname = dataHelperForLanguageEn.getLastName();
-        newEmail = dataHelperForLanguageEn.getEmail();
-        newCity = dataHelperForLanguageEn.getCity();
-        newAddress = dataHelperForLanguageEn.getAddress();
-        newPhoneNumber = dataHelperForLanguageEn.getPhone();
-    }
+		newFirstname = dataHelperForLanguageEn.getFirstName();
+		newLastname = dataHelperForLanguageEn.getLastName();
+		newEmail = dataHelperForLanguageEn.getEmail();
+		newCity = dataHelperForLanguageEn.getCity();
+		newAddress = dataHelperForLanguageEn.getAddress();
+		newPhoneNumber = dataHelperForLanguageEn.getPhone();
+	}
 
-    @Test
-    public void TC_01_Update_Customer_Info_Success() {
+	@Test
+	public void TC_01_Update_Customer_Info_Success() {
 
-        myAccountPage = homePage.clickToHeaderMyAccountLink();
+		myAccountPage = homePage.clickToHeaderMyAccountLink();
 
-        myAccountPage.selectMaleGenderRadio();
+		myAccountPage.selectMaleGenderRadio();
 
-        myAccountPage.inputFirstNameTextbox(updateFirstname);
+		myAccountPage.inputFirstNameTextbox(updateFirstname);
 
-        myAccountPage.inputLastNameTextbox(updateLastname);
+		myAccountPage.inputLastNameTextbox(updateLastname);
 
-        myAccountPage.selectDayInDropdown(MyAccountData.updateData.updateBirthDay);
+		myAccountPage.selectDayInDropdown(MyAccountData.updateData.updateBirthDay);
 
-        myAccountPage.selectMonthInDropdown(MyAccountData.updateData.updateBirthMonth);
+		myAccountPage.selectMonthInDropdown(MyAccountData.updateData.updateBirthMonth);
 
-        myAccountPage.selectYearInDropdown(MyAccountData.updateData.updateBirthYear);
+		myAccountPage.selectYearInDropdown(MyAccountData.updateData.updateBirthYear);
 
-        myAccountPage.inputEmailTextbox(updateEmail);
+		myAccountPage.inputEmailTextbox(updateEmail);
 
-        myAccountPage.inputCompanyTextbox(updateCompany);
+		myAccountPage.inputCompanyTextbox(updateCompany);
 
-        myAccountPage.clickSaveButton();
+		myAccountPage.clickSaveButton();
 
-        verifyEquals(myAccountPage.getTextFromRadioButton(driver, "value", "gender-male"), MyAccountData.updateData.updateGender);
+		verifyEquals(myAccountPage.getTextFromRadioButton(driver, "value", "gender-male"), MyAccountData.updateData.updateGender);
 
-        verifyEquals(myAccountPage.getTextFromInputTextbox(driver, "value", "FirstName"), updateFirstname);
+		verifyEquals(myAccountPage.getTextFromInputTextbox(driver, "value", "FirstName"), updateFirstname);
 
-        verifyEquals(myAccountPage.getTextFromInputTextbox(driver, "value", "LastName"), updateLastname);
+		verifyEquals(myAccountPage.getTextFromInputTextbox(driver, "value", "LastName"), updateLastname);
 
-        verifyEquals(findElementByXpath(driver, MyAccountPageUI.SELECT_DAY_DROPDOWN).getAttribute("value"), MyAccountData.updateData.updateBirthDay);
+		verifyEquals(findElementByXpath(driver, MyAccountPageUI.SELECT_DAY_DROPDOWN).getAttribute("value"), MyAccountData.updateData.updateBirthDay);
 
-        verifyEquals(findElementByXpath(driver, MyAccountPageUI.SELECT_YEAR_DROPDOWN).getAttribute("value"), MyAccountData.updateData.updateBirthYear);
+		verifyEquals(findElementByXpath(driver, MyAccountPageUI.SELECT_YEAR_DROPDOWN).getAttribute("value"), MyAccountData.updateData.updateBirthYear);
 
-        verifyEquals(myAccountPage.getTextFromInputTextbox(driver, "value", "Email"), updateEmail);
+		verifyEquals(myAccountPage.getTextFromInputTextbox(driver, "value", "Email"), updateEmail);
 
-        verifyEquals(myAccountPage.getTextFromInputTextbox(driver, "value", "Company"), updateCompany);
+		verifyEquals(myAccountPage.getTextFromInputTextbox(driver, "value", "Company"), updateCompany);
 
-    }
+	}
 
-    @Test
-    public void TC_02_Add_Address() {
-        myAccountPage = homePage.clickToHeaderMyAccountLink();
+	@Test
+	public void TC_02_Add_Address() {
 
-        accountAddressPage = myAccountPage.clickToAddressLink();
+		myAccountPage = homePage.clickToHeaderMyAccountLink();
 
-        accountAddressPage.clickAddNewButton();
+		accountAddressPage = myAccountPage.clickToAddressLink();
 
-        accountAddressPage.inputFirstNameTextbox(newFirstname);
+		accountAddressPage.clickAddNewButton();
 
-        accountAddressPage.inputLastNameTextbox(newLastname);
+		accountAddressPage.inputFirstNameTextbox(newFirstname);
 
-        accountAddressPage.inputEmailTextbox(newEmail);
+		accountAddressPage.inputLastNameTextbox(newLastname);
 
-        accountAddressPage.selectContryValue(newCountry);
+		accountAddressPage.inputEmailTextbox(newEmail);
 
-        accountAddressPage.inputCityTextbox(newCity);
+		accountAddressPage.selectContryValue(newCountry);
 
-        accountAddressPage.inputAddress1Textbox(newAddress);
+		accountAddressPage.inputCityTextbox(newCity);
 
-        accountAddressPage.inputPostalTextbox(newPostalCode);
+		accountAddressPage.inputAddress1Textbox(newAddress);
 
-        accountAddressPage.inputPhoneNumberTextbox(newPhoneNumber);
+		accountAddressPage.inputPostalTextbox(newPostalCode);
 
-        accountAddressPage.clickSaveButton();
+		accountAddressPage.inputPhoneNumberTextbox(newPhoneNumber);
 
-        verifyEquals(myAccountPage.getDynamicTextFromInputTextbox(driver, "name"), name);
+		accountAddressPage.clickSaveButton();
 
-        verifyEquals(myAccountPage.getDynamicTextFromInputTextbox(driver, "email"), "Email: " + newEmail);
+		verifyEquals(myAccountPage.getDynamicTextFromInputTextbox(driver, "name"), name);
 
-        verifyEquals(myAccountPage.getDynamicTextFromInputTextbox(driver, "phone"), "Phone number: " + newPhoneNumber);
+		verifyEquals(myAccountPage.getDynamicTextFromInputTextbox(driver, "email"), "Email: " + newEmail);
 
-        verifyEquals(myAccountPage.getDynamicTextFromInputTextbox(driver, "address1"), newAddress);
+		verifyEquals(myAccountPage.getDynamicTextFromInputTextbox(driver, "phone"), "Phone number: " + newPhoneNumber);
 
-        String newCityStateExpected = newCity.concat(", ").concat(newPostalCode);
+		verifyEquals(myAccountPage.getDynamicTextFromInputTextbox(driver, "address1"), newAddress);
 
-        verifyEquals(myAccountPage.getDynamicTextFromInputTextbox(driver, "city-state-zip"), newCityStateExpected);
+		String newCityStateExpected = newCity.concat(", ").concat(newPostalCode);
 
-        verifyEquals(myAccountPage.getDynamicTextFromInputTextbox(driver, "country"), newCountry);
+		verifyEquals(myAccountPage.getDynamicTextFromInputTextbox(driver, "city-state-zip"), newCityStateExpected);
 
-    }
+		verifyEquals(myAccountPage.getDynamicTextFromInputTextbox(driver, "country"), newCountry);
 
-    @Test
-    public void TC_03_Change_Password() {
-        myAccountPage = homePage.clickToHeaderMyAccountLink();
+	}
 
-        myAccountPage.clickToElement(driver, MyAccountPageUI.DYNAMIC_HREF_LINK,"Change password");
+	@Test
+	public void TC_03_Change_Password() {
 
-        myAccountPage.inputDynamicTextbox(driver, GlobalConstants.USER_PASSWORD,"OldPassword");
+		myAccountPage = homePage.clickToHeaderMyAccountLink();
 
-        myAccountPage.inputDynamicTextbox(driver, MyAccountData.updateData.updatePassword, "NewPassword");
+		myAccountPage.clickToElement(driver, MyAccountPageUI.DYNAMIC_HREF_LINK, "Change password");
 
-        myAccountPage.inputDynamicTextbox(driver, MyAccountData.updateData.updatePassword, "ConfirmNewPassword");
+		myAccountPage.inputDynamicTextbox(driver, GlobalConstants.USER_PASSWORD, "OldPassword");
 
-        myAccountPage.clickIntoDynamicButtonInputType(driver, MyAccountPageUI.CHANGE_PASSWORD_BUTTON);
+		myAccountPage.inputDynamicTextbox(driver, MyAccountData.updateData.updatePassword, "NewPassword");
 
-        homePage = myAccountPage.clickIntoLogOutLink(driver);
+		myAccountPage.inputDynamicTextbox(driver, MyAccountData.updateData.updatePassword, "ConfirmNewPassword");
 
-        loginPage = homePage.clickToLoginLink();
+		myAccountPage.clickIntoDynamicButtonInputType(driver, MyAccountPageUI.CHANGE_PASSWORD_BUTTON);
 
-        loginPage.inputCorrectEmail();
+		homePage = myAccountPage.clickIntoLogOutLink(driver);
 
-        loginPage.inputPassword(GlobalConstants.USER_PASSWORD);
+		loginPage = homePage.clickToLoginLink();
 
-        loginPage.clickToLoginButton();
+		loginPage.inputCorrectEmail();
 
-        verifyTrue(isElementDisplayed(driver, LoginPageUI.THE_CREDENTIAL_PROVIDED_ARE_INCORRECT));
+		loginPage.inputPassword(GlobalConstants.USER_PASSWORD);
 
-        loginPage.inputCorrectEmail();
+		loginPage.clickToLoginButton();
 
-        loginPage.inputPassword(MyAccountData.updateData.updatePassword);
+		verifyTrue(isElementDisplayed(driver, LoginPageUI.THE_CREDENTIAL_PROVIDED_ARE_INCORRECT));
 
-       homePage = loginPage.clickToLoginButton();
+		loginPage.inputCorrectEmail();
 
-       verifyTrue(isElementDisplayed(driver, HeaderPageUI.HEADER_MY_ACCOUNT_LINK));
-    }
+		loginPage.inputPassword(MyAccountData.updateData.updatePassword);
 
-    @Test
-    public void TC_04_Add_Review_Product() {
+		homePage = loginPage.clickToLoginButton();
 
-        computerPage = homePage.clickToComputerLink();
+		verifyTrue(isElementDisplayed(driver, HeaderPageUI.HEADER_MY_ACCOUNT_LINK));
+	}
 
-        desktopPage = computerPage.clickIntoDesktopLink();
+	@Test
+	public void TC_04_Add_Review_Product() {
 
-        desktopPage.clickIntoProductLink(ProductData.ReviewProduct.productName);
+		computerPage = homePage.clickToComputerLink();
 
-        reviewPage = desktopPage.clickAddToReview();
+		desktopPage = computerPage.clickIntoDesktopLink();
 
-        reviewPage.inputReviewTitle(ProductData.ReviewProduct.reviewTitle);
+		desktopPage.clickIntoProductLink(ProductData.ReviewProduct.productName);
 
-        reviewPage.inputReviewText(ProductData.ReviewProduct.reviewText);
+		reviewPage = desktopPage.clickAddToReview();
 
-        reviewPage.selectRatingNoExcellent();
+		reviewPage.inputReviewTitle(ProductData.ReviewProduct.reviewTitle);
 
-        reviewPage.clickSubmitReview();
+		reviewPage.inputReviewText(ProductData.ReviewProduct.reviewText);
 
-        verifyTrue(reviewPage.isReviewAddSucessfully());
+		reviewPage.selectRatingNoExcellent();
 
-    }
+		reviewPage.clickSubmitReview();
 
-    @AfterClass(alwaysRun = true)
-    public void afterClass() {
-        closeBrowserAndDriver(driver);
-    }
+		verifyTrue(reviewPage.isReviewAddSucessfully());
+
+	}
+
+	@AfterClass(alwaysRun = true)
+	public void afterClass() {
+		closeBrowserAndDriver(driver);
+	}
 
 }
