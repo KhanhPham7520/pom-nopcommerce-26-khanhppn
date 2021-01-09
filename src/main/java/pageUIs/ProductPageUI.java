@@ -1,6 +1,6 @@
 package pageUIs;
 
-public class ProductPageUI extends AbstractNopCommercePageUI {
+public class ProductPageUI extends AbstractPageUI {
     public static final String ADD_YOUR_REVIEW = "//a[text()='Add your review']";
     public static final String WISHLIST_LINK = "//a[text()='wishlist']";
     public static final String PRODUCT_NAME = "//h1[contains(text(),'%s')]";

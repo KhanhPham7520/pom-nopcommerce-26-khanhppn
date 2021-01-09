@@ -1,6 +1,6 @@
 package pageUIs;
 
-public class ShoppingCartPageUI extends AbstractNopCommercePageUI {
+public class ShoppingCartPageUI extends AbstractPageUI {
 
     public static final String PRODUCT_NAME = "//td[@class='product']//a[contains(text(),'%s')]";
     public static final String EMPTY_PRODUCT_WISHLIST = "//span[text()='Wishlist']//following-sibling::span[text()='(0)']";

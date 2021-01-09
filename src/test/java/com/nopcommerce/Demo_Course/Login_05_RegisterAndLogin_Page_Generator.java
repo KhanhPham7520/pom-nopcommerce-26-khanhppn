@@ -9,7 +9,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pageObjects.HomePageObject;
-import pageObjects.RegisterPageObject;
+import pageObjects.RegisterPO;
 import pageUIs.RegisterPageUI;
 
 import java.util.Random;
@@ -21,7 +21,7 @@ public class Login_05_RegisterAndLogin_Page_Generator extends AbstractPages {
     private String email;
 
     private HomePageObject homePage;
-    private RegisterPageObject registerPage;
+    private RegisterPO registerPage;
 
     @BeforeTest
     public void beforeTest() {
@@ -75,7 +75,7 @@ public class Login_05_RegisterAndLogin_Page_Generator extends AbstractPages {
         sendKeyToElement(driver, "//input[@id='Email']", email);
         sendKeyToElement(driver, "//input[@id='Password']", password);
         clickToElement(driver, "//input[@class='button-1 login-button']");
-        Assert.assertTrue(isElementDisplayed(driver, "//a[@class='ico-account']"));
+        Assert.assertTrue(isDisplayed(driver, "//a[@class='ico-account']"));
 
     }
 

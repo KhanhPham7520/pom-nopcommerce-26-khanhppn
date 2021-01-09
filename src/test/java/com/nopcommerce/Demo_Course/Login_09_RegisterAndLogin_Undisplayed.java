@@ -11,7 +11,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.HomePageObject;
-import pageObjects.RegisterPageObject;
+import pageObjects.RegisterPO;
 
 import java.util.Date;
 import java.util.Random;
@@ -20,7 +20,7 @@ public class Login_09_RegisterAndLogin_Undisplayed extends AbstractTest {
 
     HomePageObject homePage;
     WebElement element;
-    RegisterPageObject registerPage;
+    RegisterPO registerPage;
     private WebDriver driver;
     private Date date;
     private String password;
@@ -44,9 +44,9 @@ public class Login_09_RegisterAndLogin_Undisplayed extends AbstractTest {
         registerPage = homePage.clickToRegisterLink();
         driver.findElement(By.xpath("//a[text()='Register']")).click();
         // First Name displayed
-        Assert.assertTrue(registerPage.isElementDisplayed(driver, "//input[@id='FirstName']"));
+        Assert.assertTrue(registerPage.isDisplayed(driver, "//input[@id='FirstName']"));
         // Last Name
-        Assert.assertTrue(registerPage.isElementDisplayed(driver, "//input[@id='LastName']"));
+        Assert.assertTrue(registerPage.isDisplayed(driver, "//input[@id='LastName']"));
     }
 
     @Test(description = "Check element displayed")

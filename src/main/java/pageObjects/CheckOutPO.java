@@ -4,10 +4,10 @@ import commons.AbstractPages;
 import org.openqa.selenium.WebDriver;
 import pageUIs.CheckOutPageUI;
 
-public class CheckOutPageObject extends AbstractPages {
+public class CheckOutPO extends AbstractPages {
     WebDriver driver;
 
-    public CheckOutPageObject(WebDriver driver){
+    public CheckOutPO(WebDriver driver){
         this.driver = driver;
     }
 

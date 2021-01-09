@@ -1,8 +1,8 @@
 package pageUIs.Admin;
 
-import pageUIs.AbstractNopCommercePageUI;
+import pageUIs.AbstractPageUI;
 
-public class AdminSidebarPageUI extends AbstractNopCommercePageUI {
+public class AdminSidebarPageUI extends AbstractPageUI {
 
     public static final String CATALOG_LINK = "//span[text()='Catalog']/parent::a";
 

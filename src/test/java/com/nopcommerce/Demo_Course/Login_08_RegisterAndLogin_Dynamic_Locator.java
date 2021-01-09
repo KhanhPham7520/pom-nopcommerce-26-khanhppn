@@ -15,7 +15,7 @@ public class Login_08_RegisterAndLogin_Dynamic_Locator extends AbstractTest {
     private WebDriver driver;
 
     private HomePageObject homePage;
-    private RegisterPageObject registerPage;
+    private RegisterPO registerPage;
     private LoginPageObject loginPage;
     private FooterMyAccountPageObject myAccountPage;
     private FooterNewProductPageObject newProductPage;

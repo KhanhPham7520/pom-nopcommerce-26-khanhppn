@@ -9,12 +9,12 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import pageObjects.HomePageObject;
 import pageObjects.LoginPageObject;
-import pageObjects.RegisterPageObject;
+import pageObjects.RegisterPO;
 
 public class Common_02_LoginToSystem extends AbstractTest {
     WebDriver driver;
     private HomePageObject homePage;
-    private RegisterPageObject registerPage;
+    private RegisterPO registerPage;
     private LoginPageObject loginPage;
 
     @Parameters({"browser"})

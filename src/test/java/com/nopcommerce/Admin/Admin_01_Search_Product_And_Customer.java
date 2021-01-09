@@ -17,9 +17,8 @@ import pageObjects.Admin.AdminHomePageObject;
 import pageObjects.Admin.AdminProductPageObject;
 import pageObjects.Admin.AdminSearchCustomerPageObject;
 import pageObjects.Admin.AdminSidebarPageObject;
-import pageUIs.AbstractNopCommercePageUI;
+import pageUIs.AbstractPageUI;
 import pageUIs.Admin.AdminSearchCustomerPageUI;
-import pageUIs.bankGuru.EditCustomerPageUI;
 
 public class Admin_01_Search_Product_And_Customer extends AbstractTest {
 
@@ -352,19 +351,19 @@ public class Admin_01_Search_Product_And_Customer extends AbstractTest {
 
 		adminEditCustomerPage = adminSearchCustomerPage.clickToEditInTable();
 
-		adminEditCustomerPage.inputDynamicTextbox(driver, "edit_automationfc@gmail.com", "Email");
+		adminEditCustomerPage.inputToTextbox(driver, "edit_automationfc@gmail.com", "Email");
 
-		adminEditCustomerPage.inputDynamicTextbox(driver, "Edit Automation", "FirstName");
+		adminEditCustomerPage.inputToTextbox(driver, "Edit Automation", "FirstName");
 
-		adminEditCustomerPage.inputDynamicTextbox(driver, "Edit FC", "LastName");
+		adminEditCustomerPage.inputToTextbox(driver, "Edit FC", "LastName");
 
 		adminEditCustomerPage.selectDOB(driver, "2/2");
 
-		adminEditCustomerPage.inputDynamicTextbox(driver, "Edit Automation FC", "Company");
+		adminEditCustomerPage.inputToTextbox(driver, "Edit Automation FC", "Company");
 
 		adminEditCustomerPage.inputToDynamicTextArea(driver, "Edit Customer (Guests)", "AdminComment");
 
-		adminEditCustomerPage.clickIntoButton(driver, AbstractNopCommercePageUI.DYNAMIC_BUTTON_CLICK, "save");
+		adminEditCustomerPage.clickIntoButton(driver, AbstractPageUI.DYNAMIC_BUTTON_CLICK, "save");
 
 		verifyTrue(adminEditCustomerPage.isUpdatedCustomerInfoSucess(driver));
 	}
@@ -392,9 +391,9 @@ public class Admin_01_Search_Product_And_Customer extends AbstractTest {
 
 		adminEditCustomerPage = adminSearchCustomerPage.clickToEditInTable();
 
-		adminEditCustomerPage.clickIntoButton(driver, EditCustomerPageUI.DELETE_SPAN);
+	//	adminEditCustomerPage.clickIntoButton(driver, EditCustomerPageUI.DELETE_SPAN);
 
-		adminEditCustomerPage.clickDeletedInConfirmBox(driver);
+	//	adminEditCustomerPage.clickDeletedInConfirmBox(driver);
 
 		verifyTrue(adminEditCustomerPage.isDeletedCustomerInfoSucess(driver));
 

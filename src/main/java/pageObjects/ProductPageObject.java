@@ -68,7 +68,7 @@ public class ProductPageObject extends AbstractPages {
         }
 
         public boolean isProductAddedWishlistSuccessful () {
-            return isElementDisplayed(driver, ProductPageUI.ADD_TO_WISHLIST_SUCCESS_MSG);
+            return isDisplayed(driver, ProductPageUI.ADD_TO_WISHLIST_SUCCESS_MSG);
         }
 
         public WishListPageObject clickToWishlistNotificationLink () {

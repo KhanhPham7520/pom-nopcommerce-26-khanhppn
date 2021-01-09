@@ -2,7 +2,7 @@ package pageObjects;
 
 import commons.AbstractPages;
 import org.openqa.selenium.WebDriver;
-import pageUIs.AbstractNopCommercePageUI;
+import pageUIs.AbstractPageUI;
 import pageUIs.NotebooksPageUI;
 
 public class NotebooksPageObject extends AbstractPages {
@@ -14,19 +14,19 @@ public class NotebooksPageObject extends AbstractPages {
     }
 
     public int getListItem() {
-        waitToElementVisible(driver, AbstractNopCommercePageUI.PRODUCT_TITLE);
-        return findElementsByXpath(driver, AbstractNopCommercePageUI.PRODUCT_TITLE).size();
+        waitToElementVisible(driver, AbstractPageUI.PRODUCT_TITLE);
+        return findElementsByXpath(driver, AbstractPageUI.PRODUCT_TITLE).size();
 
     }
 
     public boolean isNextIconDisplayed() {
         waitToElementVisible(driver, NotebooksPageUI.NEXT_PAGE_ICON);
-        return isElementDisplayed(driver, NotebooksPageUI.NEXT_PAGE_ICON);
+        return isDisplayed(driver, NotebooksPageUI.NEXT_PAGE_ICON);
     }
 
     public boolean isPreviousIconDisplayed() {
         waitToElementVisible(driver, NotebooksPageUI.PREVIOUS_PAGE_ICON);
-        return isElementDisplayed(driver, NotebooksPageUI.PREVIOUS_PAGE_ICON);
+        return isDisplayed(driver, NotebooksPageUI.PREVIOUS_PAGE_ICON);
     }
 
     public void clickNextIcon() {
@@ -45,6 +45,6 @@ public class NotebooksPageObject extends AbstractPages {
     }
 
     public boolean isPaginationLinkDisplayed() {
-        return isElementDisplayed(driver, NotebooksPageUI.PAGINATION_LINK);
+        return isDisplayed(driver, NotebooksPageUI.PAGINATION_LINK);
     }
 }

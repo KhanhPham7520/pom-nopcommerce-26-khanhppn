@@ -1,6 +1,6 @@
 package pageUIs;
 
-public class CheckOutPageUI extends AbstractNopCommercePageUI {
+public class CheckOutPageUI extends AbstractPageUI {
     public static final String SHIP_TO_SAME_ADDRESS_CHECKBOX = "//input[@id='ShipToSameAddress']";
 
     public static final String CONTINUE_BUTTON_BILLING_ADDRESS = "//div[@id='billing-buttons-container']//input[@type='button' and @title='Continue']";

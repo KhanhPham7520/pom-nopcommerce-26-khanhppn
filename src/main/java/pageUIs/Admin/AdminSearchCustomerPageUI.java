@@ -1,8 +1,8 @@
 package pageUIs.Admin;
 
-import pageUIs.AbstractNopCommercePageUI;
+import pageUIs.AbstractPageUI;
 
-public class AdminSearchCustomerPageUI extends AbstractNopCommercePageUI {
+public class AdminSearchCustomerPageUI extends AbstractPageUI {
 
     public static final String EMAIL_TEXTBOX = "//input[@name='SearchEmail']";
     public static final String FIRSTNAME_TEXTBOX = "//input[@name='SearchFirstName']";

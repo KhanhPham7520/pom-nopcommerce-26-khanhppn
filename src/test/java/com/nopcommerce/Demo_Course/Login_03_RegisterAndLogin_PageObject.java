@@ -65,7 +65,7 @@ public class Login_03_RegisterAndLogin_PageObject extends AbstractPages {
         sendKeyToElement(driver, "//input[@id='Email']", email);
         sendKeyToElement(driver, "//input[@id='Password']", password);
         clickToElement(driver, "//input[@class='button-1 login-button']");
-        Assert.assertTrue(isElementDisplayed(driver, "//a[@class='ico-account']"));
+        Assert.assertTrue(isDisplayed(driver, "//a[@class='ico-account']"));
 
     }
 

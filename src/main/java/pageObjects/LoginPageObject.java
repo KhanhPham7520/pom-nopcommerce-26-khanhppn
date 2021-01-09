@@ -62,7 +62,7 @@ public class LoginPageObject extends AbstractPages {
     }
 
     public boolean isEmptyEmailMessage() {
-        return isElementDisplayed(driver, LoginPageUI.EMPTY_EMAIL_MESSAGE);
+        return isDisplayed(driver, LoginPageUI.EMPTY_EMAIL_MESSAGE);
     }
 
     public void inputEmail(String inputEmail) {
@@ -70,7 +70,7 @@ public class LoginPageObject extends AbstractPages {
     }
 
     public boolean isWrongEmailMessage() {
-        return isElementDisplayed(driver, LoginPageUI.WRONG_EMAIL_MESSAGE);
+        return isDisplayed(driver, LoginPageUI.WRONG_EMAIL_MESSAGE);
     }
 
     public String isNoRegisteredEmail() {
@@ -93,7 +93,7 @@ public class LoginPageObject extends AbstractPages {
     }
 
     public boolean isMyAccountLinkDisplayed() {
-        return isElementDisplayed(driver, LoginPageUI.MY_ACCOUNT_AFTER_LOGIN_SUCCESS);
+        return isDisplayed(driver, LoginPageUI.MY_ACCOUNT_AFTER_LOGIN_SUCCESS);
     }
 
 }

@@ -12,8 +12,8 @@ public class PageGeneratorManager {
     }
 
     // Cấp phát việc khởi tạo đối tượng cho Register Page
-    public static RegisterPageObject getRegisterPage(WebDriver driver) {
-        return new RegisterPageObject(driver);
+    public static RegisterPO getRegisterPage(WebDriver driver) {
+        return new RegisterPO(driver);
     }
 
     // Cấp phát việc khởi tạo đối tượng cho Login Page
@@ -118,8 +118,8 @@ public class PageGeneratorManager {
         return new AdminEditCustomerPageObject(driver);
     }
 
-    public static CheckOutPageObject getCheckOutPage(WebDriver driver) {
-        return new CheckOutPageObject(driver);
+    public static CheckOutPO getCheckOutPage(WebDriver driver) {
+        return new CheckOutPO(driver);
     }
 
 

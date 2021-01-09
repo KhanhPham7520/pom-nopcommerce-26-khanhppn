@@ -11,18 +11,16 @@ import org.testng.annotations.Test;
 import com.nopcommerce.data.CustomerData;
 
 import Data_Faker.DataHelperForLanguageEn;
-import commons.AbstractPage;
 import commons.AbstractTest;
 import commons.PageGeneratorManager;
 import pageObjects.HomePageObject;
-import pageObjects.RegisterPageObject;
+import pageObjects.RegisterPO;
 
 public class Register_01_CreateNewUserForm extends AbstractTest {
 
-	RegisterPageObject registerPage;
+	RegisterPO registerPage;
 	HomePageObject homePage;
 	private WebDriver driver;
-	private AbstractPage abstractPage;
 	private String password;
 	private String email;
 	private DataHelperForLanguageEn dataHelperForLanguageEn;
@@ -35,7 +33,6 @@ public class Register_01_CreateNewUserForm extends AbstractTest {
 		registerPage = PageGeneratorManager.getRegisterPage(driver);
 		homePage = PageGeneratorManager.getHomePage(driver);
 
-		abstractPage = new AbstractPage(driver);
 		dataHelperForLanguageEn = DataHelperForLanguageEn.getData();
 
 		email = dataHelperForLanguageEn.getEmail();
@@ -123,7 +120,7 @@ public class Register_01_CreateNewUserForm extends AbstractTest {
 
 		registerPage.clickButton(driver, "register-button");
 
-		verifyTrue(abstractPage.isElementDisplayed("//span[@id='Password-error']"));
+		verifyTrue(registerPage.isDisplayed(driver,"//span[@id='Password-error']"));
 
 	}
 
@@ -152,7 +149,7 @@ public class Register_01_CreateNewUserForm extends AbstractTest {
 
 		registerPage.clickButton(driver, "register-button");
 
-		verifyTrue(abstractPage.findElementByXpath("//span[text()='The password and confirmation password do not match.']").isDisplayed());
+		verifyTrue(registerPage.findElementByXpath(driver,"//span[text()='The password and confirmation password do not match.']").isDisplayed());
 
 	}
 

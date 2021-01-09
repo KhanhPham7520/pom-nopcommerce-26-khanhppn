@@ -1,6 +1,6 @@
 package pageUIs.Admin;
 
-import pageUIs.AbstractNopCommercePageUI;
+import pageUIs.AbstractPageUI;
 
-public class AdminEditCustomerPageUI extends AbstractNopCommercePageUI {
+public class AdminEditCustomerPageUI extends AbstractPageUI {
 }

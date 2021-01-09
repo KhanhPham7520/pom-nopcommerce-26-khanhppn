@@ -51,7 +51,7 @@ public class AdminProductPageObject extends AbstractPages {
 
     public boolean isPublished() {
         waitToElementVisible(driver, AdminProductPageUI.IS_PUBLISHED_TBL);
-        return isElementDisplayed(driver, AdminProductPageUI.IS_PUBLISHED_TBL);
+        return isDisplayed(driver, AdminProductPageUI.IS_PUBLISHED_TBL);
     }
 
     public void selectCategory(String selectValue) {

@@ -170,11 +170,11 @@ public class My_Account_01 extends AbstractTest {
 
 		myAccountPage.clickToElement(driver, MyAccountPageUI.DYNAMIC_HREF_LINK, "Change password");
 
-		myAccountPage.inputDynamicTextbox(driver, GlobalConstants.USER_PASSWORD, "OldPassword");
+		myAccountPage.inputToTextbox(driver, GlobalConstants.USER_PASSWORD, "OldPassword");
 
-		myAccountPage.inputDynamicTextbox(driver, MyAccountData.updateData.updatePassword, "NewPassword");
+		myAccountPage.inputToTextbox(driver, MyAccountData.updateData.updatePassword, "NewPassword");
 
-		myAccountPage.inputDynamicTextbox(driver, MyAccountData.updateData.updatePassword, "ConfirmNewPassword");
+		myAccountPage.inputToTextbox(driver, MyAccountData.updateData.updatePassword, "ConfirmNewPassword");
 
 		myAccountPage.clickIntoDynamicButtonInputType(driver, MyAccountPageUI.CHANGE_PASSWORD_BUTTON);
 
@@ -188,7 +188,7 @@ public class My_Account_01 extends AbstractTest {
 
 		loginPage.clickToLoginButton();
 
-		verifyTrue(isElementDisplayed(driver, LoginPageUI.THE_CREDENTIAL_PROVIDED_ARE_INCORRECT));
+		verifyTrue(isDisplayed(driver, LoginPageUI.THE_CREDENTIAL_PROVIDED_ARE_INCORRECT));
 
 		loginPage.inputCorrectEmail();
 
@@ -196,7 +196,7 @@ public class My_Account_01 extends AbstractTest {
 
 		homePage = loginPage.clickToLoginButton();
 
-		verifyTrue(isElementDisplayed(driver, HeaderPageUI.HEADER_MY_ACCOUNT_LINK));
+		verifyTrue(isDisplayed(driver, HeaderPageUI.HEADER_MY_ACCOUNT_LINK));
 	}
 
 	@Test

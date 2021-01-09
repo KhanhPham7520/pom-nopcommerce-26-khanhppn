@@ -1,11 +1,24 @@
 package com.nopcommerce.Product;
 
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
 import com.nopcommerce.data.ProductData;
+
 import commons.AbstractTest;
 import commons.PageGeneratorManager;
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.*;
-import pageObjects.*;
+import pageObjects.CheckOutPO;
+import pageObjects.DesktopsPageObject;
+import pageObjects.HeaderPageObject;
+import pageObjects.HomePageObject;
+import pageObjects.LoginPageObject;
+import pageObjects.MyAccountPageObject;
+import pageObjects.ProductPageObject;
+import pageObjects.ShoppingCartPageObject;
 import pageUIs.CheckOutPageUI;
 import pageUIs.MyAccountPageUI;
 import pageUIs.ProductPageUI;
@@ -75,7 +88,7 @@ public class Product_03_Order extends AbstractTest {
     private ProductPageObject productPage;
     private HeaderPageObject headerPage;
     private DesktopsPageObject desktopsPage;
-    private CheckOutPageObject checkoutPage;
+    private CheckOutPO checkOutPO;
     private MyAccountPageObject myAccountPage;
 
     @Parameters({"browser"})
@@ -88,7 +101,7 @@ public class Product_03_Order extends AbstractTest {
         shoppingCartPage = PageGeneratorManager.getShoppingCartPage(driver);
         headerPage = PageGeneratorManager.getHeaderPage(driver);
         desktopsPage = PageGeneratorManager.getDesktopPage(driver);
-        checkoutPage = PageGeneratorManager.getCheckOutPage(driver);
+        checkOutPO = PageGeneratorManager.getCheckOutPage(driver);
         myAccountPage = PageGeneratorManager.getMyAccountPageObject(driver);
 
         loginPage = homePage.clickToLoginLink();
@@ -212,105 +225,105 @@ public class Product_03_Order extends AbstractTest {
 
         shoppingCartPage.clickIntoCheckbox(driver, ShoppingCartPageUI.TERM_OF_SERVICE_CHECKBOX);
 
-        checkoutPage = shoppingCartPage.clickIntoCheckoutButton(driver);
+        checkOutPO = shoppingCartPage.clickIntoCheckoutButton(driver);
 
-        checkoutPage.clickIntoCheckbox(driver, CheckOutPageUI.SHIP_TO_SAME_ADDRESS_CHECKBOX);
+        checkOutPO.clickIntoCheckbox(driver, CheckOutPageUI.SHIP_TO_SAME_ADDRESS_CHECKBOX);
 
-        checkoutPage.selectNewBillingAddress(driver, "New Address");
+        checkOutPO.selectNewBillingAddress(driver, "New Address");
 
-        checkoutPage.inputDynamicTextbox(driver, billingFirstName, "BillingNewAddress_FirstName");
+        checkOutPO.inputToTextbox(driver, billingFirstName, "BillingNewAddress_FirstName");
 
-        checkoutPage.inputDynamicTextbox(driver, billingLastName, "BillingNewAddress_LastName");
+        checkOutPO.inputToTextbox(driver, billingLastName, "BillingNewAddress_LastName");
 
-        checkoutPage.inputDynamicTextbox(driver, billingEmail, "BillingNewAddress_Email");
+        checkOutPO.inputToTextbox(driver, billingEmail, "BillingNewAddress_Email");
 
-        checkoutPage.selectDynamicItemInDropdown(driver, billingCountry, "BillingNewAddress_CountryId");
+        checkOutPO.selectItemInDropdown(driver, billingCountry, "BillingNewAddress_CountryId");
 
-        checkoutPage.inputDynamicTextbox(driver, billingCity, "BillingNewAddress_City");
+        checkOutPO.inputToTextbox(driver, billingCity, "BillingNewAddress_City");
 
-        checkoutPage.inputDynamicTextbox(driver, billingAddressOne, "BillingNewAddress_Address1");
+        checkOutPO.inputToTextbox(driver, billingAddressOne, "BillingNewAddress_Address1");
 
-        checkoutPage.inputDynamicTextbox(driver, billingZipPostalCode, "BillingNewAddress_ZipPostalCode");
+        checkOutPO.inputToTextbox(driver, billingZipPostalCode, "BillingNewAddress_ZipPostalCode");
 
-        checkoutPage.inputDynamicTextbox(driver, billingPhone, "BillingNewAddress_PhoneNumber");
+        checkOutPO.inputToTextbox(driver, billingPhone, "BillingNewAddress_PhoneNumber");
 
-        checkoutPage.clickIntoButton(driver, CheckOutPageUI.CONTINUE_BUTTON_BILLING_ADDRESS);
+        checkOutPO.clickIntoButton(driver, CheckOutPageUI.CONTINUE_BUTTON_BILLING_ADDRESS);
 
-        checkoutPage.selectDynamicItemInDropdown(driver, "New Address", "shipping-address-select");
+        checkOutPO.selectItemInDropdown(driver, "New Address", "shipping-address-select");
 
-        checkoutPage.inputDynamicTextbox(driver, shippingFirstName, "ShippingNewAddress_FirstName");
+        checkOutPO.inputToTextbox(driver, shippingFirstName, "ShippingNewAddress_FirstName");
 
-        checkoutPage.inputDynamicTextbox(driver, shippingLastName, "ShippingNewAddress_LastName");
+        checkOutPO.inputToTextbox(driver, shippingLastName, "ShippingNewAddress_LastName");
 
-        checkoutPage.inputDynamicTextbox(driver, shippingEmail, "ShippingNewAddress_Email");
+        checkOutPO.inputToTextbox(driver, shippingEmail, "ShippingNewAddress_Email");
 
-        checkoutPage.selectDynamicItemInDropdown(driver, shippingCountry, "ShippingNewAddress_CountryId");
+        checkOutPO.selectItemInDropdown(driver, shippingCountry, "ShippingNewAddress_CountryId");
 
-        checkoutPage.inputDynamicTextbox(driver, shippingCity, "ShippingNewAddress_City");
+        checkOutPO.inputToTextbox(driver, shippingCity, "ShippingNewAddress_City");
 
-        checkoutPage.inputDynamicTextbox(driver, shippingAddressOne, "ShippingNewAddress_Address1");
+        checkOutPO.inputToTextbox(driver, shippingAddressOne, "ShippingNewAddress_Address1");
 
-        checkoutPage.inputDynamicTextbox(driver, shippingZipPostalCode, "ShippingNewAddress_ZipPostalCode");
+        checkOutPO.inputToTextbox(driver, shippingZipPostalCode, "ShippingNewAddress_ZipPostalCode");
 
-        checkoutPage.inputDynamicTextbox(driver, shippingPhone, "ShippingNewAddress_PhoneNumber");
+        checkOutPO.inputToTextbox(driver, shippingPhone, "ShippingNewAddress_PhoneNumber");
 
-        checkoutPage.clickIntoButton(driver, CheckOutPageUI.CONTINUE_BUTTON_SHIPPING_ADDRESS);
+        checkOutPO.clickIntoButton(driver, CheckOutPageUI.CONTINUE_BUTTON_SHIPPING_ADDRESS);
 
-        checkoutPage.clickIntoButton(driver, CheckOutPageUI.CONTINUE_BUTTON_SHIPPING_METHOD);
+        checkOutPO.clickIntoButton(driver, CheckOutPageUI.CONTINUE_BUTTON_SHIPPING_METHOD);
 
-        checkoutPage.clickIntoButton(driver, CheckOutPageUI.CONTINUE_BUTTON_PAYMENT_METHOD);
+        checkOutPO.clickIntoButton(driver, CheckOutPageUI.CONTINUE_BUTTON_PAYMENT_METHOD);
 
-        verifyEquals(checkoutPage.getDynamicTextOfCheckoutPage(driver, "NOP SOLUTIONS"), "NOP SOLUTIONS");
+        verifyEquals(checkOutPO.getDynamicTextOfCheckoutPage(driver, "NOP SOLUTIONS"), "NOP SOLUTIONS");
 
-        verifyEquals(checkoutPage.getDynamicTextOfCheckoutPage(driver, "your address here,"), "your address here,");
+        verifyEquals(checkOutPO.getDynamicTextOfCheckoutPage(driver, "your address here,"), "your address here,");
 
-        verifyEquals(checkoutPage.getDynamicTextOfCheckoutPage(driver, "New York, NY 10001"), "New York, NY 10001");
+        verifyEquals(checkOutPO.getDynamicTextOfCheckoutPage(driver, "New York, NY 10001"), "New York, NY 10001");
 
-        verifyEquals(checkoutPage.getDynamicTextOfCheckoutPage(driver, "USA"), "USA");
+        verifyEquals(checkOutPO.getDynamicTextOfCheckoutPage(driver, "USA"), "USA");
 
-        checkoutPage.clickIntoButton(driver, CheckOutPageUI.CONTINUE_BUTTON_PAYMENT_INFO);
+        checkOutPO.clickIntoButton(driver, CheckOutPageUI.CONTINUE_BUTTON_PAYMENT_INFO);
 
         // verify Billing Info of Confirm Order
-        verifyEquals(checkoutPage.getTextForBillingInfoConfirmOrderPage(driver, "name"), billingFirstName.concat(" ").concat(billingLastName));
+        verifyEquals(checkOutPO.getTextForBillingInfoConfirmOrderPage(driver, "name"), billingFirstName.concat(" ").concat(billingLastName));
 
-        verifyEquals(checkoutPage.getTextForBillingInfoConfirmOrderPage(driver, "email"), emailLabel.concat(billingEmail));
+        verifyEquals(checkOutPO.getTextForBillingInfoConfirmOrderPage(driver, "email"), emailLabel.concat(billingEmail));
 
-        verifyEquals(checkoutPage.getTextForBillingInfoConfirmOrderPage(driver, "phone"), phoneLabel.concat(billingPhone));
+        verifyEquals(checkOutPO.getTextForBillingInfoConfirmOrderPage(driver, "phone"), phoneLabel.concat(billingPhone));
 
-        verifyEquals(checkoutPage.getTextForBillingInfoConfirmOrderPage(driver, "address1"), billingAddressOne);
+        verifyEquals(checkOutPO.getTextForBillingInfoConfirmOrderPage(driver, "address1"), billingAddressOne);
 
-        verifyEquals(checkoutPage.getTextForBillingInfoConfirmOrderPage(driver, "city-state-zip"), billingCity.concat(",").concat(billingZipPostalCode));
+        verifyEquals(checkOutPO.getTextForBillingInfoConfirmOrderPage(driver, "city-state-zip"), billingCity.concat(",").concat(billingZipPostalCode));
 
-        verifyEquals(checkoutPage.getTextForBillingInfoConfirmOrderPage(driver, "country"), billingCountry);
+        verifyEquals(checkOutPO.getTextForBillingInfoConfirmOrderPage(driver, "country"), billingCountry);
 
-        verifyEquals(checkoutPage.getTextConfirmBillingPaymentMethod(driver, "Check / Money Order").trim(), billingCheckOrMoneyOrderPaymentMethod.trim());
+        verifyEquals(checkOutPO.getTextConfirmBillingPaymentMethod(driver, "Check / Money Order").trim(), billingCheckOrMoneyOrderPaymentMethod.trim());
 
         // verify Shipping Info of Confirm Order
-        verifyEquals(checkoutPage.getTextForShippingInfoConfirmOrderPage(driver, "name"), shippingFirstName.concat(" ").concat(shippingLastName));
+        verifyEquals(checkOutPO.getTextForShippingInfoConfirmOrderPage(driver, "name"), shippingFirstName.concat(" ").concat(shippingLastName));
 
-        verifyEquals(checkoutPage.getTextForShippingInfoConfirmOrderPage(driver, "email"), emailLabel.concat(shippingEmail));
+        verifyEquals(checkOutPO.getTextForShippingInfoConfirmOrderPage(driver, "email"), emailLabel.concat(shippingEmail));
 
-        verifyEquals(checkoutPage.getTextForShippingInfoConfirmOrderPage(driver, "phone"), phoneLabel.concat(shippingPhone));
+        verifyEquals(checkOutPO.getTextForShippingInfoConfirmOrderPage(driver, "phone"), phoneLabel.concat(shippingPhone));
 
-        verifyEquals(checkoutPage.getTextForShippingInfoConfirmOrderPage(driver, "address1"), shippingAddressOne);
+        verifyEquals(checkOutPO.getTextForShippingInfoConfirmOrderPage(driver, "address1"), shippingAddressOne);
 
-        verifyEquals(checkoutPage.getTextForShippingInfoConfirmOrderPage(driver, "city-state-zip"), shippingCity.concat(",").concat(shippingZipPostalCode));
+        verifyEquals(checkOutPO.getTextForShippingInfoConfirmOrderPage(driver, "city-state-zip"), shippingCity.concat(",").concat(shippingZipPostalCode));
 
-        verifyEquals(checkoutPage.getTextForShippingInfoConfirmOrderPage(driver, "country"), shippingCountry);
+        verifyEquals(checkOutPO.getTextForShippingInfoConfirmOrderPage(driver, "country"), shippingCountry);
 
-        verifyEquals(checkoutPage.getTextForConfirmShippingMethod(driver, "Ground").trim(), shippingPaymentMethod.trim());
+        verifyEquals(checkOutPO.getTextForConfirmShippingMethod(driver, "Ground").trim(), shippingPaymentMethod.trim());
 
-        checkoutPage.clickIntoButton(driver, CheckOutPageUI.CONFIRM_ORDER_BUTTON);
+        checkOutPO.clickIntoButton(driver, CheckOutPageUI.CONFIRM_ORDER_BUTTON);
 
-        verifyEquals(checkoutPage.getTextElement(driver, CheckOutPageUI.THANK_YOU_ORDER_COMPLETE_MESSAGE), "Thank you");
+        verifyEquals(checkOutPO.getTextElement(driver, CheckOutPageUI.THANK_YOU_ORDER_COMPLETE_MESSAGE), "Thank you");
 
-        verifyEquals(checkoutPage.getTextElement(driver, CheckOutPageUI.ORDER_SUCESSFULLY_PROCESSED_MESSAGE), "Your order has been successfully processed!");
+        verifyEquals(checkOutPO.getTextElement(driver, CheckOutPageUI.ORDER_SUCESSFULLY_PROCESSED_MESSAGE), "Your order has been successfully processed!");
 
-        ProductData.orderProduct.orderNumber = checkoutPage.getOrderNumberFromSuccessMessage();
+        ProductData.orderProduct.orderNumber = checkOutPO.getOrderNumberFromSuccessMessage();
 
-        verifyEquals(checkoutPage.getTextElement(driver, CheckOutPageUI.ORDER_NUMBER).trim(), ProductData.orderProduct.orderNumber);
+        verifyEquals(checkOutPO.getTextElement(driver, CheckOutPageUI.ORDER_NUMBER).trim(), ProductData.orderProduct.orderNumber);
 
-        homePage = checkoutPage.clickIntoCompleteOrderButton();
+        homePage = checkOutPO.clickIntoCompleteOrderButton();
 
         myAccountPage = homePage.clickToHeaderMyAccountLink();
 
@@ -351,111 +364,111 @@ public class Product_03_Order extends AbstractTest {
 
         shoppingCartPage.clickIntoCheckbox(driver, ShoppingCartPageUI.TERM_OF_SERVICE_CHECKBOX);
 
-        checkoutPage = shoppingCartPage.clickIntoCheckoutButton(driver);
+        checkOutPO = shoppingCartPage.clickIntoCheckoutButton(driver);
 
-        checkoutPage.clickIntoCheckbox(driver, CheckOutPageUI.SHIP_TO_SAME_ADDRESS_CHECKBOX);
+        checkOutPO.clickIntoCheckbox(driver, CheckOutPageUI.SHIP_TO_SAME_ADDRESS_CHECKBOX);
 
-        checkoutPage.selectNewBillingAddress(driver, "New Address");
+        checkOutPO.selectNewBillingAddress(driver, "New Address");
 
-        checkoutPage.inputDynamicTextbox(driver, billingFirstName, "BillingNewAddress_FirstName");
+        checkOutPO.inputToTextbox(driver, billingFirstName, "BillingNewAddress_FirstName");
 
-        checkoutPage.inputDynamicTextbox(driver, billingLastName, "BillingNewAddress_LastName");
+        checkOutPO.inputToTextbox(driver, billingLastName, "BillingNewAddress_LastName");
 
-        checkoutPage.inputDynamicTextbox(driver, billingEmail, "BillingNewAddress_Email");
+        checkOutPO.inputToTextbox(driver, billingEmail, "BillingNewAddress_Email");
 
-        checkoutPage.selectDynamicItemInDropdown(driver, billingCountry, "BillingNewAddress_CountryId");
+        checkOutPO.selectItemInDropdown(driver, billingCountry, "BillingNewAddress_CountryId");
 
-        checkoutPage.inputDynamicTextbox(driver, billingCity, "BillingNewAddress_City");
+        checkOutPO.inputToTextbox(driver, billingCity, "BillingNewAddress_City");
 
-        checkoutPage.inputDynamicTextbox(driver, billingAddressOne, "BillingNewAddress_Address1");
+        checkOutPO.inputToTextbox(driver, billingAddressOne, "BillingNewAddress_Address1");
 
-        checkoutPage.inputDynamicTextbox(driver, billingZipPostalCode, "BillingNewAddress_ZipPostalCode");
+        checkOutPO.inputToTextbox(driver, billingZipPostalCode, "BillingNewAddress_ZipPostalCode");
 
-        checkoutPage.inputDynamicTextbox(driver, billingPhone, "BillingNewAddress_PhoneNumber");
+        checkOutPO.inputToTextbox(driver, billingPhone, "BillingNewAddress_PhoneNumber");
 
-        checkoutPage.clickIntoButton(driver, CheckOutPageUI.CONTINUE_BUTTON_BILLING_ADDRESS);
+        checkOutPO.clickIntoButton(driver, CheckOutPageUI.CONTINUE_BUTTON_BILLING_ADDRESS);
 
-        checkoutPage.selectDynamicItemInDropdown(driver, "New Address", "shipping-address-select");
+        checkOutPO.selectItemInDropdown(driver, "New Address", "shipping-address-select");
 
-        checkoutPage.inputDynamicTextbox(driver, shippingFirstName, "ShippingNewAddress_FirstName");
+        checkOutPO.inputToTextbox(driver, shippingFirstName, "ShippingNewAddress_FirstName");
 
-        checkoutPage.inputDynamicTextbox(driver, shippingLastName, "ShippingNewAddress_LastName");
+        checkOutPO.inputToTextbox(driver, shippingLastName, "ShippingNewAddress_LastName");
 
-        checkoutPage.inputDynamicTextbox(driver, shippingEmail, "ShippingNewAddress_Email");
+        checkOutPO.inputToTextbox(driver, shippingEmail, "ShippingNewAddress_Email");
 
-        checkoutPage.selectDynamicItemInDropdown(driver, shippingCountry, "ShippingNewAddress_CountryId");
+        checkOutPO.selectItemInDropdown(driver, shippingCountry, "ShippingNewAddress_CountryId");
 
-        checkoutPage.inputDynamicTextbox(driver, shippingCity, "ShippingNewAddress_City");
+        checkOutPO.inputToTextbox(driver, shippingCity, "ShippingNewAddress_City");
 
-        checkoutPage.inputDynamicTextbox(driver, shippingAddressOne, "ShippingNewAddress_Address1");
+        checkOutPO.inputToTextbox(driver, shippingAddressOne, "ShippingNewAddress_Address1");
 
-        checkoutPage.inputDynamicTextbox(driver, shippingZipPostalCode, "ShippingNewAddress_ZipPostalCode");
+        checkOutPO.inputToTextbox(driver, shippingZipPostalCode, "ShippingNewAddress_ZipPostalCode");
 
-        checkoutPage.inputDynamicTextbox(driver, shippingPhone, "ShippingNewAddress_PhoneNumber");
+        checkOutPO.inputToTextbox(driver, shippingPhone, "ShippingNewAddress_PhoneNumber");
 
-        checkoutPage.clickIntoButton(driver, CheckOutPageUI.CONTINUE_BUTTON_SHIPPING_ADDRESS);
+        checkOutPO.clickIntoButton(driver, CheckOutPageUI.CONTINUE_BUTTON_SHIPPING_ADDRESS);
 
-        checkoutPage.clickIntoButton(driver, CheckOutPageUI.CONTINUE_BUTTON_SHIPPING_METHOD);
+        checkOutPO.clickIntoButton(driver, CheckOutPageUI.CONTINUE_BUTTON_SHIPPING_METHOD);
 
-        checkoutPage.clickIntoButton(driver, CheckOutPageUI.CREDIT_CARD_PAYMENT_METHOD_RADIO);
+        checkOutPO.clickIntoButton(driver, CheckOutPageUI.CREDIT_CARD_PAYMENT_METHOD_RADIO);
 
-        checkoutPage.clickIntoButton(driver, CheckOutPageUI.CONTINUE_BUTTON_PAYMENT_METHOD);
+        checkOutPO.clickIntoButton(driver, CheckOutPageUI.CONTINUE_BUTTON_PAYMENT_METHOD);
 
-        checkoutPage.selectDynamicItemInDropdown(driver, "Visa", "CreditCardType");
+        checkOutPO.selectItemInDropdown(driver, "Visa", "CreditCardType");
 
-        checkoutPage.inputDynamicTextbox(driver, "Pham Phan Nhat Khanh", "CardholderName");
+        checkOutPO.inputToTextbox(driver, "Pham Phan Nhat Khanh", "CardholderName");
 
-        checkoutPage.inputDynamicTextbox(driver, "4539754630929804", "CardNumber");
+        checkOutPO.inputToTextbox(driver, "4539754630929804", "CardNumber");
 
-        checkoutPage.selectDynamicItemInDropdown(driver, "03", "ExpireMonth");
+        checkOutPO.selectItemInDropdown(driver, "03", "ExpireMonth");
 
-        checkoutPage.selectDynamicItemInDropdown(driver, "2029", "ExpireYear");
+        checkOutPO.selectItemInDropdown(driver, "2029", "ExpireYear");
 
-        checkoutPage.inputDynamicTextbox(driver, "1234", "CardCode");
+        checkOutPO.inputToTextbox(driver, "1234", "CardCode");
 
-        checkoutPage.clickIntoButton(driver, CheckOutPageUI.CONTINUE_AFTER_INPUT_CARD);
+        checkOutPO.clickIntoButton(driver, CheckOutPageUI.CONTINUE_AFTER_INPUT_CARD);
 
         // verify Billing Info of Confirm Order
-        verifyEquals(checkoutPage.getTextForBillingInfoConfirmOrderPage(driver, "name"), billingFirstName.concat(" ").concat(billingLastName));
+        verifyEquals(checkOutPO.getTextForBillingInfoConfirmOrderPage(driver, "name"), billingFirstName.concat(" ").concat(billingLastName));
 
-        verifyEquals(checkoutPage.getTextForBillingInfoConfirmOrderPage(driver, "email"), emailLabel.concat(billingEmail));
+        verifyEquals(checkOutPO.getTextForBillingInfoConfirmOrderPage(driver, "email"), emailLabel.concat(billingEmail));
 
-        verifyEquals(checkoutPage.getTextForBillingInfoConfirmOrderPage(driver, "phone"), phoneLabel.concat(billingPhone));
+        verifyEquals(checkOutPO.getTextForBillingInfoConfirmOrderPage(driver, "phone"), phoneLabel.concat(billingPhone));
 
-        verifyEquals(checkoutPage.getTextForBillingInfoConfirmOrderPage(driver, "address1"), billingAddressOne);
+        verifyEquals(checkOutPO.getTextForBillingInfoConfirmOrderPage(driver, "address1"), billingAddressOne);
 
-        verifyEquals(checkoutPage.getTextForBillingInfoConfirmOrderPage(driver, "city-state-zip"), billingCity.concat(",").concat(billingZipPostalCode));
+        verifyEquals(checkOutPO.getTextForBillingInfoConfirmOrderPage(driver, "city-state-zip"), billingCity.concat(",").concat(billingZipPostalCode));
 
-        verifyEquals(checkoutPage.getTextForBillingInfoConfirmOrderPage(driver, "country"), billingCountry);
+        verifyEquals(checkOutPO.getTextForBillingInfoConfirmOrderPage(driver, "country"), billingCountry);
 
-        verifyEquals(checkoutPage.getTextConfirmBillingPaymentMethod(driver, "Credit Card"), billingCreditCardPaymentMethod);
+        verifyEquals(checkOutPO.getTextConfirmBillingPaymentMethod(driver, "Credit Card"), billingCreditCardPaymentMethod);
 
         // verify Shipping Info of Confirm Order
-        verifyEquals(checkoutPage.getTextForShippingInfoConfirmOrderPage(driver, "name"), shippingFirstName.concat(" ").concat(shippingLastName));
+        verifyEquals(checkOutPO.getTextForShippingInfoConfirmOrderPage(driver, "name"), shippingFirstName.concat(" ").concat(shippingLastName));
 
-        verifyEquals(checkoutPage.getTextForShippingInfoConfirmOrderPage(driver, "email"), emailLabel.concat(shippingEmail));
+        verifyEquals(checkOutPO.getTextForShippingInfoConfirmOrderPage(driver, "email"), emailLabel.concat(shippingEmail));
 
-        verifyEquals(checkoutPage.getTextForShippingInfoConfirmOrderPage(driver, "phone"), phoneLabel.concat(shippingPhone));
+        verifyEquals(checkOutPO.getTextForShippingInfoConfirmOrderPage(driver, "phone"), phoneLabel.concat(shippingPhone));
 
-        verifyEquals(checkoutPage.getTextForShippingInfoConfirmOrderPage(driver, "address1"), shippingAddressOne);
+        verifyEquals(checkOutPO.getTextForShippingInfoConfirmOrderPage(driver, "address1"), shippingAddressOne);
 
-        verifyEquals(checkoutPage.getTextForShippingInfoConfirmOrderPage(driver, "city-state-zip"), shippingCity.concat(",").concat(shippingZipPostalCode));
+        verifyEquals(checkOutPO.getTextForShippingInfoConfirmOrderPage(driver, "city-state-zip"), shippingCity.concat(",").concat(shippingZipPostalCode));
 
-        verifyEquals(checkoutPage.getTextForShippingInfoConfirmOrderPage(driver, "country"), shippingCountry);
+        verifyEquals(checkOutPO.getTextForShippingInfoConfirmOrderPage(driver, "country"), shippingCountry);
 
-        verifyEquals(checkoutPage.getTextForConfirmShippingMethod(driver, "Ground").trim(), shippingPaymentMethod.trim());
+        verifyEquals(checkOutPO.getTextForConfirmShippingMethod(driver, "Ground").trim(), shippingPaymentMethod.trim());
 
-        checkoutPage.clickIntoButton(driver, CheckOutPageUI.CONFIRM_ORDER_BUTTON);
+        checkOutPO.clickIntoButton(driver, CheckOutPageUI.CONFIRM_ORDER_BUTTON);
 
 //		verifyEquals(checkoutPage.getTextElement(driver, CheckOutPageUI.THANK_YOU_ORDER_COMPLETE_MESSAGE), "Thank you");
 
-        verifyEquals(checkoutPage.getTextElement(driver, CheckOutPageUI.ORDER_SUCESSFULLY_PROCESSED_MESSAGE), "Your order has been successfully processed!");
+        verifyEquals(checkOutPO.getTextElement(driver, CheckOutPageUI.ORDER_SUCESSFULLY_PROCESSED_MESSAGE), "Your order has been successfully processed!");
 
-        ProductData.orderProduct.orderNumber = checkoutPage.getOrderNumberFromSuccessMessage();
+        ProductData.orderProduct.orderNumber = checkOutPO.getOrderNumberFromSuccessMessage();
 
-        verifyEquals(checkoutPage.getTextElement(driver, CheckOutPageUI.ORDER_NUMBER).trim(), ProductData.orderProduct.getOrderNumber());
+        verifyEquals(checkOutPO.getTextElement(driver, CheckOutPageUI.ORDER_NUMBER).trim(), ProductData.orderProduct.getOrderNumber());
 
-        homePage = checkoutPage.clickIntoCompleteOrderButton();
+        homePage = checkOutPO.clickIntoCompleteOrderButton();
 
         myAccountPage = homePage.clickToHeaderMyAccountLink();
 

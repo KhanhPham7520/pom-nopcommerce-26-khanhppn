@@ -1,8 +1,8 @@
 package pageUIs.Admin;
 
-import pageUIs.AbstractNopCommercePageUI;
+import pageUIs.AbstractPageUI;
 
-public class AdminAddNewCustomerPageUI extends AbstractNopCommercePageUI {
+public class AdminAddNewCustomerPageUI extends AbstractPageUI {
 
     public static final String EMAIL_TEXTBOX = "//input[@id='Email']";
     public static final String PASSWORD_TEXTBOX = "//input[@id='Password']";

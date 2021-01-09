@@ -1,7 +1,8 @@
 package pageObjects;
 
-import commons.AbstractPages;
 import org.openqa.selenium.WebDriver;
+
+import commons.AbstractPages;
 import pageUIs.ShoppingCartPageUI;
 
 public class ShoppingCartPageObject extends AbstractPages {
@@ -13,12 +14,12 @@ public class ShoppingCartPageObject extends AbstractPages {
 
     public boolean isEmptyProductItemInWishList() {
         waitToElementVisible(driver, ShoppingCartPageUI.EMPTY_PRODUCT_WISHLIST);
-        return isElementDisplayed(driver, ShoppingCartPageUI.EMPTY_PRODUCT_WISHLIST);
+        return isDisplayed(driver, ShoppingCartPageUI.EMPTY_PRODUCT_WISHLIST);
     }
 
     public boolean isProductNameDisplayedInCart(String productName) {
         waitToElementVisible(driver, ShoppingCartPageUI.PRODUCT_NAME, productName);
-        return isElementDisplayed(driver, ShoppingCartPageUI.PRODUCT_NAME, productName);
+        return isDisplayed(driver, ShoppingCartPageUI.PRODUCT_NAME, productName);
     }
 
     public void clickToButton(String buttonValue) {
@@ -63,10 +64,10 @@ public class ShoppingCartPageObject extends AbstractPages {
     }
 
 
-    public CheckOutPageObject clickIntoCheckoutButton(WebDriver driver) {
+    public CheckOutPO clickIntoCheckoutButton(WebDriver driver) {
         waitToElementClickable(driver, ShoppingCartPageUI.CHECK_OUT_BUTTON);
         findElementByXpath(driver, ShoppingCartPageUI.CHECK_OUT_BUTTON).click();
-        return new CheckOutPageObject(driver);
+        return new CheckOutPO(driver);
     }
 
     public void waitToShippingOptionDisplayed(WebDriver driver){

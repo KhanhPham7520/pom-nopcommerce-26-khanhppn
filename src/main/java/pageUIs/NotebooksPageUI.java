@@ -1,6 +1,6 @@
 package pageUIs;
 
-public class NotebooksPageUI extends AbstractNopCommercePageUI {
+public class NotebooksPageUI extends AbstractPageUI {
 
     public static final String SORT_BY_POSITION_DROPDOWN = "//select[@id='products-orderby']";
     public static final String SORT_BY_PRICE_DROPDOWN = "//select[@id='products-pagesize']";

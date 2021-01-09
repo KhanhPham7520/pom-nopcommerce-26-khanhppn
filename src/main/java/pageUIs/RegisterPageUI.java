@@ -1,6 +1,6 @@
 package pageUIs;
 
-public class RegisterPageUI extends AbstractNopCommercePageUI {
+public class RegisterPageUI extends AbstractPageUI {
     public static final String GENDER_MALE_RADIO = "//input[@id='gender-male']";
     public static final String FIRST_NAME_TEXTBOX = "//input[@name='FirstName']";
     public static final String LAST_NAME_TEXTBOX = "//input[@name='LastName']";

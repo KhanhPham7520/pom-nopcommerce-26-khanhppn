@@ -7,12 +7,12 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import pageObjects.HomePageObject;
 import pageObjects.LoginPageObject;
-import pageObjects.RegisterPageObject;
+import pageObjects.RegisterPO;
 
 public class Login_11_Register_ShareClassState extends AbstractTest {
     WebDriver driver;
     private HomePageObject homePage;
-    private RegisterPageObject registerPage;
+    private RegisterPO registerPage;
     private LoginPageObject loginPage;
 
     @Parameters({"browser"})

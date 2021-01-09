@@ -1,7 +1,8 @@
 package pageObjects;
 
-import commons.AbstractPages;
 import org.openqa.selenium.WebDriver;
+
+import commons.AbstractPages;
 import pageUIs.CompareProductPageUI;
 
 public class CompareProductPageObject extends AbstractPages {
@@ -13,12 +14,12 @@ public class CompareProductPageObject extends AbstractPages {
 
     public boolean isProductNameDisplayed(String productName) {
         waitToElementVisible(driver, CompareProductPageUI.PRODUCT_NAME, productName);
-        return isElementDisplayed(driver, CompareProductPageUI.PRODUCT_NAME, productName);
+        return isDisplayed(driver, CompareProductPageUI.PRODUCT_NAME, productName);
     }
 
     public boolean isProductPriceDisplayed(String productPrice) {
         waitToElementVisible(driver, CompareProductPageUI.PRODUCT_PRICE, productPrice);
-        return isElementDisplayed(driver, CompareProductPageUI.PRODUCT_PRICE, productPrice);
+        return isDisplayed(driver, CompareProductPageUI.PRODUCT_PRICE, productPrice);
     }
 
 }

@@ -18,7 +18,7 @@ public class WishListPageObject extends AbstractPages {
 
     public boolean isHeaderWishlistDisplayed() {
         waitToElementClickable(driver, WishListPageUI.WISHLIST_HEADER_PAGE);
-        return isElementDisplayed(driver, WishListPageUI.WISHLIST_HEADER_PAGE);
+        return isDisplayed(driver, WishListPageUI.WISHLIST_HEADER_PAGE);
     }
 
     public void clickCheckBoxAddToCart() {
@@ -44,7 +44,7 @@ public class WishListPageObject extends AbstractPages {
 
     public boolean isEmptyWishListDisplayed() {
         waitToElementVisible(driver, WishListPageUI.WISHLIST_EMPTY_MSG);
-        return isElementDisplayed(driver, WishListPageUI.WISHLIST_EMPTY_MSG);
+        return isDisplayed(driver, WishListPageUI.WISHLIST_EMPTY_MSG);
     }
 
     public boolean isInfoProductNoDisplayed(String productName) {

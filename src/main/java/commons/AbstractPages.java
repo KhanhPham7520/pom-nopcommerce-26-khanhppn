@@ -1,21 +1,31 @@
 package commons;
 
-import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import pageObjects.*;
-import pageUIs.AbstractNopCommercePageUI;
-import pageUIs.Admin.AdminAddNewCustomerPageUI;
-import pageUIs.Admin.AdminEditCustomerPageUI;
-import pageUIs.Admin.AdminSearchCustomerPageUI;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import pageObjects.FooterMyAccountPageObject;
+import pageObjects.FooterNewProductPageObject;
+import pageObjects.FooterSearchPageObject;
+import pageObjects.HomePageObject;
+import pageObjects.NotebooksPageObject;
+import pageObjects.ShoppingCartPageObject;
+import pageUIs.AbstractPageUI;
+import pageUIs.Admin.AdminAddNewCustomerPageUI;
+import pageUIs.Admin.AdminEditCustomerPageUI;
+import pageUIs.Admin.AdminSearchCustomerPageUI;
 
 public abstract class AbstractPages {
 
@@ -38,7 +48,7 @@ public abstract class AbstractPages {
     public boolean isNameSortedDescending(WebDriver driver) {
         ArrayList<String> arrayList = new ArrayList<>();
 
-        List<WebElement> elementList = findElementsByXpath(driver, AbstractNopCommercePageUI.PRODUCT_TITLE);
+        List<WebElement> elementList = findElementsByXpath(driver, AbstractPageUI.PRODUCT_TITLE);
 
         for (WebElement element : elementList) {
             arrayList.add(element.getText());
@@ -58,7 +68,7 @@ public abstract class AbstractPages {
     public boolean isNameSortedAscending(WebDriver driver) {
         ArrayList<String> arrayList = new ArrayList<>();
 
-        List<WebElement> elementList = findElementsByXpath(driver, AbstractNopCommercePageUI.PRODUCT_TITLE);
+        List<WebElement> elementList = findElementsByXpath(driver, AbstractPageUI.PRODUCT_TITLE);
 
         for (WebElement element : elementList) {
             arrayList.add(element.getText());
@@ -76,7 +86,7 @@ public abstract class AbstractPages {
     public boolean isPriceSortedAscending(WebDriver driver) {
         ArrayList<Float> arrayList = new ArrayList<Float>();
 
-        List<WebElement> elementList = findElementsByXpath(driver, AbstractNopCommercePageUI.PRODUCT_PRICE);
+        List<WebElement> elementList = findElementsByXpath(driver, AbstractPageUI.PRODUCT_PRICE);
 
         for (WebElement element : elementList) {
             arrayList.add(Float.parseFloat(element.getText().replace("$", "").replace(",", "").trim()));
@@ -95,7 +105,7 @@ public abstract class AbstractPages {
     public boolean isPriceSortedDescending(WebDriver driver) {
         ArrayList<Float> arrayList = new ArrayList<Float>();
 
-        List<WebElement> elementList = findElementsByXpath(driver, AbstractNopCommercePageUI.PRODUCT_PRICE);
+        List<WebElement> elementList = findElementsByXpath(driver, AbstractPageUI.PRODUCT_PRICE);
 
         for (WebElement element : elementList) {
             arrayList.add(Float.parseFloat(element.getText().replace("$", "").replace(",", "").trim()));
@@ -171,9 +181,9 @@ public abstract class AbstractPages {
         findElementByXpath(driver, locator).click();
     }
 
-    public void clickToDynamicInputTypeElement(WebDriver driver,String... values) {
-        waitToElementClickable(driver, AbstractNopCommercePageUI.DYNAMIC_INPUT_TYPE,values);
-        findElementByXpath(driver, AbstractNopCommercePageUI.DYNAMIC_INPUT_TYPE,values).click();
+    public void clickIntoInputTypeElement(WebDriver driver,String... values) {
+        waitToElementClickable(driver, AbstractPageUI.DYNAMIC_INPUT_TYPE,values);
+        findElementByXpath(driver, AbstractPageUI.DYNAMIC_INPUT_TYPE,values).click();
     }
 
     public void clickToElement(WebDriver driver, String locator, String... values) {
@@ -219,7 +229,7 @@ public abstract class AbstractPages {
         return findElementByXpath(driver, locator, values).getAttribute(attributeName);
     }
 
-    public boolean isElementDisplayed(WebDriver driver, String locator) {
+    public boolean isDisplayed(WebDriver driver, String locator) {
         try {
             element = findElementByXpath(driver, locator);
             return element.isDisplayed();
@@ -228,7 +238,7 @@ public abstract class AbstractPages {
         }
     }
 
-    public boolean isElementDisplayed(WebDriver driver, String locator, String... values) {
+    public boolean isDisplayed(WebDriver driver, String locator, String... values) {
         try {
             element = findElementByXpath(driver, locator, values);
             return element.isDisplayed();
@@ -367,14 +377,7 @@ public abstract class AbstractPages {
         select.selectByVisibleText(valueItem);
 
     }
-    public void selectDynamicItemInDropdown(WebDriver driver, String valueItem, String... values) {
-        waitToElementClickable(driver, AbstractNopCommercePageUI.DYNAMIC_SELECT,values);
-        select = new Select(findElementByXpath(driver, AbstractNopCommercePageUI.DYNAMIC_SELECT,values));
-
-        clickToElement(driver, AbstractNopCommercePageUI.DYNAMIC_SELECT, values);
-        select.selectByVisibleText(valueItem);
-
-    }
+  
 
     public String getTextElement(WebDriver driver, String locator) {
         waitToElementVisible(driver, locator);
@@ -406,15 +409,12 @@ public abstract class AbstractPages {
 
         waitExplicit.until(ExpectedConditions.presenceOfAllElementsLocatedBy(byXpathLocator(allItemXpath)));
         List<WebElement> allItems = findElementsByXpath(driver, locator);
-        System.out.println("All items : " + allItems);
         for (WebElement childElement : allItems) {
             if (childElement.getText().equalsIgnoreCase(expectedValueItem)) {
                 if (childElement.isDisplayed()) {
-                    System.out.println("Click by Selenium = " + childElement);
                     childElement.click();
                 } else {
                     jsExcutor.executeScript("arguments[0].scrollIntoView(true)", childElement);
-                    System.out.println("Click by JS = " + childElement.getText());
                     jsExcutor.executeScript("arguments[0].click()", childElement);
                 }
                 Thread.sleep(1000);
@@ -437,33 +437,33 @@ public abstract class AbstractPages {
     }
 
     public FooterMyAccountPageObject openFooterMyAccountPage(WebDriver driver) {
-        waitToElementVisible(driver, AbstractNopCommercePageUI.FOOTER_MY_ACCOUNT_LINK);
-        clickToElement(driver, AbstractNopCommercePageUI.FOOTER_MY_ACCOUNT_LINK);
+        waitToElementVisible(driver, AbstractPageUI.FOOTER_MY_ACCOUNT_LINK);
+        clickToElement(driver, AbstractPageUI.FOOTER_MY_ACCOUNT_LINK);
         return PageGeneratorManager.getFooterMyAccountPage(driver);
     }
 
     public FooterSearchPageObject openFooterSearchPage(WebDriver driver) {
-        waitToElementVisible(driver, AbstractNopCommercePageUI.FOOTER_SEARCH_LINK);
-        clickToElement(driver, AbstractNopCommercePageUI.FOOTER_SEARCH_LINK);
+        waitToElementVisible(driver, AbstractPageUI.FOOTER_SEARCH_LINK);
+        clickToElement(driver, AbstractPageUI.FOOTER_SEARCH_LINK);
         return PageGeneratorManager.getFooterSearchPage(driver);
     }
 
     public HomePageObject openHomePage(WebDriver driver) {
-        waitToElementVisible(driver, AbstractNopCommercePageUI.HOME_PAGE_LINK);
-        clickToElement(driver, AbstractNopCommercePageUI.HOME_PAGE_LINK);
+        waitToElementVisible(driver, AbstractPageUI.HOME_PAGE_LINK);
+        clickToElement(driver, AbstractPageUI.HOME_PAGE_LINK);
         return PageGeneratorManager.getHomePage(driver);
     }
 
     public FooterNewProductPageObject openFooterNewProductPage(WebDriver driver) {
-        waitToElementVisible(driver, AbstractNopCommercePageUI.FOOTER_NEW_PRODUCT_LINK);
-        clickToElement(driver, AbstractNopCommercePageUI.FOOTER_NEW_PRODUCT_LINK);
+        waitToElementVisible(driver, AbstractPageUI.FOOTER_NEW_PRODUCT_LINK);
+        clickToElement(driver, AbstractPageUI.FOOTER_NEW_PRODUCT_LINK);
         return PageGeneratorManager.getFooterNewProductPage(driver);
     }
 
     // Trong trường hợp ít page (10-15)
     public AbstractPages openFooterPageByName(WebDriver driver, String pageName) {
-        waitToElementVisible(driver, AbstractNopCommercePageUI.FOOTER_NEW_PRODUCT_LINK, pageName);
-        clickToElement(driver, AbstractNopCommercePageUI.FOOTER_NEW_PRODUCT_LINK, pageName);
+        waitToElementVisible(driver, AbstractPageUI.FOOTER_NEW_PRODUCT_LINK, pageName);
+        clickToElement(driver, AbstractPageUI.FOOTER_NEW_PRODUCT_LINK, pageName);
         // Factory Pattern
         switch (pageName) {
             case "Search":
@@ -478,8 +478,8 @@ public abstract class AbstractPages {
 
     // Trong trường hợp nhiều page (n)
     public void openFooterPagesByName(WebDriver driver, String pageName) {
-        waitToElementVisible(driver, AbstractNopCommercePageUI.FOOTER_NEW_PRODUCT_LINK, pageName);
-        clickToElement(driver, AbstractNopCommercePageUI.FOOTER_NEW_PRODUCT_LINK, pageName);
+        waitToElementVisible(driver, AbstractPageUI.FOOTER_NEW_PRODUCT_LINK, pageName);
+        clickToElement(driver, AbstractPageUI.FOOTER_NEW_PRODUCT_LINK, pageName);
     }
 
     public void selectItemInCustomDropdownList(String parentXpath, String childXpath, String expectedItem) {
@@ -487,7 +487,6 @@ public abstract class AbstractPages {
         // click vào thẻ cha để nó xổ ra các item
         // driver.findElement(By.xpath(parentXpath)).click();
         findElementByXpath(driver, parentXpath).click();
-        sleepInSecond();
         // lấy hết tất cả item gán vào 1 cái List
         // List<WebElement> allItems = driver.findElements(By.xpath(childXpath));
         List<WebElement> allItems = driver.findElements(byXpathLocator(childXpath));
@@ -544,15 +543,15 @@ public abstract class AbstractPages {
     }
 
     public NotebooksPageObject selectProductItemInNavigationBar(WebDriver driver, String navigationLabel, String navigationItem) {
-        waitToElementVisible(driver, AbstractNopCommercePageUI.LINK_NAME_OF_HEADER_MENU, navigationLabel);
-        hoverToElement(driver, AbstractNopCommercePageUI.LINK_NAME_OF_HEADER_MENU, navigationLabel);
-        clickToElement(driver, AbstractNopCommercePageUI.SUBLIST_OF_HEADER_MENU, navigationLabel, navigationItem);
+        waitToElementVisible(driver, AbstractPageUI.LINK_NAME_OF_HEADER_MENU, navigationLabel);
+        hoverToElement(driver, AbstractPageUI.LINK_NAME_OF_HEADER_MENU, navigationLabel);
+        clickToElement(driver, AbstractPageUI.SUBLIST_OF_HEADER_MENU, navigationLabel, navigationItem);
         return new NotebooksPageObject(driver);
     }
 
     public ShoppingCartPageObject clickToShoppingCart(WebDriver driver) {
-        waitToElementVisible(driver, AbstractNopCommercePageUI.SHOPPING_CART_HEADER_LINK);
-        clickToElement(driver, AbstractNopCommercePageUI.SHOPPING_CART_HEADER_LINK);
+        waitToElementVisible(driver, AbstractPageUI.SHOPPING_CART_HEADER_LINK);
+        clickToElement(driver, AbstractPageUI.SHOPPING_CART_HEADER_LINK);
         return new ShoppingCartPageObject(driver);
     }
 
@@ -562,8 +561,8 @@ public abstract class AbstractPages {
     }
 
     public String getErrorMessage(WebDriver driver, String... values) {
-        waitToElementVisible(driver, AbstractNopCommercePageUI.ERROR_MESSAGE_VALIDATION, values);
-        return getTextElement(driver, AbstractNopCommercePageUI.ERROR_MESSAGE_VALIDATION, values);
+        waitToElementVisible(driver, AbstractPageUI.ERROR_MESSAGE_VALIDATION, values);
+        return getTextElement(driver, AbstractPageUI.ERROR_MESSAGE_VALIDATION, values);
     }
 
     // public String getTextFromInputTextbox(WebDriver driver, String... values){
@@ -576,22 +575,19 @@ public abstract class AbstractPages {
     // }
 
     public String getTextFromInputTextbox(WebDriver driver, String attributeName, String... values) {
-        waitToElementVisible(driver, AbstractNopCommercePageUI.INPUT_TEXTBOX, values);
-        return findElementByXpath(driver, AbstractNopCommercePageUI.INPUT_TEXTBOX, values).getAttribute(attributeName);
+        waitToElementVisible(driver, AbstractPageUI.INPUT_TEXTBOX, values);
+        return findElementByXpath(driver, AbstractPageUI.INPUT_TEXTBOX, values).getAttribute(attributeName);
     }
 
     public String getTextFromRadioButton(WebDriver driver, String attributeName, String... values) {
-        waitToElementVisible(driver, AbstractNopCommercePageUI.INPUT_RADIO, values);
-        return findElementByXpath(driver, AbstractNopCommercePageUI.INPUT_RADIO, values).getAttribute(attributeName);
+        waitToElementVisible(driver, AbstractPageUI.INPUT_RADIO, values);
+        return findElementByXpath(driver, AbstractPageUI.INPUT_RADIO, values).getAttribute(attributeName);
     }
 
     public void highlightElement(WebDriver driver, WebElement element) {
         jsExcutor = (JavascriptExecutor) driver;
         String originalStyle = element.getAttribute("style");
-        jsExcutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", "border: 3px solid red; border-style: dashed;");
-        // sleepInSecond();
-        jsExcutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", originalStyle);
-
+        jsExcutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", "border: 3px solid red; border-style: dashed;");    
     }
 
     public void selectCustomerRoles(WebDriver driver, String... values) {
@@ -604,14 +600,14 @@ public abstract class AbstractPages {
         sendKeyToElement(driver, AdminAddNewCustomerPageUI.DOB_DATEPICKER, inputDOB);
     }
 
-    public void inputDynamicTextbox(WebDriver driver, String inputValue, String... values) {
-        waitToElementVisible(driver, AbstractNopCommercePageUI.DYNAMIC_TEXTBOX, values);
-        sendKeyToElement(driver, AbstractNopCommercePageUI.DYNAMIC_TEXTBOX, inputValue, values);
+    public void inputToTextbox(WebDriver driver, String inputValue, String... values) {
+        waitToElementVisible(driver, AbstractPageUI.DYNAMIC_TEXTBOX, values);
+        sendKeyToElement(driver, AbstractPageUI.DYNAMIC_TEXTBOX, inputValue, values);
     }
 
     public void inputToDynamicTextArea(WebDriver driver, String inputValue, String... values) {
-        waitToElementVisible(driver, AbstractNopCommercePageUI.DYNAMIC_TEXTAREA, values);
-        sendKeyToElement(driver, AbstractNopCommercePageUI.DYNAMIC_TEXTAREA, inputValue, values);
+        waitToElementVisible(driver, AbstractPageUI.DYNAMIC_TEXTAREA, values);
+        sendKeyToElement(driver, AbstractPageUI.DYNAMIC_TEXTAREA, inputValue, values);
     }
 
 
@@ -623,12 +619,12 @@ public abstract class AbstractPages {
 
     public boolean isUpdatedCustomerInfoSucess(WebDriver driver) {
         waitToElementVisible(driver, AdminEditCustomerPageUI.UPDATE_CUSTOMER_SUCCESS_MSG);
-        return isElementDisplayed(driver, AdminEditCustomerPageUI.UPDATE_CUSTOMER_SUCCESS_MSG);
+        return isDisplayed(driver, AdminEditCustomerPageUI.UPDATE_CUSTOMER_SUCCESS_MSG);
     }
 
     public boolean isDeletedCustomerInfoSucess(WebDriver driver) {
         waitToElementVisible(driver, AdminEditCustomerPageUI.UPDATE_CUSTOMER_SUCCESS_MSG);
-        return isElementDisplayed(driver, AdminEditCustomerPageUI.UPDATE_CUSTOMER_SUCCESS_MSG);
+        return isDisplayed(driver, AdminEditCustomerPageUI.UPDATE_CUSTOMER_SUCCESS_MSG);
     }
 
     public void switchToPopUpModal(WebDriver driver){
@@ -636,8 +632,8 @@ public abstract class AbstractPages {
     }
 
     public HomePageObject clickIntoLogOutLink(WebDriver driver) {
-        waitToElementVisible(driver, AbstractNopCommercePageUI.HEADER_LOG_OUT_LINK);
-        clickToElement(driver, AbstractNopCommercePageUI.HEADER_LOG_OUT_LINK);
+        waitToElementVisible(driver, AbstractPageUI.HEADER_LOG_OUT_LINK);
+        clickToElement(driver, AbstractPageUI.HEADER_LOG_OUT_LINK);
         return new HomePageObject(driver);
     }
 

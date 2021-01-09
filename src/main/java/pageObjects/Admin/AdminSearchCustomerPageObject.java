@@ -3,7 +3,7 @@ package pageObjects.Admin;
 import commons.AbstractPages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
-import pageUIs.AbstractNopCommercePageUI;
+import pageUIs.AbstractPageUI;
 import pageUIs.Admin.AdminSearchCustomerPageUI;
 
 public class AdminSearchCustomerPageObject extends AbstractPages {
@@ -16,8 +16,8 @@ public class AdminSearchCustomerPageObject extends AbstractPages {
     }
 
     public AdminAddNewCustomerPageObject clickToAddNewButton() {
-        waitToElementClickable(driver, AbstractNopCommercePageUI.ADD_NEW_BUTTON);
-        clickToElement(driver, AbstractNopCommercePageUI.ADD_NEW_BUTTON);
+        waitToElementClickable(driver, AbstractPageUI.ADD_NEW_BUTTON);
+        clickToElement(driver, AbstractPageUI.ADD_NEW_BUTTON);
         return new AdminAddNewCustomerPageObject(driver);
     }
 

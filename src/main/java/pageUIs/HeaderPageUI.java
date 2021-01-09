@@ -1,6 +1,6 @@
 package pageUIs;
 
-public class HeaderPageUI extends AbstractNopCommercePageUI {
+public class HeaderPageUI extends AbstractPageUI {
     public static final String WISHLIST_LINK = "//a[@class='ico-wishlist']";
     public static final String SHOPPING_CART_LINK = "//a[@class='ico-cart']";
     public static final String HOME_IMAGE_LINK = "//img[@alt='nopCommerce demo store']/parent::a";

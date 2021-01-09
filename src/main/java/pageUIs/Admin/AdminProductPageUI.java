@@ -12,9 +12,7 @@ public class AdminProductPageUI {
     public static final String IS_PUBLISHED_TBL = "//tr[@class='odd']//td[8]//i[@nop-value='true']";
 
     public static final String CATEGORY_SELECT = "//select[@name='SearchCategoryId']";
-    // public static final String CATEGORY_ITEM_SELECT = "//select[@name='SearchCategoryId']//option[text()='%s']";
     public static final String MANUFACTURER_SELECT = "//select[@name='SearchManufacturerId']";
-    // public static final String MANUFACTURER_ITEM_SELECT = "//select[@name='SearchManufacturerId']//option[text()='%s']";
 
     public static final String SKU_TEXTBOX = "//input[@id='GoDirectlyToSku']";
     public static final String GO_SKU_BUTTON = "//button[@id='go-to-product-by-sku']";

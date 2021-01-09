@@ -15,7 +15,7 @@ public class Product_01_Search_And_Advance_Search extends AbstractTest {
 
     HomePageObject homePage;
     LoginPageObject loginPage;
-    RegisterPageObject registerPage;
+    RegisterPO registerPage;
     FooterPageObject footerPage;
 
     @Parameters({"browser"})

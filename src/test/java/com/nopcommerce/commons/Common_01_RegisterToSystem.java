@@ -9,14 +9,14 @@ import org.testng.annotations.Parameters;
 import commons.AbstractTest;
 import commons.PageGeneratorManager;
 import pageObjects.HomePageObject;
-import pageObjects.RegisterPageObject;
+import pageObjects.RegisterPO;
 
 public class Common_01_RegisterToSystem extends AbstractTest {
 
 	private WebDriver driver;
 
 	private HomePageObject homePage;
-	private RegisterPageObject registerPage;
+	private RegisterPO registerPage;
 
 	@Parameters({ "browser" })
 	@BeforeSuite

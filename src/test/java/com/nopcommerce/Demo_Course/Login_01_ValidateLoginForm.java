@@ -40,14 +40,14 @@ public class Login_01_ValidateLoginForm extends AbstractPages {
     @Test
     public void TC_01_Login_With_Empty_Data() {
         abstractPage.clickIntoButton(driver, loginButton);
-        Assert.assertTrue(abstractPage.isElementDisplayed(driver, "//span[text()='Please enter your email']"));
+        Assert.assertTrue(abstractPage.isDisplayed(driver, "//span[text()='Please enter your email']"));
     }
 
     @Test
     public void TC_02_Login_With_Invalid_Email() {
         abstractPage.sendKeyToElement(driver, emailTextbox, "a");
         abstractPage.clickIntoButton(driver, loginButton);
-        Assert.assertTrue(abstractPage.isElementDisplayed(driver, "//span[text()='Wrong email']"));
+        Assert.assertTrue(abstractPage.isDisplayed(driver, "//span[text()='Wrong email']"));
 
     }
 
@@ -55,7 +55,7 @@ public class Login_01_ValidateLoginForm extends AbstractPages {
     public void TC_03_Login_With_Email_No_Registered() {
         abstractPage.sendKeyToElement(driver, emailTextbox, "a@gmail.com");
         abstractPage.clickIntoButton(driver, loginButton);
-        Assert.assertTrue(abstractPage.isElementDisplayed(driver, "//div[text()='Login was unsuccessful. Please correct the errors and try again.']"));
+        Assert.assertTrue(abstractPage.isDisplayed(driver, "//div[text()='Login was unsuccessful. Please correct the errors and try again.']"));
     }
 
     @Test
@@ -63,7 +63,7 @@ public class Login_01_ValidateLoginForm extends AbstractPages {
         abstractPage.sendKeyToElement(driver, emailTextbox, registeredEmail);
         abstractPage.sendKeyToElement(driver, passwordTextbox, "");
         abstractPage.clickIntoButton(driver, loginButton);
-        Assert.assertTrue(abstractPage.isElementDisplayed(driver, "//div[@class='message-error validation-summary-errors']"));
+        Assert.assertTrue(abstractPage.isDisplayed(driver, "//div[@class='message-error validation-summary-errors']"));
     }
 
     @Test
@@ -71,7 +71,7 @@ public class Login_01_ValidateLoginForm extends AbstractPages {
         abstractPage.sendKeyToElement(driver, emailTextbox, registeredEmail);
         abstractPage.sendKeyToElement(driver, passwordTextbox, "12345");
         abstractPage.clickIntoButton(driver, loginButton);
-        Assert.assertTrue(abstractPage.isElementDisplayed(driver, "//div[@class='message-error validation-summary-errors']"));
+        Assert.assertTrue(abstractPage.isDisplayed(driver, "//div[@class='message-error validation-summary-errors']"));
     }
 
     @Test
@@ -80,7 +80,7 @@ public class Login_01_ValidateLoginForm extends AbstractPages {
         abstractPage.sendKeyToElement(driver, passwordTextbox, registeredPassword);
         abstractPage.clickIntoButton(driver, loginButton);
         // abstractPage.waitToElementDisplayed(driver, "//div[@class='header-links']//a[text()='My account']");
-        Assert.assertTrue(abstractPage.isElementDisplayed(driver, "//div[@class='header-links']//a[text()='My account']"));
+        Assert.assertTrue(abstractPage.isDisplayed(driver, "//div[@class='header-links']//a[text()='My account']"));
     }
 
     @AfterClass

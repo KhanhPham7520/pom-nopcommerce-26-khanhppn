@@ -1,6 +1,6 @@
 package pageUIs;
 
-public class AccountAddressPageUI extends AbstractNopCommercePageUI {
+public class AccountAddressPageUI extends AbstractPageUI {
 
     public static final String FIRST_NAME_TEXTBOX = "//input[@id='Address_FirstName']";
     public static final String LAST_NAME_TEXTBOX = "//input[@id='Address_LastName']";

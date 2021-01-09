@@ -15,7 +15,7 @@ public class Login_07_RegisterAndLogin_Action_Chain extends AbstractTest {
     private WebDriver driver;
 
     private HomePageObject homePage;
-    private RegisterPageObject registerPage;
+    private RegisterPO registerPage;
     private LoginPageObject loginPage;
     private FooterMyAccountPageObject myAccountPage;
     private FooterNewProductPageObject newProductPage;

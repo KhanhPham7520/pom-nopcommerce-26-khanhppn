@@ -13,21 +13,21 @@ public class HomePageObject extends AbstractPages {
         this.driver = driver;
     }
 
-    public RegisterPageObject clickToRegisterLink() {
+    public RegisterPO clickToRegisterLink() {
         waitToElementClickable(driver, HomePageUI.REGISTER_LINK);
         clickToElement(driver, HomePageUI.REGISTER_LINK);
         return PageGeneratorManager.getRegisterPage(driver);
     }
 
     public LoginPageObject clickToLoginLink() {
-        waitToElementVisible(driver, AbstractNopCommercePageUI.HEADER_LOGIN_LINK);
-        clickToElement(driver, AbstractNopCommercePageUI.HEADER_LOGIN_LINK);
+        waitToElementVisible(driver, AbstractPageUI.HEADER_LOGIN_LINK);
+        clickToElement(driver, AbstractPageUI.HEADER_LOGIN_LINK);
         return PageGeneratorManager.getLoginPage(driver);
     }
 
     public boolean isMyAccountLinkDisplayed() {
         waitToElementVisible(driver, HomePageUI.HEADER_MY_ACCOUNT_LINK);
-        return isElementDisplayed(driver, HomePageUI.HEADER_MY_ACCOUNT_LINK);
+        return isDisplayed(driver, HomePageUI.HEADER_MY_ACCOUNT_LINK);
     }
 
     public ComputerPageObject clickToComputerLink() {
@@ -60,7 +60,7 @@ public class HomePageObject extends AbstractPages {
 
     public boolean isAddToComparisonSuccess() {
         waitToElementVisible(driver, HomePageUI.ADD_TO_COMPARISON_SUCCESS_MSG);
-        return isElementDisplayed(driver, HomePageUI.ADD_TO_COMPARISON_SUCCESS_MSG);
+        return isDisplayed(driver, HomePageUI.ADD_TO_COMPARISON_SUCCESS_MSG);
     }
 
     public void clickToSubCatItem(String valueItem) {
@@ -69,8 +69,8 @@ public class HomePageObject extends AbstractPages {
     }
 
     public void clickToMenuLink(String linkName) {
-        waitToElementClickable(driver, AbstractNopCommercePageUI.LINK_NAME_OF_HEADER_MENU, linkName);
-        clickToElement(driver, AbstractNopCommercePageUI.LINK_NAME_OF_HEADER_MENU, linkName);
+        waitToElementClickable(driver, AbstractPageUI.LINK_NAME_OF_HEADER_MENU, linkName);
+        clickToElement(driver, AbstractPageUI.LINK_NAME_OF_HEADER_MENU, linkName);
     }
 
 }

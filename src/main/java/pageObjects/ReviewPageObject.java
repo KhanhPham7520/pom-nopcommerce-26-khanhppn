@@ -30,7 +30,7 @@ public class ReviewPageObject extends AbstractPages {
     }
 
     public boolean isReviewAddSucessfully() {
-        return isElementDisplayed(driver, ReviewPageUI.ADD_REVIEW_SUCCESS_MSG);
+        return isDisplayed(driver, ReviewPageUI.ADD_REVIEW_SUCCESS_MSG);
     }
 
 }

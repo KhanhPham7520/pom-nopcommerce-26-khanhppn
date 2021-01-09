@@ -16,8 +16,8 @@
 	<test name="Run On Chrome">
 		<parameter name="browser" value="chrome" />
 		<classes>
-			<class name="com.nopcommerce.Login.Login_01_Validate_Login_Form" />
-		</classes>
+<!-- 			<class name="com.nopcommerce.Login.Login_01_Validate_Login_Form" />
+ -->		</classes>
 	</test>
 
 

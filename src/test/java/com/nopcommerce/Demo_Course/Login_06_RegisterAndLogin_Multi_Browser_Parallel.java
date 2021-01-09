@@ -10,7 +10,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.HomePageObject;
 import pageObjects.LoginPageObject;
-import pageObjects.RegisterPageObject;
+import pageObjects.RegisterPO;
 
 import java.util.Random;
 
@@ -21,7 +21,7 @@ public class Login_06_RegisterAndLogin_Multi_Browser_Parallel extends AbstractTe
     private String email;
 
     private HomePageObject homePage;
-    private RegisterPageObject registerPage;
+    private RegisterPO registerPage;
     private LoginPageObject loginPage;
 
     @Parameters({"browser", "url"})

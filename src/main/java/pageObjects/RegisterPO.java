@@ -3,19 +3,19 @@ package pageObjects;
 import commons.AbstractPages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
-import pageUIs.AbstractNopCommercePageUI;
+import pageUIs.AbstractPageUI;
 import pageUIs.RegisterPageUI;
 
 import java.util.Random;
 
-public class RegisterPageObject extends AbstractPages {
+public class RegisterPO extends AbstractPages {
 
     public static String randomEmail = "coronavirusdisease" + randomNumber() + "@hotmail.com";
     public static String passwordRegistered = "Abc123456789";
     private final WebDriver driver;
     private Select select;
 
-    public RegisterPageObject(WebDriver driver) {
+    public RegisterPO(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -55,8 +55,8 @@ public class RegisterPageObject extends AbstractPages {
     }
 
     public void inputToTextbox(WebDriver driver, String valueInput, String... values) {
-        waitToElementVisible(driver, AbstractNopCommercePageUI.INPUT_TEXTBOX, values);
-        sendKeyToElement(driver, AbstractNopCommercePageUI.INPUT_TEXTBOX, valueInput, values);
+        waitToElementVisible(driver, AbstractPageUI.INPUT_TEXTBOX, values);
+        sendKeyToElement(driver, AbstractPageUI.INPUT_TEXTBOX, valueInput, values);
     }
 
     public void selectYearDropdown() {
@@ -92,13 +92,13 @@ public class RegisterPageObject extends AbstractPages {
 
 
     public void clickButton(WebDriver driver, String... values) {
-        waitToElementClickable(driver, AbstractNopCommercePageUI.INPUT_TEXTBOX, values);
-        clickIntoButton(driver, AbstractNopCommercePageUI.INPUT_TEXTBOX, values);
+        waitToElementClickable(driver, AbstractPageUI.INPUT_TEXTBOX, values);
+        clickIntoButton(driver, AbstractPageUI.INPUT_TEXTBOX, values);
     }
 
     public void clickRadio(WebDriver driver, String... values) {
-        waitToElementClickable(driver, AbstractNopCommercePageUI.INPUT_RADIO, values);
-        clickIntoButton(driver, AbstractNopCommercePageUI.INPUT_RADIO, values);
+        waitToElementClickable(driver, AbstractPageUI.INPUT_RADIO, values);
+        clickIntoButton(driver, AbstractPageUI.INPUT_RADIO, values);
     }
 
 

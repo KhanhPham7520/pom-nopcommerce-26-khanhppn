@@ -1,6 +1,6 @@
 package pageUIs;
 
-public class WishListPageUI extends AbstractNopCommercePageUI {
+public class WishListPageUI extends AbstractPageUI {
 
     public static final String WISHLIST_URL = "//a[@class='share-link']";
     public static final String WISHLIST_HEADER_PAGE = "//div[@class='page-title']//h1";

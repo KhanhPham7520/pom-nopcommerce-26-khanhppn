@@ -1,6 +1,6 @@
 package pageUIs;
 
-public class HomePageUI extends AbstractNopCommercePageUI {
+public class HomePageUI extends AbstractPageUI {
     public static final String REGISTER_LINK = "//div[@class='header-links']//a[text()='Register']";
     public static final String CHANGE_PASSWORD_LINK = "//a[text()='Change password']";
     public static final String SEARCH_LINK_FOOTER = "//div[@class='footer-upper']//a[text()='Search']";

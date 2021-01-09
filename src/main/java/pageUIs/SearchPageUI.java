@@ -1,6 +1,6 @@
 package pageUIs;
 
-public class SearchPageUI extends AbstractNopCommercePageUI {
+public class SearchPageUI extends AbstractPageUI {
     public static final String INPUT_KEYWORD_TEXTBOX = "//input[@class='search-text']";
     public static final String ADVANCE_SEARCH_CHECKBOX = "//input[@type='checkbox' and @name='adv']";
     public static final String CATEGORY_DROPDOWN = "//select[@id='cid']";

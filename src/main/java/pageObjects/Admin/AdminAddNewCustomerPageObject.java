@@ -69,7 +69,7 @@ public class AdminAddNewCustomerPageObject extends AbstractPages {
 
     public boolean isAddedSuccessfulDisplayed() {
         waitToElementVisible(driver, AdminAddNewCustomerPageUI.ADD_NEW_CUSTOMER_SUCCESS);
-        return isElementDisplayed(driver, AdminAddNewCustomerPageUI.ADD_NEW_CUSTOMER_SUCCESS);
+        return isDisplayed(driver, AdminAddNewCustomerPageUI.ADD_NEW_CUSTOMER_SUCCESS);
     }
 
 }

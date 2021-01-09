@@ -1,5 +1,5 @@
 package pageUIs;
-public class MyAccountPageUI extends AbstractNopCommercePageUI {
+public class MyAccountPageUI extends AbstractPageUI {
 
     public static final String GENDER_MALE_RADIO = "//div[@class='gender']//span[@class='male']";
     public static final String FIRST_NAME_TEXTBOX = "//input[@name='FirstName']";
