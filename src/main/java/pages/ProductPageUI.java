@@ -1,4 +1,4 @@
-package pageUIs;
+package pages;
 
 public class ProductPageUI extends AbstractPageUI {
     public static final String ADD_YOUR_REVIEW = "//a[text()='Add your review']";
@@ -21,9 +21,9 @@ public class ProductPageUI extends AbstractPageUI {
 
     public static String PRODUCT_LINK = "//h2[@class='product-title']//a[contains(text(),'%s')]";
 
-     public static final String PRODUCT_NAME_AFTER_ADD_TO_CART_SUCCESS = "//a[@class='product-name' and text()='%s']";
+    public static final String PRODUCT_NAME_AFTER_ADD_TO_CART_SUCCESS = "//a[@class='product-name' and text()='%s']";
 
-     public static final String PRODUCT_PRICE = "//div[@class='product-price']//span";
+    public static final String PRODUCT_PRICE = "//div[@class='product-price']//span";
 
-     public static final String DYNAMIC_CHECKBOX_PRODUCT = "//label[contains(text(),'%s')]//preceding-sibling::input[@type='checkbox']";
+    public static final String DYNAMIC_CHECKBOX_PRODUCT = "//label[contains(text(),'%s')]//preceding-sibling::input[@type='checkbox']";
 }

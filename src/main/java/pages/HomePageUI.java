@@ -1,4 +1,4 @@
-package pageUIs;
+package pages;
 
 public class HomePageUI extends AbstractPageUI {
     public static final String REGISTER_LINK = "//div[@class='header-links']//a[text()='Register']";

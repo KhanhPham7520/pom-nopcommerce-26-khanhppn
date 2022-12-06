@@ -2,7 +2,7 @@ package pageObjects;
 
 import commons.AbstractPages;
 import org.openqa.selenium.WebDriver;
-import pageUIs.ComputerPageUI;
+import pages.ComputerPageUI;
 
 public class ComputerPageObject extends AbstractPages {
 

@@ -2,7 +2,7 @@ package pageObjects;
 
 import commons.AbstractPages;
 import org.openqa.selenium.WebDriver;
-import pageUIs.HeaderPageUI;
+import pages.HeaderPageUI;
 
 public class HeaderPageObject extends AbstractPages {
     WebDriver driver;
@@ -29,7 +29,7 @@ public class HeaderPageObject extends AbstractPages {
         return new HomePageObject(driver);
     }
 
-    public void clickToDynamicTextOfHeaderMenu(String linkName, String...values) {
+    public void clickToDynamicTextOfHeaderMenu(String linkName, String... values) {
         waitToElementClickable(driver, HeaderPageUI.LINK_NAME_OF_HEADER_MENU, linkName);
         hoverToElement(driver, HeaderPageUI.LINK_NAME_OF_HEADER_MENU, linkName);
         clickToElement(driver, HeaderPageUI.ITEM_LINK_OF_HEADER_MENU, values);
@@ -99,7 +99,7 @@ public class HeaderPageObject extends AbstractPages {
     public DesktopsPageObject clickToTextOfHeaderMenu(String linkName, String values) {
         waitToElementClickable(driver, HeaderPageUI.LINK_NAME_OF_HEADER_MENU, linkName);
         hoverToElement(driver, HeaderPageUI.LINK_NAME_OF_HEADER_MENU, linkName);
-        clickToElement(driver, HeaderPageUI.ITEM_LINK_OF_HEADER_MENU, linkName,values);
+        clickToElement(driver, HeaderPageUI.ITEM_LINK_OF_HEADER_MENU, linkName, values);
         return new DesktopsPageObject(driver);
     }
 }

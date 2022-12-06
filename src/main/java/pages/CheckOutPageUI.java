@@ -1,4 +1,4 @@
-package pageUIs;
+package pages;
 
 public class CheckOutPageUI extends AbstractPageUI {
     public static final String SHIP_TO_SAME_ADDRESS_CHECKBOX = "//input[@id='ShipToSameAddress']";

@@ -1,4 +1,4 @@
-package pageUIs;
+package pages;
 
 public class SearchPageUI extends AbstractPageUI {
     public static final String INPUT_KEYWORD_TEXTBOX = "//input[@class='search-text']";

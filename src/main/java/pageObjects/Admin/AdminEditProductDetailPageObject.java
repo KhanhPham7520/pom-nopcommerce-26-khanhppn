@@ -2,7 +2,7 @@ package pageObjects.Admin;
 
 import commons.AbstractPages;
 import org.openqa.selenium.WebDriver;
-import pageUIs.Admin.AdminEditProductPageUI;
+import pages.Admin.AdminEditProductPageUI;
 
 public class AdminEditProductDetailPageObject extends AbstractPages {
 

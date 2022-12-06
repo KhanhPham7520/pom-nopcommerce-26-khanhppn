@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pageObjects.HomePageObject;
 import pageObjects.RegisterPO;
-import pageUIs.RegisterPageUI;
+import pages.RegisterPageUI;
 
 import java.util.Random;
 

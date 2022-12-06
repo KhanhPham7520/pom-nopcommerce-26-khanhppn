@@ -1,9 +1,8 @@
 package pageObjects;
 
-import org.openqa.selenium.WebDriver;
-
 import commons.AbstractPages;
-import pageUIs.ShoppingCartPageUI;
+import org.openqa.selenium.WebDriver;
+import pages.ShoppingCartPageUI;
 
 public class ShoppingCartPageObject extends AbstractPages {
     WebDriver driver;
@@ -57,9 +56,9 @@ public class ShoppingCartPageObject extends AbstractPages {
         return getTextElement(driver, ShoppingCartPageUI.SHOPPING_CART_EMPTY);
     }
 
-    public void inputToQuantityTextbox(String inputValue){
+    public void inputToQuantityTextbox(String inputValue) {
         waitToElementVisible(driver, ShoppingCartPageUI.QUANTITY_TEXTBOX);
-        clearExistedData(driver,ShoppingCartPageUI.QUANTITY_TEXTBOX);
+        clearExistedData(driver, ShoppingCartPageUI.QUANTITY_TEXTBOX);
         sendKeyToElement(driver, ShoppingCartPageUI.QUANTITY_TEXTBOX, inputValue);
     }
 
@@ -70,7 +69,7 @@ public class ShoppingCartPageObject extends AbstractPages {
         return new CheckOutPO(driver);
     }
 
-    public void waitToShippingOptionDisplayed(WebDriver driver){
+    public void waitToShippingOptionDisplayed(WebDriver driver) {
         waitToElementPresence(driver, ShoppingCartPageUI.ESTIMATE_SHPPING_OPTION_POPUP);
     }
 

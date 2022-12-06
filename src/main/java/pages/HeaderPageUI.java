@@ -1,4 +1,4 @@
-package pageUIs;
+package pages;
 
 public class HeaderPageUI extends AbstractPageUI {
     public static final String WISHLIST_LINK = "//a[@class='ico-wishlist']";

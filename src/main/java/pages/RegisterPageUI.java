@@ -1,4 +1,4 @@
-package pageUIs;
+package pages;
 
 public class RegisterPageUI extends AbstractPageUI {
     public static final String GENDER_MALE_RADIO = "//input[@id='gender-male']";

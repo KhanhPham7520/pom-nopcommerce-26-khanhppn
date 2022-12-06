@@ -1,28 +1,15 @@
 package com.nopcommerce.Product;
 
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
-
 import com.nopcommerce.data.ProductData;
-
 import commons.AbstractTest;
 import commons.PageGeneratorManager;
-import pageObjects.CheckOutPO;
-import pageObjects.DesktopsPageObject;
-import pageObjects.HeaderPageObject;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.MyAccountPageObject;
-import pageObjects.ProductPageObject;
-import pageObjects.ShoppingCartPageObject;
-import pageUIs.CheckOutPageUI;
-import pageUIs.MyAccountPageUI;
-import pageUIs.ProductPageUI;
-import pageUIs.ShoppingCartPageUI;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.*;
+import pageObjects.*;
+import pages.CheckOutPageUI;
+import pages.MyAccountPageUI;
+import pages.ProductPageUI;
+import pages.ShoppingCartPageUI;
 
 public class Product_03_Order extends AbstractTest {
 
@@ -43,7 +30,7 @@ public class Product_03_Order extends AbstractTest {
     String editHddName = "320 GB";
     String editOsName = "Vista Home";
 
-	String editProductQuantity = "2";
+    String editProductQuantity = "2";
     String editProductPriceResult = "$1,320.00";
     String editPriceCart = "$1,320.00";
     String editPriceTotal = "$2,640.00";

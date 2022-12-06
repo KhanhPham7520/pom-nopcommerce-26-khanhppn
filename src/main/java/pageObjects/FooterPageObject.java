@@ -2,7 +2,7 @@ package pageObjects;
 
 import commons.AbstractPages;
 import org.openqa.selenium.WebDriver;
-import pageUIs.AbstractPageUI;
+import pages.AbstractPageUI;
 
 public class FooterPageObject extends AbstractPages {
     WebDriver driver;

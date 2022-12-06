@@ -2,7 +2,7 @@ package pageObjects.Admin;
 
 import commons.AbstractPages;
 import org.openqa.selenium.WebDriver;
-import pageUIs.Admin.AdminAddNewCustomerPageUI;
+import pages.Admin.AdminAddNewCustomerPageUI;
 
 public class AdminAddNewCustomerPageObject extends AbstractPages {
 

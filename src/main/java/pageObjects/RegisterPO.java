@@ -3,8 +3,8 @@ package pageObjects;
 import commons.AbstractPages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
-import pageUIs.AbstractPageUI;
-import pageUIs.RegisterPageUI;
+import pages.AbstractPageUI;
+import pages.RegisterPageUI;
 
 import java.util.Random;
 

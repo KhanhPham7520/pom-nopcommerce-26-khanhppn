@@ -1,6 +1,6 @@
-package pageUIs.Admin;
+package pages.Admin;
 
-import pageUIs.AbstractPageUI;
+import pages.AbstractPageUI;
 
 public class AdminSidebarPageUI extends AbstractPageUI {
 

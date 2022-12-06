@@ -1,9 +1,8 @@
 package pageObjects;
 
-import org.openqa.selenium.WebDriver;
-
 import commons.AbstractPages;
-import pageUIs.CompareProductPageUI;
+import org.openqa.selenium.WebDriver;
+import pages.CompareProductPageUI;
 
 public class CompareProductPageObject extends AbstractPages {
     WebDriver driver;

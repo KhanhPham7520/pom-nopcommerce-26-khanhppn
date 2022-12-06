@@ -1,31 +1,21 @@
 package commons;
 
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.*;
+import pages.AbstractPageUI;
+import pages.Admin.AdminAddNewCustomerPageUI;
+import pages.Admin.AdminEditCustomerPageUI;
+import pages.Admin.AdminSearchCustomerPageUI;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import pageObjects.FooterMyAccountPageObject;
-import pageObjects.FooterNewProductPageObject;
-import pageObjects.FooterSearchPageObject;
-import pageObjects.HomePageObject;
-import pageObjects.NotebooksPageObject;
-import pageObjects.ShoppingCartPageObject;
-import pageUIs.AbstractPageUI;
-import pageUIs.Admin.AdminAddNewCustomerPageUI;
-import pageUIs.Admin.AdminEditCustomerPageUI;
-import pageUIs.Admin.AdminSearchCustomerPageUI;
 
 public abstract class AbstractPages {
 
@@ -181,9 +171,9 @@ public abstract class AbstractPages {
         findElementByXpath(driver, locator).click();
     }
 
-    public void clickIntoInputTypeElement(WebDriver driver,String... values) {
-        waitToElementClickable(driver, AbstractPageUI.DYNAMIC_INPUT_TYPE,values);
-        findElementByXpath(driver, AbstractPageUI.DYNAMIC_INPUT_TYPE,values).click();
+    public void clickIntoInputTypeElement(WebDriver driver, String... values) {
+        waitToElementClickable(driver, AbstractPageUI.DYNAMIC_INPUT_TYPE, values);
+        findElementByXpath(driver, AbstractPageUI.DYNAMIC_INPUT_TYPE, values).click();
     }
 
     public void clickToElement(WebDriver driver, String locator, String... values) {
@@ -377,7 +367,7 @@ public abstract class AbstractPages {
         select.selectByVisibleText(valueItem);
 
     }
-  
+
 
     public String getTextElement(WebDriver driver, String locator) {
         waitToElementVisible(driver, locator);
@@ -587,7 +577,7 @@ public abstract class AbstractPages {
     public void highlightElement(WebDriver driver, WebElement element) {
         jsExcutor = (JavascriptExecutor) driver;
         String originalStyle = element.getAttribute("style");
-        jsExcutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", "border: 3px solid red; border-style: dashed;");    
+        jsExcutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", "border: 3px solid red; border-style: dashed;");
     }
 
     public void selectCustomerRoles(WebDriver driver, String... values) {
@@ -627,7 +617,7 @@ public abstract class AbstractPages {
         return isDisplayed(driver, AdminEditCustomerPageUI.UPDATE_CUSTOMER_SUCCESS_MSG);
     }
 
-    public void switchToPopUpModal(WebDriver driver){
+    public void switchToPopUpModal(WebDriver driver) {
         driver.switchTo().activeElement();
     }
 

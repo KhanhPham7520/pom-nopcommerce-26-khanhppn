@@ -3,8 +3,8 @@ package pageObjects;
 import commons.AbstractPages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
-import pageUIs.AccountAddressPageUI;
-import pageUIs.MyAccountPageUI;
+import pages.AccountAddressPageUI;
+import pages.MyAccountPageUI;
 
 public class AccountAddressPageObject extends AbstractPages {
     private final WebDriver driver;

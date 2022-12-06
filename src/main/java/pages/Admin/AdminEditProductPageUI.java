@@ -1,4 +1,4 @@
-package pageUIs.Admin;
+package pages.Admin;
 
 public class AdminEditProductPageUI {
 

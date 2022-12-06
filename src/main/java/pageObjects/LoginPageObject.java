@@ -5,7 +5,7 @@ import commons.GlobalConstants;
 import commons.PageGeneratorManager;
 import org.openqa.selenium.WebDriver;
 import pageObjects.Admin.AdminHomePageObject;
-import pageUIs.LoginPageUI;
+import pages.LoginPageUI;
 
 public class LoginPageObject extends AbstractPages {
 

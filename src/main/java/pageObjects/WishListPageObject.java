@@ -2,7 +2,7 @@ package pageObjects;
 
 import commons.AbstractPages;
 import org.openqa.selenium.WebDriver;
-import pageUIs.WishListPageUI;
+import pages.WishListPageUI;
 
 public class WishListPageObject extends AbstractPages {
     WebDriver driver;

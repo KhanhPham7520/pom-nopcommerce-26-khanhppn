@@ -3,7 +3,7 @@ package pageObjects;
 import commons.AbstractPages;
 import commons.PageGeneratorManager;
 import org.openqa.selenium.WebDriver;
-import pageUIs.*;
+import pages.*;
 
 public class HomePageObject extends AbstractPages {
     private final WebDriver driver;

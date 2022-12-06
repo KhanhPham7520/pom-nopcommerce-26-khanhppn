@@ -1,4 +1,4 @@
-package pageUIs;
+package pages;
 
 public class LoginPageUI extends AbstractPageUI {
     public static final String EMAIL_TEXTBOX = "//input[@id='Email']";
@@ -7,7 +7,7 @@ public class LoginPageUI extends AbstractPageUI {
 
     public static final String LOGIN_FAILED_MESSAGE = "//div[text()='Login was unsuccessful. Please correct the errors and try again.']";
 
-    public static  final String THE_CREDENTIAL_PROVIDED_ARE_INCORRECT = "//li[text()='The credentials provided are incorrect']";
+    public static final String THE_CREDENTIAL_PROVIDED_ARE_INCORRECT = "//li[text()='The credentials provided are incorrect']";
 
     public static final String MY_ACCOUNT_AFTER_LOGIN_SUCCESS = "//div[@class='header-links']//a[text()='My account']";
 

@@ -3,7 +3,7 @@ package pageObjects;
 import commons.AbstractPages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
-import pageUIs.MyAccountPageUI;
+import pages.MyAccountPageUI;
 
 public class MyAccountPageObject extends AbstractPages {
     private final WebDriver driver;
@@ -80,8 +80,8 @@ public class MyAccountPageObject extends AbstractPages {
         return findElementByXpath(driver, MyAccountPageUI.GET_TEXT_DYNAMIC_ACCOUNT, values).getAttribute("value");
     }
 
-    public String getOrderNumberFromMyAccountPage(){
+    public String getOrderNumberFromMyAccountPage() {
         waitToElementVisible(driver, MyAccountPageUI.ORDER_NUMBER_IN_MY_ACCOUNT_ORDER);
-        return getTextElement(driver, MyAccountPageUI.ORDER_NUMBER_IN_MY_ACCOUNT_ORDER ).substring(13);
+        return getTextElement(driver, MyAccountPageUI.ORDER_NUMBER_IN_MY_ACCOUNT_ORDER).substring(13);
     }
 }

@@ -1,4 +1,5 @@
-package pageUIs;
+package pages;
+
 public class MyAccountPageUI extends AbstractPageUI {
 
     public static final String GENDER_MALE_RADIO = "//div[@class='gender']//span[@class='male']";

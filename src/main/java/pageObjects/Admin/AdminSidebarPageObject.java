@@ -2,7 +2,7 @@ package pageObjects.Admin;
 
 import commons.AbstractPages;
 import org.openqa.selenium.WebDriver;
-import pageUIs.Admin.AdminSidebarPageUI;
+import pages.Admin.AdminSidebarPageUI;
 
 public class AdminSidebarPageObject extends AbstractPages {
 

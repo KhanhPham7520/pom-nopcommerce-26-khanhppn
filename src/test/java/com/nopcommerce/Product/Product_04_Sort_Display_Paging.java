@@ -8,7 +8,7 @@ import org.testng.annotations.*;
 import pageObjects.HomePageObject;
 import pageObjects.LoginPageObject;
 import pageObjects.NotebooksPageObject;
-import pageUIs.NotebooksPageUI;
+import pages.NotebooksPageUI;
 
 public class Product_04_Sort_Display_Paging extends AbstractTest {
 

@@ -1,4 +1,4 @@
-package pageUIs.Admin;
+package pages.Admin;
 
 public class AdminProductPageUI {
     public static final String PRODUCT_NAME_TEXTBOX = "//input[@id='SearchProductName']";

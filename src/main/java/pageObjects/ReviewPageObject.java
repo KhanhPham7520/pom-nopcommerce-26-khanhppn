@@ -2,7 +2,7 @@ package pageObjects;
 
 import commons.AbstractPages;
 import org.openqa.selenium.WebDriver;
-import pageUIs.ReviewPageUI;
+import pages.ReviewPageUI;
 
 public class ReviewPageObject extends AbstractPages {
 

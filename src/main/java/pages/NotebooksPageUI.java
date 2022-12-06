@@ -1,4 +1,4 @@
-package pageUIs;
+package pages;
 
 public class NotebooksPageUI extends AbstractPageUI {
 

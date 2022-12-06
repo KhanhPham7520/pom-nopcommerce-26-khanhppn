@@ -3,7 +3,7 @@ package pageObjects;
 import commons.AbstractPages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
-import pageUIs.SearchPageUI;
+import pages.SearchPageUI;
 
 public class SearchPageObject extends AbstractPages {
 

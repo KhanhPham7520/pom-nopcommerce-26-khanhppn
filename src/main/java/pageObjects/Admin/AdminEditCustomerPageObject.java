@@ -1,8 +1,7 @@
 package pageObjects.Admin;
 
-import org.openqa.selenium.WebDriver;
-
 import commons.AbstractPages;
+import org.openqa.selenium.WebDriver;
 
 public class AdminEditCustomerPageObject extends AbstractPages {
     WebDriver driver;

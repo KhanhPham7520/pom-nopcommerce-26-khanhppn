@@ -2,8 +2,8 @@ package pageObjects;
 
 import commons.AbstractPages;
 import org.openqa.selenium.WebDriver;
-import pageUIs.AbstractPageUI;
-import pageUIs.NotebooksPageUI;
+import pages.AbstractPageUI;
+import pages.NotebooksPageUI;
 
 public class NotebooksPageObject extends AbstractPages {
 

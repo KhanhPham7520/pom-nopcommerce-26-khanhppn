@@ -3,8 +3,8 @@ package pageObjects.Admin;
 import commons.AbstractPages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
-import pageUIs.AbstractPageUI;
-import pageUIs.Admin.AdminSearchCustomerPageUI;
+import pages.AbstractPageUI;
+import pages.Admin.AdminSearchCustomerPageUI;
 
 public class AdminSearchCustomerPageObject extends AbstractPages {
 

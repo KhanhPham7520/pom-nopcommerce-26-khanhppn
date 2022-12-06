@@ -30,8 +30,8 @@ public class ProductData {
     public static class orderProduct {
         public static String orderNumber = "";
 
-        public static String getOrderNumber(){
-           return orderNumber;
+        public static String getOrderNumber() {
+            return orderNumber;
         }
     }
 

@@ -2,7 +2,7 @@ package pageObjects;
 
 import commons.AbstractPages;
 import org.openqa.selenium.WebDriver;
-import pageUIs.ProductPageUI;
+import pages.ProductPageUI;
 
 public class DesktopsPageObject extends AbstractPages {
 
@@ -22,7 +22,8 @@ public class DesktopsPageObject extends AbstractPages {
         waitToElementClickable(driver, "//h2[@class='product-title']//a[contains(text(),'" + productName + "')]");
         clickToElement(driver, "//h2[@class='product-title']//a[contains(text(),'" + productName + "')]");
     }
-  public ProductPageObject clickIntoProductLink(String productName) {
+
+    public ProductPageObject clickIntoProductLink(String productName) {
         waitToElementClickable(driver, "//h2[@class='product-title']//a[contains(text(),'" + productName + "')]");
         clickToElement(driver, "//h2[@class='product-title']//a[contains(text(),'" + productName + "')]");
         return new ProductPageObject(driver);

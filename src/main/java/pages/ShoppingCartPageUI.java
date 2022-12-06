@@ -1,4 +1,4 @@
-package pageUIs;
+package pages;
 
 public class ShoppingCartPageUI extends AbstractPageUI {
 
@@ -34,10 +34,6 @@ public class ShoppingCartPageUI extends AbstractPageUI {
     public static final String ESTIMATE_SHPPING_OPTION_POPUP = "//div[@class='estimate-shipping-row shipping-option active']";
 
     public static final String SHOPPING_CART_IS_EMPTY_MESSAGE = "//div[@class='no-data']";
-
-
-
-
 
 
 }
