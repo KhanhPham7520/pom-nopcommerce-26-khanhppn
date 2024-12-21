@@ -6,8 +6,9 @@ import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
 import org.testng.Reporter;
-import org.testng.internal.Utils;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.List;
 
 public class MethodListener implements IInvokedMethodListener {
@@ -42,7 +43,11 @@ public class MethodListener implements IInvokedMethodListener {
                     StringBuffer message = new StringBuffer("Mulitple failures (").append(size).append("):\n");
                     for (int failure = 0; failure < size - 1; failure++) {
                         message.append("Failure ").append(failure + 1).append(" of ").append(size).append("\n");
-                        message.append(Utils.stackTrace(failures.get(failure), false)[1]).append("\n");
+                        //message.append(Utils.stackTrace(failures.get(failure), false)[1]).append("\n");
+                        StringWriter sw = new StringWriter();
+                        PrintWriter pw = new PrintWriter(sw);
+                        failures.get(failure).printStackTrace(pw);
+                        message.append(sw.toString()).append("\n");
                     }
                     Throwable last = failures.get(size - 1);
                     message.append("Failure ").append(size).append(" of ").append(size).append("\n");

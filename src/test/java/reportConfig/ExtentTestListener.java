@@ -1,15 +1,12 @@
 package reportConfig;
 
+import commons.AbstractTest;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-
-import com.relevantcodes.extentreports.LogStatus;
-
-import commons.AbstractTest;
 
 public class ExtentTestListener extends AbstractTest implements ITestListener {
 
@@ -23,7 +20,7 @@ public class ExtentTestListener extends AbstractTest implements ITestListener {
     public void onFinish(ITestContext context) {
         System.out.println("---------- " + context.getName() + " FINISHED test ----------");
         ExtentTestManager.endTest();
-        ExtentManager.getReporter().flush();
+        ExtentReportManager.getExtentReports().flush();
     }
 
     @Override
@@ -34,7 +31,7 @@ public class ExtentTestListener extends AbstractTest implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult result) {
         System.out.println("---------- " + result.getName() + " SUCCESS test ----------");
-        ExtentTestManager.getTest().log(LogStatus.PASS, "Test passed");
+        ExtentTestManager.getTest().pass("Test passed");
     }
 
     @Override
@@ -44,13 +41,13 @@ public class ExtentTestListener extends AbstractTest implements ITestListener {
         Object testClass = result.getInstance();
         WebDriver webDriver = ((AbstractTest) testClass).getDriver();
         String base64Screenshot = "data:image/png;base64," + ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BASE64);
-        ExtentTestManager.getTest().log(LogStatus.FAIL, "Test Failed", ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot));
+        ExtentTestManager.getTest().fail("Test Failed").addScreenCaptureFromBase64String(base64Screenshot);
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
         System.out.println("---------- " + result.getName() + " SKIPPED test ----------");
-        ExtentTestManager.getTest().log(LogStatus.SKIP, "Test Skipped");
+        ExtentTestManager.getTest().skip("Test Skipped");
     }
 
     @Override
