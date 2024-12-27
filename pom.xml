@@ -19,10 +19,10 @@
         <maven.compiler.target>11</maven.compiler.target>
 
         <!-- Global variable for dependencies -->
-        <webdriver.version>3.141.59</webdriver.version>
-        <testng.version>7.5</testng.version>
+        <webdriver.version>4.27.0</webdriver.version>
+        <testng.version>7.7.0</testng.version>
         <jackson.version>2.17.2</jackson.version>
-        <webdrivermanager.version>5.7.0</webdrivermanager.version>
+        <webdrivermanager.version>5.9.2</webdrivermanager.version>
         <extentreports.version>5.0.9</extentreports.version>
     </properties>
 
@@ -34,6 +34,7 @@
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
         </dependency>
+
         <!-- Selenium Java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
