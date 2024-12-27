@@ -20,7 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-public class AbstractTest extends CommonFunction {
+public class AbstractTest extends AbstractPages {
 
     protected final Log log;
     private final String rootFolder = System.getProperty("user.dir");
@@ -33,14 +33,6 @@ public class AbstractTest extends CommonFunction {
     public WebDriver getDriver() {
         return driver;
     }
-
-    // public void printBrowserConsoleLogs(WebDriver driver) {
-    // LogEntries logs = driver.manage().logs().get("browser");
-    // List<LogEntry> logList = logs.getAll();
-    // for (LogEntry logging : logList) {
-    // log.info("-------------" + logging.getLevel().toString() + "------------ \n" + logging.getMessage());
-    // }
-    // }
 
     public WebDriver getBrowserDriverOfAdmin(String browserName) {
         if (browserName.equalsIgnoreCase("firefox")) {

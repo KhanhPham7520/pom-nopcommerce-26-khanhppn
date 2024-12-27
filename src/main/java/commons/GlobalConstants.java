@@ -1,6 +1,7 @@
 package commons;
 
 public class GlobalConstants {
+
     public static final String DEV_URL = "https://demo.nopcommerce.com/";
     public static final String ADMIN_PAGE_URL = "https://admin-demo.nopcommerce.com/login?ReturnUrl=%2Fadmin%2F";
 
@@ -26,7 +27,7 @@ public class GlobalConstants {
     public static final String USER_EMAIL = "phamphannhatkhanh7520@gmail.com";
     public static final String USER_PASSWORD = "foster1994";
 
-    // Login offical Info for admin
+    // Login official Info for admin
     public static final String ADMIN_EMAIL = "admin@yourstore.com";
     public static final String ADMIN_PASSWORD = "admin";
 }
