@@ -1,4 +1,4 @@
-package commons;
+package actions.commons;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -9,15 +9,13 @@ import java.util.Set;
 
 public class BasePage {
 
-    private WebDriver driver;
-
     private long LONG_TIMEOUT = 30;
 
     public void openPageUrl(WebDriver driver, String url) {
         driver.get(url);
     }
 
-    public String getPageTitle() {
+    public String getPageTitle(WebDriver driver) {
         return driver.getTitle();
     }
 
@@ -69,7 +67,7 @@ public class BasePage {
         for (String handle : windowHandles) {
             // If the handle matches the desired window ID, switch to it
             if (handle.equals(windowId)) {
-                driver.switchTo().window(handle);
+                driver.switchTo().activeElement();
                 System.out.println("Switched to window with ID: " + windowId);
                 return;
             }
@@ -113,7 +111,5 @@ public class BasePage {
         // Switch back to the parent window
         driver.switchTo().window(parentWindowHandle);
     }
-
-
 
 }
