@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import javax.swing.*;
 import java.time.Duration;
 import java.util.List;
 import java.util.Set;
@@ -20,6 +19,10 @@ public class BasePage {
 
     private List<WebElement> getListWebElement(WebDriver driver, String locator){
         return driver.findElements(By.xpath(locator));
+    }
+
+    public void clickToElement(WebDriver driver, String locator){
+        getWebElement(driver, locator).click();
     }
 
     public void openPageUrl(WebDriver driver, String url) {
@@ -233,5 +236,28 @@ public class BasePage {
         ((JavascriptExecutor) driver).executeScript("return document.domain");
     }
 
+    public By getByXpath(String locator){
+        return By.xpath(locator);
+    }
+
+    public WebElement waitForElementClickable(WebDriver driver, String locator){
+        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).
+                until(ExpectedConditions.elementToBeClickable(getByXpath(locator)));
+    }
+
+    public WebElement waitForElementVisible(WebDriver driver, String locator){
+        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).
+                until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator)));
+    }
+
+    public boolean waitForElementSelected(WebDriver driver, String locator){
+        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).
+                until(ExpectedConditions.elementToBeSelected(getWebElement(driver,locator)));
+    }
+
+    public boolean waitForElementInvisible(WebDriver driver, String locator){
+        return new WebDriverWait(driver, Duration.ofSeconds(LONG_TIMEOUT)).
+                until(ExpectedConditions.invisibilityOfElementLocated(getByXpath(locator)));
+    }
 
 }
