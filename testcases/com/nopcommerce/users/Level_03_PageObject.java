@@ -63,8 +63,8 @@ public class Level_03_PageObject extends BasePage {
     public void TC_01_Register() {
         homePage.clickToRegisterLink();
 
-//        registerPage = new RegisterPageObject();
-//        registerPage.enterToFirstNameTextbox("");
+        registerPage = new RegisterPageObject(driver);
+        registerPage.enterToFirstNameTextbox("");
 //        registerPage.enterToLastNameTextbox("");
 //        registerPage.enterToEmailTextbox("");
 //        registerPage.enterToPasswordTextbox("");
@@ -81,7 +81,7 @@ public class Level_03_PageObject extends BasePage {
 
     @Test
     public void TC_02_Login(){
-//        homePage.clickToLoginLink();
+        homePage.clickToLoginLink();
 //
 //        loginPage = new LoginPageObject();
 //        loginPage.enterToEmailTextbox();
